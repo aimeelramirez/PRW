@@ -29,5 +29,4 @@ local(merge) -> dev(locally) -> main(github) -> 01_CRUD
 # How to use project
 
 1. npm install - install dependencies
-2. Open live server or Open index.html
-3. npm run rebuild: format html and js files
+2. Open live server or Open index.html or npm start
