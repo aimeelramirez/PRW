@@ -1,0 +1,25 @@
+{
+  "name": "prw",
+  "version": "1.0.0",
+  "description": "shopping list app",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.5",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-image-resize": "^0.13.1",
+    "gulp-minify": "^3.1.0",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.12.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "jquery": "^3.6.0",
+    "node-sass": "^5.0.0",
+    "noty": "^3.2.0-beta-deprecated"
+  }
+}

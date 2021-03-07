@@ -1,0 +1,24 @@
+
+
+
+[req]
+default_bits = 2048
+prompt = no
+default_md = sha256
+distinguished_name = dn
+[dn]
+C=US
+ST=RI
+L=NP
+O=Self
+OU=Self
+emailAddress=alramirez1@student.fullsail.edu
+CN = localhost
+
+
+
+
+
+
+
+
