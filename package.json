@@ -4,11 +4,14 @@
   "description": "shopping list app",
   "main": "index.js",
   "scripts": {
+    "rebuild": "sh ./rebuild.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "aimeelramirez",
   "license": "ISC",
   "dependencies": {
-    "jquery": "^3.6.0"
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "jquery": "^3.6.0",
+    "noty": "^3.2.0-beta-deprecated"
   }
 }

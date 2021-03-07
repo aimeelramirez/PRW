@@ -8,12 +8,42 @@
     <meta name="theme-color" content="#317EFB" />
     <meta name="description" content="Shopping List Application" />
     <title>PRW - Shopping List Application</title>
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <link rel="icon" type="image/svg" href="assets/images/edit-regular.svg" />
+    <link href="./node_modules/noty/lib/noty.css" rel="stylesheet" />
+    <link href="./node_modules/noty/lib/themes/mint.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./node_modules/@fortawesome/fontawesome-free/css/all.css"
+    />
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+    <script
+      defer
+      src="./node_modules/@fortawesome/fontawesome-free/js/all.js"
+      type="text/javascript"
+    ></script>
+
+    <script src="assets/js/spinner.js" type="text/javascript"></script>
+    <script
+      src="./node_modules/jquery/dist/jquery.min.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="./node_modules/noty/lib/noty.js"
+      type="text/javascript"
+    ></script>
+    <script src="index.js" type="text/javascript"></script>
+
+    <noscript>
+      <!--JavaScript is required to run this project -->
+    </noscript>
   </head>
   <body>
+    <p id="spinner"><strong>spinner</strong></p>
     <main>
-      <section id="list"></section>
+      <section id="list">
+        <button id="show">hello</button>
+      </section>
     </main>
   </body>
-  <script src="index.js"></script>
 </html>

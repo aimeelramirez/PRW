@@ -1,0 +1,44 @@
+strong {
+  display: none;
+}
+#spinner::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f013";
+  font-weight: 900;
+  font-size: 10rem;
+}
+
+#spinner {
+  position: center;
+  animation: 2s linear infinite spinGesture;
+  left: 50%;
+  opacity: inherit;
+  position: absolute;
+  top: 50%;
+}
+@keyframes spinGesture {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    color: grey;
+  }
+  100% {
+    color: yellow;
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+#close:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f054";
+  font-weight: 900;
+  font-size: 1rem;
+  color: green;
+}
+#close {
+  background-color: #afc765;
+  border: none;
+}
+#close:hover {
+  padding-left: 0.5rem;
+  border-radius: 20%;
+}

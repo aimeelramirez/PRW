@@ -16,19 +16,18 @@ local, dev, main, and 01_CRUD
 
 local(merge) -> dev(locally) -> main(github) -> 01_CRUD
 
-### Installed
-- npm install --save-dev --save-exact prettier
-  - resource: https://prettier.io/docs/en/install.html
+### Development Environments
+
 - npm install jquery
   - resource :
     - https://jquery.com/download/
     - https://learn.jquery.com/about-jquery/how-jquery-works/
-
-
-### formatter
-npx prettier --write <file directory>
+- npm install noty
+  - resource:
+    - https://ned.im/noty/#/installation
 
 # How to use project
 
-1. npm install
+1. npm install - install dependencies
 2. Open live server or Open index.html
+3. npm run rebuild: format html and js files
