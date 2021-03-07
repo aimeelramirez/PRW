@@ -14,10 +14,9 @@
   <link href="./node_modules/noty/lib/noty.css" rel="stylesheet" />
   <link href="./node_modules/noty/lib/themes/semanticui.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="./node_modules/@fortawesome/fontawesome-free/css/all.css" />
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/main.css" />
   <script defer src="./node_modules/@fortawesome/fontawesome-free/js/all.js" type="text/javascript"></script>
   <!-- javascript -->
-  <script src="assets/js/spinner.js" type="text/javascript"></script>
   <script src="./node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
   <script src="./node_modules/noty/lib/noty.js" type="text/javascript"></script>
   <script src="index.js" type="text/javascript"></script>
@@ -30,11 +29,31 @@
   <p id="spinner"><strong>spinner</strong></p>
   <main>
     <h1>PRW</h1>
+    <h2>My Groceries:</h2>
+
     <section id="list">
-      <h2>Shopping List:</h2>
+      <h3 id="list-title">Shopping List:</h3>
       <article>
-        <button id="show"><strong>show</strong></button>
+        <p>Add new items and delete items from a list.</p>
       </article>
+      <article>
+        <ul class="groceries">
+          <li>Loading groceries...</li>
+        </ul>
+      </article>
+      <footer>
+        <article>
+          <form name="myForm" class="addItems">
+            <div class="form">
+              <input type="text" name="item" id="txt" placeholder="Enter Item Name" />
+            </div>
+            <div class="form">
+              <input type="text" name="price" id="price" placeholder="Enter Item Price" />
+            </div>
+            <button id="show" type="submit"><strong>Show</strong>Add Item</button>
+          </form>
+        </article>
+      </footer>
     </section>
   </main>
 </body>

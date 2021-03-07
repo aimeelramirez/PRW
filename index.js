@@ -1,31 +1,15 @@
-$(document).ready(() => {
-
-    console.log("jQuery is running.");
-    let getNoty, message;
-    //hide
-    $("#close").hide()
-
-    //show pop up
-    $("#show").on("click", (e) => {
-        e.preventDefault();
-        message = "Hello this is a placer.";
-        getNoty = new Noty({
-            type: "success",
-            theme: "semanticui",
-            text: ` ${message} <button id='close'><strong>close</strong></button>`,
-        }).show();
-        $("#close").show()
-
-
-    });
-    //hide pop up
-    $("#close").on("click", (e) => {
-        e.preventDefault();
-        getNoty.close()
-        $("#close").hide()
-
-
-
-
-    });
-});
+const include = async (file) => {
+    let script = document.createElement("script")
+    script.src = file
+    script.type = "text/javascript"
+    script.defer = true
+    await getScript(script)
+}
+const getScript = (script) => {
+    let htmlScript = document.querySelector("head")
+    htmlScript.insertAdjacentElement("afterend", script)
+}
+//get files to read more than one
+include("assets/js/spinner.js")
+include("assets/js/notification.js")
+include("assets/js/index.js")
