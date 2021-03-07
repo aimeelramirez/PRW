@@ -1,22 +1,31 @@
 $(document).ready(() => {
+
     console.log("jQuery is running.");
-    let getNoty = "";
-    let message = "Hello this is a placer.";
+    let getNoty, message;
+    //hide
+    $("#close").hide()
+
     //show pop up
     $("#show").on("click", (e) => {
         e.preventDefault();
+        message = "Hello this is a placer.";
         getNoty = new Noty({
             type: "success",
-            theme: "mint",
+            theme: "semanticui",
             text: ` ${message} <button id='close'><strong>close</strong></button>`,
         }).show();
-        $(`#${getNoty.id}`).show();
+        $("#close").show()
+
+
     });
     //hide pop up
-    //   $("#close").on("click", (e) => {
-    //     e.preventDefault();
-    //     $(getBody).removeClass("noty_effects_open");
-    //     $(getBody).addClass("noty_effects_close");
-    //     $(`#${getNoty.id}`).remove()
-    //   });
+    $("#close").on("click", (e) => {
+        e.preventDefault();
+        getNoty.close()
+        $("#close").hide()
+
+
+
+
+    });
 });
