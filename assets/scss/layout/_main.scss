@@ -27,10 +27,25 @@ strong {
     transform: translate3d(-50%, -50%, 0) rotate(360deg);
   }
 }
-section,
-h2 {
+header,
+section {
   margin: 0 auto;
   padding: 0;
+}
+body {
+  background-color: gainsboro;
+}
+header {
+  display: flex;
+  margin-top: 1rem;
+  h1 {
+    display: none;
+  }
+}
+h2 {
+  text-transform: uppercase;
+  text-align: center;
+  cursor: text;
 }
 #list-title {
   display: none;
@@ -38,7 +53,6 @@ h2 {
 #list {
   display: flex;
   flex-direction: column;
-
   list-style: none;
   padding: 1rem;
   cursor: pointer;
@@ -58,6 +72,14 @@ h2 {
   }
 }
 #show {
+  color: green;
+  background-color: gainsboro;
+  &:hover {
+    color: yellowgreen;
+    font-weight: 600;
+    // text-transform: uppercase;
+    // font-size: 0.8rem;
+  }
   &:before {
     font-family: "Font Awesome 5 Free";
     content: "\f1d8";
@@ -66,32 +88,70 @@ h2 {
     color: green;
   }
   &:hover:before {
-    color: #9c9c9c;
+    color: yellowgreen;
   }
   float: right;
 }
+
 #show,
-#close {
+#closeSuccess,
+#closeError,
+.delete {
   background-color: transparent;
   border-radius: 25rem;
   outline: none;
   border: none;
 }
-#close {
+
+#closeError,
+#closeSuccess {
   &:before {
     font-family: "Font Awesome 5 Free";
     content: "\f054";
     font-weight: 900;
     font-size: 1rem;
-    color: red;
   }
   &:hover {
     padding-left: 0.5rem;
     border-radius: 25rem;
     border: none;
   }
+}
+#closeError,
+.delete {
+  &:before {
+    color: red;
+  }
   &:hover:before {
     color: #da8e8e;
+  }
+}
+.delete {
+  &:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f2ed";
+    font-weight: 900;
+    font-size: 1rem;
+  }
+}
+#closeError {
+  &:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f054";
+    font-weight: 900;
+    font-size: 1rem;
+  }
+}
+#closeSuccess {
+  &:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f054";
+    font-weight: 900;
+    font-size: 1rem;
+    color: green;
+  }
+  &:hover:before {
+    color: greenyellow;
   }
 }
 form {
@@ -103,8 +163,9 @@ form {
     border-right: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
     border-radius: 10rem;
+    width: 80%;
     height: 100%;
-    font-size: 1.4rem;
+    font-size: 1rem;
     padding-left: 1rem;
     outline: none;
   }
@@ -113,11 +174,27 @@ form {
   }
   p {
     white-space: break-spaces;
-    outline: 1px solid $red;
+    outline: 1px solid red;
   }
 }
 footer {
   display: block;
   margin: 0 auto;
   padding: 0;
+}
+ul {
+  li {
+    display: flex;
+    list-style: none;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    max-width: 40rem;
+    box-shadow: 0px 8px 10px -8px black;
+    background-color: white;
+    border-radius: 0.5rem;
+    p {
+      flex-direction: row;
+    }
+  }
 }

@@ -23,10 +23,24 @@ strong {
     opacity: 0;
     transform: translate3d(-50%, -50%, 0) rotate(360deg); } }
 
-section,
-h2 {
+header,
+section {
   margin: 0 auto;
   padding: 0; }
+
+body {
+  background-color: gainsboro; }
+
+header {
+  display: flex;
+  margin-top: 1rem; }
+  header h1 {
+    display: none; }
+
+h2 {
+  text-transform: uppercase;
+  text-align: center;
+  cursor: text; }
 
 #list-title {
   display: none; }
@@ -49,7 +63,12 @@ h2 {
     width: 100%; }
 
 #show {
+  color: green;
+  background-color: gainsboro;
   float: right; }
+  #show:hover {
+    color: yellowgreen;
+    font-weight: 600; }
   #show:before {
     font-family: "Font Awesome 5 Free";
     content: "\f1d8";
@@ -57,29 +76,59 @@ h2 {
     font-size: 1rem;
     color: green; }
   #show:hover:before {
-    color: #9c9c9c; }
+    color: yellowgreen; }
 
 #show,
-#close {
+#closeSuccess,
+#closeError,
+.delete {
   background-color: transparent;
   border-radius: 25rem;
   outline: none;
   border: none; }
 
-#close:before {
+#closeError:before,
+#closeSuccess:before {
   font-family: "Font Awesome 5 Free";
   content: "\f054";
   font-weight: 900;
-  font-size: 1rem;
-  color: red; }
+  font-size: 1rem; }
 
-#close:hover {
+#closeError:hover,
+#closeSuccess:hover {
   padding-left: 0.5rem;
   border-radius: 25rem;
   border: none; }
 
-#close:hover:before {
+#closeError:before,
+.delete:before {
+  color: red; }
+
+#closeError:hover:before,
+.delete:hover:before {
   color: #da8e8e; }
+
+.delete:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f2ed";
+  font-weight: 900;
+  font-size: 1rem; }
+
+#closeError:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f054";
+  font-weight: 900;
+  font-size: 1rem; }
+
+#closeSuccess:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f054";
+  font-weight: 900;
+  font-size: 1rem;
+  color: green; }
+
+#closeSuccess:hover:before {
+  color: greenyellow; }
 
 form {
   display: flex;
@@ -90,17 +139,31 @@ form {
     border-right: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
     border-radius: 10rem;
+    width: 80%;
     height: 100%;
-    font-size: 1.4rem;
+    font-size: 1rem;
     padding-left: 1rem;
     outline: none; }
   form label {
     display: none; }
   form p {
     white-space: break-spaces;
-    outline: 1px solid "red"; }
+    outline: 1px solid red; }
 
 footer {
   display: block;
   margin: 0 auto;
   padding: 0; }
+
+ul li {
+  display: flex;
+  list-style: none;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  max-width: 40rem;
+  box-shadow: 0px 8px 10px -8px black;
+  background-color: white;
+  border-radius: 0.5rem; }
+  ul li p {
+    flex-direction: row; }

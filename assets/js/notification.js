@@ -6,26 +6,38 @@ class GetNote {
     constructor() {
         props()
     }
-    static showMessage(message) {
-        console.log(message)
+    static showMessageSuccess(message) {
         let getNoty;
         //hide
         $("#close").hide();
-
-        //show pop up
-        // $("#show").on("click", (e) => {
-        //     e.preventDefault();
         getNoty = new Noty({
-            type: "error",
+            type: "success",
             theme: "semanticui",
-            text: ` ${message} <button id='close'><strong>close</strong></button>`,
+            text: ` ${message} <button id='closeSuccess'><strong>close</strong></button>`,
         }).show();
-        $("#close").show()
+        // $("#close").show()
         //hide pop up
         $("#close").on("click", (e) => {
             e.preventDefault()
+            // $("#close").hide()
             getNoty.close()
-            $("#close").hide()
+        });
+    }
+    static showMessageError(message) {
+        let getNoty;
+        //hide
+        $("#close").hide();
+        getNoty = new Noty({
+            type: "error",
+            theme: "semanticui",
+            text: ` ${message} <button id='closeError'><strong>close</strong></button>`,
+        }).show();
+        // $("#close").show()
+        //hide pop up
+        $("#close").on("click", (e) => {
+            e.preventDefault()
+            // $("#close").hide()
+            getNoty.close()
         });
     }
 
