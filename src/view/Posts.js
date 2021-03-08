@@ -42,6 +42,7 @@ class Posts extends React.Component {
             this.posts = this.state.posts.map(post => {
                 return (
                     <Post
+                        key={post.id}
                         name={post.name}
                         price={post.price}
                         clicked={() => this.postSelectedHandler(post.id)} />
