@@ -5,6 +5,7 @@
   width: 80%;
   margin: auto;
 }
+.Counter,
 .Post {
   width: 250px;
   padding: 16px;
@@ -15,7 +16,9 @@
   box-sizing: border-box;
   cursor: pointer;
 }
-
+.Post > p {
+  color: red;
+}
 .Post:hover,
 .Post:active {
   background-color: #c0ddf5;

@@ -1,15 +1,20 @@
 import './Post.css';
 
-const post = (props) => {
+//child props
+const Post = (props) => {
     // console.log(props)
     return (
-        <article className="Post" onClick={props.clicked}>
+        <article className="Post"
+            key={props.text}
+            onClick={props.clicked}>
+
             <h1>{props.name}</h1>
             <div className="Info">
+                <p>???</p>
                 <div className="Price">${props.price}</div>
             </div>
         </article>
     );
 }
 
-export default post;
+export default Post;
