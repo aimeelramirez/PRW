@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
 }
 const handlePost = (state, action) => {
     //console.log(action)
-    //console.log(state)
+    console.log(state)
     return {
         posts: state.posts,
         post: action.post
