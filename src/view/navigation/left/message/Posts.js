@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Spinner from '../components/spinner/spinner';
-import { data } from '../data.js';
-import Button from '../components/button/button'
-import AddPost from '../view/navigation/left/message/message'
-import UpdatePost from '../reducers/post/post'
-import Reducer from '../reducers/reducer'
+import Spinner from '../../../../components/spinner/spinner';
+import { data } from '../../../../data.js';
+// import Button from '../components/button/button'
+import AddPost from '../../../../reducers/post/addPost'
+// import Portal from '../../../../reducers/portal'
 //component on props child post
 class Posts extends Component {
     clickCounter = (e) => {
@@ -21,9 +20,7 @@ class Posts extends Component {
             <div>
                 <div className="Posts">
                     <AddPost />
-                    <UpdatePost />
                 </div>
-                <Reducer />
             </div>
         )
 

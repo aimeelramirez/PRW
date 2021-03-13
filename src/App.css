@@ -10,6 +10,11 @@
 .App {
   text-align: center;
 }
+.login-portal {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
 #spinner,
 .App-logo {
   height: 40vmin;
@@ -28,8 +33,11 @@
 .container > div:not(.clip) {
   width: 50%;
 }
-.container > div > p {
+/* .container > div > p {
   outline: 1px solid red;
+} */
+[name="message"] {
+  height: 10rem;
 }
 #list-avatars {
   flex-wrap: wrap;
@@ -41,7 +49,7 @@
 .container > section {
   margin: 0 auto;
   padding: 0;
-  outline: 1px solid green;
+  /* outline: 1px solid green; */
   display: flex;
   flex-direction: row !important;
 }
@@ -57,12 +65,12 @@
   height: 8rem;
   clip-path: circle(3rem at 3.5rem 4.5rem);
 }
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   #spinner,
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
 .App-header {
   color: var(--white);
@@ -78,9 +86,9 @@
 .App-link {
   color: var(--caribbean-green);
 }
-/* nav > ul {
+nav > ul {
   display: flex;
-} */
+}
 li {
   /* display: flex; */
 
@@ -92,11 +100,11 @@ a {
   text-decoration: none;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */

@@ -1,14 +1,8 @@
-import React, { useState, useReducer } from 'react';
-import * as actionTypes from '../action/action';
+import React, { useState } from 'react';
 import { data } from '../../data';
-import Post from '../../view/Post'
-// const initialState = {
-//     posts: data,
+import Post from '../../components/post/Post'
 
-// }
-
-const UpdatePost = () => {
-    // const [state, dispatch] = useReducer(reducer, initialState)
+const DeletePost = () => {
     const [state, setState] = useState({ posts: data });
     //get remove
     const removePost = (post) => {
@@ -26,11 +20,12 @@ const UpdatePost = () => {
     const Main = () => {
         return data.map(post => {
             return (
+
                 <Post
                     key={parseInt(post.text)}
                     text={post.text}
                     name={post.name}
-                    email={post.email}
+                    message={post.message}
                     clicked={() => {
                         removePost(post)
                     }}
@@ -44,4 +39,4 @@ const UpdatePost = () => {
     )
 };
 
-export default UpdatePost;
+export default DeletePost;

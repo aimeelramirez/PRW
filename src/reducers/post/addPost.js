@@ -1,13 +1,13 @@
-import React, { useReducer, useState } from 'react';
-import * as actionTypes from '../../../../reducers/action/action';
-import { data } from './../../../../data';
-import UpdatePost from '../../../../reducers/post/post'
+import React, { useReducer } from 'react';
+import * as actionTypes from '../action/action';
+import { data } from '../../data';
+import DeletePost from './deletePost'
 
 const initialState = {
     posts: data,
     post: {
         name: "",
-        email: ""
+        message: ""
     }
 }
 const reducer = (state = initialState, action) => {
@@ -27,36 +27,37 @@ const handlePost = (state, action) => {
         post: action.post
     }
 }
-const Message = () => {
+const AddPost = () => {
     // const [state, setState] = useState(initialState);
     const [state, dispatch] = useReducer(reducer, initialState)
+
     const handleChange = (event) => {
         event.preventDefault()
+        // console.log(event)
         event.target.reset()
-
     }
     const handleClick = (event) => {
         event.preventDefault()
         console.log(event.target[0])
         console.log(event.target[1])
-        let email = event.target[0].value
+        let message = event.target[0].value
         let name = event.target[1].value
         let stringKey = initialState.posts.length.toString();
         let post = {}
         for (let i = 0; i < initialState.posts.length; i++) {
             let num = parseInt(initialState.posts[i].text)
-            if (num != stringKey) {
+            if (num !== stringKey) {
                 post = {
                     text: stringKey,
                     name: name,
-                    email: email
+                    message: message
                 }
             } else {
                 stringKey = (num + 1).toString()
                 post = {
                     text: stringKey,
                     name: name,
-                    email: email
+                    message: message
                 }
             }
 
@@ -73,15 +74,21 @@ const Message = () => {
         event.target.reset()
     }
     return (<div>
-        <UpdatePost />
-        <form onSubmit={handleClick}>
-            <label>Email:</label>
-            <input type="text" />
+        <div id="hello">
+            <DeletePost />
+        </div>
+        <form onSubmit={handleClick} >
+            <label>Leave a Message:</label>
+            <p>
+                <textarea type="text" name="message" />
+            </p>
             <label>Name:</label>
-            <input type="text" />
+            <p>
+                <input type="text" name="name" />
+            </p>
             <button type="submit" onChange={handleChange}>Submit</button>
         </form></div>
     )
 
 }
-export default Message;
+export default AddPost;

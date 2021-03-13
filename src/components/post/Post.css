@@ -1,0 +1,36 @@
+#hello {
+  margin: 0 auto;
+  padding: 0;
+  justify-content: center;
+  /* outline: 1px solid green; */
+  display: flex;
+  flex-flow: row wrap;
+}
+#hello > article {
+  margin: 0.5rem;
+  padding: 1rem;
+  /* outline: 1px solid red; */
+}
+.Counter,
+.Post {
+  width: 100%;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  margin: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.Post > p {
+  color: red;
+}
+.Post:hover,
+.Post:active {
+  background-color: #c0ddf5;
+}
+
+.Price {
+  margin: 16px 0;
+  color: #ccc;
+}

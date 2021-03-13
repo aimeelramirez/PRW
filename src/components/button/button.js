@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Button.css';
 
 const Button = () => {
-    const [count, setCount] = useState({ counter: 0 });
-    const add1ToCounter = () => {
-        const newCounterValue = count.counter + 1;
-        setCount({ counter: newCounterValue });
+    const [state, setState] = useState({
+        isAuth: false
+    });
+    const switchButton = () => {
+        if (!state.isAuth) {
+            setState({
+                isAuth: true
+            });
+        } else {
+            setState({
+                isAuth: false
+            });
+        }
     }
+    useEffect(() => {
+        // Update the document title using the browser API
+        if (state.isAuth === true) {
+            document.title = `You are signed in! `;
+        } else {
+            document.title = `You are signed out! `;
+
+        }
+    });
     return (
         <div>
-            {/* <p>This is getting counter  for each button: {count.counter}</p> */}
-            <button className='alr-button' onClick={
-                add1ToCounter
-            } >Submit</button>
+            <button className='alr-button' name="btn" onClick={
+                switchButton
+            } >{state.isAuth ? 'Sign-in' : 'Sign-out'}</button>
         </div >
     )
 };
