@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import './Button.css';
 
 const Button = () => {
@@ -10,11 +9,11 @@ const Button = () => {
     }
     return (
         <div>
-            <p>This is getting counter: {count.counter}</p>
-            <div className='alr-button' onClick={
+            {/* <p>This is getting counter  for each button: {count.counter}</p> */}
+            <button className='alr-button' onClick={
                 add1ToCounter
-            }>send</div>
-        </div>
+            } >Submit</button>
+        </div >
     )
 };
 

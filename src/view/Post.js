@@ -2,16 +2,14 @@ import './Post.css';
 
 //child props
 const Post = (props) => {
-    // console.log(props)
+    const { text, clicked, name, email } = { ...props }
     return (
         <article className="Post"
-            key={props.text}
-            onClick={props.clicked}>
-
-            <h1>{props.name}</h1>
+            key={text}
+            onClick={clicked}>
             <div className="Info">
-                <p>???</p>
-                <div className="Price">${props.price}</div>
+                <h1>{name}</h1>
+                <div className="Email">{email}</div>
             </div>
         </article>
     );
