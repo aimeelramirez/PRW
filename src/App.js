@@ -12,17 +12,12 @@ function App() {
         <Portal />
         {/* <img src={emoji} className="App-logo" alt="logo" /> */}
         <h1> A Social Media Application</h1>
-        <Header />
+
       </header>
       <div className="container">
         <ApiAvatars />
-        <div className="description">
-          <h2>Post:</h2>
-          <p>Click to delete item. <br /> OR <br /> Fill inputs to send a post.</p>
-        </div>
       </div>
-      <Posts />
-
+      <Header />
     </div>
   );
 }
