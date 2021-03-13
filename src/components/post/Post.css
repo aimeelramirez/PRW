@@ -11,6 +11,28 @@
   padding: 1rem;
   /* outline: 1px solid red; */
 }
+.card-photo {
+  display: flex;
+  margin: auto 0;
+  padding: 0;
+  justify-content: center;
+  text-align: center;
+}
+
+.clip2 > img {
+  min-height: 7.9rem;
+  min-width: 7rem;
+  max-width: 7.5rem;
+  margin: auto 0;
+  padding: 0;
+  justify-content: center;
+  text-align: center;
+}
+.clip2 {
+  width: 8rem;
+  height: 8rem;
+  clip-path: circle(3rem at 4rem 4.5rem);
+}
 .Counter,
 .Post {
   width: 100%;

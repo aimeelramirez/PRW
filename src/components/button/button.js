@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Button.css';
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 
 const Button = () => {
     const [state, setState] = useState({
@@ -29,7 +30,7 @@ const Button = () => {
         <div>
             <button className='alr-button' name="btn" onClick={
                 switchButton
-            } >{state.isAuth ? 'Sign-in' : 'Sign-out'}</button>
+            } >{state.isAuth ? <div> Login <FiLogIn /> </div> : <div> LogOut <FiLogOut /></div>}</button>
         </div >
     )
 };

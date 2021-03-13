@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import * as actionTypes from './action/action';
 import Button from '../components/button/button'
+
 const initialState = {
     user: "",
     isAuth: false,

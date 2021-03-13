@@ -4,6 +4,7 @@ import { data } from '../../../../data.js';
 // import Button from '../components/button/button'
 import AddPost from '../../../../reducers/post/addPost'
 // import Portal from '../../../../reducers/portal'
+
 //component on props child post
 class Posts extends Component {
     clickCounter = (e) => {
@@ -18,7 +19,7 @@ class Posts extends Component {
         }
         return (
             <div>
-                <div className="Posts">
+                <div className="Posts" id="list-avatars-2">
                     <AddPost />
                 </div>
             </div>

@@ -1,10 +1,12 @@
-import React, { useReducer, useState } from 'react';
+
+
+
+import React, { useReducer } from 'react';
 import * as actionTypes from '../action/action';
 import { data } from '../../data';
 import DeletePost from './deletePost'
-import { FetchCardAvatars } from '../../reducers/action/fetchAvatar'
-import { updateObject } from '../utility';
-let getUpdate = {}
+import { GetError } from '../../reducers/action/error'
+
 const initialState = {
     posts: data,
     post: {
@@ -22,15 +24,15 @@ const reducer = (state = initialState, action) => {
 
 }
 const handlePost = (state, action) => {
-    // console.log(action)
-    FetchCardAvatars()
+    //console.log(action)
+    console.log(state)
     return {
         posts: state.posts,
         post: action.post
     }
 }
-const AddPost = () => {
-    // const [item, setState] = useState(initialState);
+const EditPost = () => {
+    // const [state, setState] = useState(initialState);
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const handleChange = (event) => {
@@ -46,8 +48,14 @@ const AddPost = () => {
         let name = event.target[1].value
         let stringKey = initialState.posts.length.toString();
         let post = {}
+        if (name == "" || message == "") {
+            let message = "Please fill out all inputs."
+            GetError(message)
+            return false;
+        }
         for (let i = 0; i < initialState.posts.length; i++) {
             let num = parseInt(initialState.posts[i].text)
+
             if (num !== stringKey) {
                 post = {
                     text: stringKey,
@@ -67,29 +75,16 @@ const AddPost = () => {
 
         // let review = ""
         // console.log(event)
-        let posts = [...initialState.posts, post]
-        //this is the same as action on reducer above
-        getUpdate = updateObject({
-            posts,
-            post
-
-        })
-        //console.log(getUpdate)
-        //** the only way i can get the page to reload with data shown...
         state.posts.push(post)
-        // setState(() => ({ posts: getUpdate.posts }))
         dispatch({
             type: actionTypes.ADD_POST,
             posts: state.posts,
             post: post
-
         })
         event.target.reset()
     }
     return (<div>
-        <div id="hello">
-            <DeletePost />
-        </div>
+
         <form onSubmit={handleClick} >
             <label>Leave a Message:</label>
             <p>
@@ -104,4 +99,4 @@ const AddPost = () => {
     )
 
 }
-export default AddPost;
+export default EditPost;

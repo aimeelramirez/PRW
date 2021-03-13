@@ -13,7 +13,7 @@ const Header = () => {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/Home">Home</Link>
+                        <Link to="/">Home</Link>
                     </li>
                     <li>
                         <Link to="/About">About</Link>
@@ -23,7 +23,7 @@ const Header = () => {
                     </li>
                 </ul></nav>
 
-            {/* A <Switch> looks through its children <Route>s and
+            {/* A <Switch> looks through its children <Route> and
             renders the first one that matches the current URL. */}
             <Switch>
                 <Route path="/About">
@@ -32,16 +32,18 @@ const Header = () => {
                 <Route path="/Messages">
                     <Messages />
                 </Route>
-                <Route path="/Home">
+                <Route path="/">
                     <Home />
                 </Route>
             </Switch>
         </div></Router >)
 
 }
+
 function Home() {
     return <h2>Home</h2>;
 }
+
 
 function About() {
     return <h2>About</h2>;

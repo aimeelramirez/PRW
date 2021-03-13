@@ -30,7 +30,7 @@
 .container > .clip {
   margin-left: 7%;
 }
-.container > div:not(.clip) {
+.container > div:not(.clip, .clip2) {
   width: 50%;
 }
 /* .container > div > p {
@@ -107,4 +107,67 @@ a {
   to {
     transform: rotate(360deg);
   }
+} */
+button {
+  background-color: transparent;
+  border: none;
+}
+
+#show,
+#closeSuccess,
+#closeError,
+.delete {
+  background-color: transparent;
+  border-radius: 25rem;
+  outline: none;
+  border: none;
+}
+
+/* #closeError:before,
+#closeSuccess:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f054";
+  font-weight: 900;
+  font-size: 1rem; } */
+
+#closeError:hover,
+#closeSuccess:hover {
+  padding-left: 0.5rem;
+  border-radius: 25rem;
+  border: none;
+}
+
+#closeError:before,
+.delete:before {
+  color: red;
+}
+
+#closeError:hover:before,
+.delete:hover:before {
+  color: #da8e8e;
+}
+/* 
+.delete:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f2ed";
+  font-weight: 900;
+  font-size: 1rem; } */
+
+/* #closeError:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f054";
+  font-weight: 900;
+  font-size: 1rem;
+} */
+
+/* #closeSuccess:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f054";
+  font-weight: 900;
+  font-size: 1rem;
+  color: green;
+} */
+
+/* #closeSuccess:hover:before {
+  color: greenyellow;
 } */
