@@ -267,28 +267,30 @@ button {
 #closeSuccess:hover {
   color: var(--white);
 }
-/* #closeError:before,
-#closeSuccess:before {
-  font-family: "Font Awesome 5 Free";
-  content: "\f054";
-  font-weight: 900;
-  font-size: 1rem; } */
-
+.feather-info,
+.feather-alert-circle,
+.feather-check-circle {
+  top: 0;
+  margin-bottom: -0.1rem;
+  stroke: var(--white);
+  height: 1rem;
+}
+.feather-x {
+  stroke: var(--white);
+  height: 1rem;
+  margin-bottom: -0.15rem;
+}
+#note {
+  font-size: 1rem !important;
+}
 #closeError:hover,
 #closeSuccess:hover {
   padding-left: 0.5rem;
   border-radius: 25rem;
   border: none;
 }
-
-#closeError,
-.delete {
-  color: var(--caribbean-green);
-}
-
-#closeError:hover,
-.delete:hover {
-  color: var(--white);
+.feather-x:hover {
+  stroke: var(--orange-yellow-crayola);
 }
 /* 
 .delete:before {
@@ -315,9 +317,9 @@ button {
   box-sizing: border-box;
   cursor: pointer;
 }
-.Post > p {
+/* .Post > p {
   color: red;
-}
+} */
 .Post:hover,
 .Post:active {
   background-color: #c0ddf5;
@@ -330,7 +332,6 @@ button {
 
 #delete-container {
   margin: 0 auto;
-
   padding: 1rem;
   justify-content: center;
   /* outline: 1px solid green; */

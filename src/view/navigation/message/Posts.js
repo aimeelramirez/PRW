@@ -4,18 +4,19 @@ import { data } from './../../../data'
 // import Button from '../components/button/button'
 import AddPost from './../../../reducers/post/addPost'
 // import Portal from '../../../../reducers/portal'
-
+// import * as Icon from "react-icons/fi";
 
 //component on props child post
 class Posts extends Component {
-    clickCounter = (e) => {
-        e.preventDefault()
-        console.log(e.target)
-        this.setState({ count: this.state.count + 1 })
-    }
+    // clickCounter = (e) => {
+    //     e.preventDefault()
+    //     // console.log(e.target)
+    //     this.setState({ count: this.state.count + 1 })
+    // }
     render() {
-        if (data.length < 0) {
-            console.log(data.length)
+        if (data.length <= 0) {
+            // console.log(data.length)
+            // return <div id="Spinner"><Icon.FiLoader /></div>
             return <Spinner />
         }
         return (

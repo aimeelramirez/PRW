@@ -5,8 +5,9 @@ import PropTypes from 'prop-types'
 import { FiTrash2, FiEdit } from "react-icons/fi";
 
 //child props
-const Post = ({ txt, clicked, edit, name, message }) => {
-    // const { text, clicked, edit, name, message } = { ...props }
+const Post = (props) => {
+    //this could be like this  ({ txt, name, message, clicked, edit })=> or this on spread operator
+    const { txt, clicked, edit, name, message } = { ...props }
     return (
         <div className="Post">
             <div className="card-photo"><div className="clip2"><img src={placer} className="profile" alt="description" /> </div></div>
@@ -23,6 +24,10 @@ const Post = ({ txt, clicked, edit, name, message }) => {
 }
 Post.propTypes = {
     txt: PropTypes.string,
-    name: PropTypes.string
+    name: PropTypes.string,
+    message: PropTypes.string,
+    clicked: PropTypes.func,
+    edit: PropTypes.func,
+
 }
 export default Post;

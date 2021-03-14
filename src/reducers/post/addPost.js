@@ -5,7 +5,7 @@ import DeletePost from './deletePost'
 import { FetchCardAvatars } from '../../reducers/action/fetchAvatar'
 import { updateObject } from '../utility';
 import MainButton from '../../components/button/mainButton'
-import { GetError } from '../action/notification';
+import { GetError, GetSuccess } from '../action/notification';
 const initialState = {
     posts: data,
     post: {
@@ -24,6 +24,8 @@ const reducer = (state = initialState, action) => {
 }
 const handlePost = (state, action) => {
     // console.log(action)
+    //passing state up with dispatching
+    GetSuccess(action.confirm)
     FetchCardAvatars()
     return {
         posts: state.posts,
@@ -89,11 +91,14 @@ const AddPost = () => {
             //console.log(getUpdate)
             //** the only way i can get the page to reload with data shown...
             state.posts.push(post)
+            let confirm = "Success!"
+
             // setState(() => ({ posts: getUpdate.posts }))
             dispatch({
                 type: actionTypes.ADD_POST,
                 posts: getUpdate.posts,
-                post: post
+                post: post,
+                confirm: confirm
 
             })
         }

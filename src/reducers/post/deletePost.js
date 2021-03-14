@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { data } from '../../data';
 import Post from '../../components/post/Post'
 import { FetchCardAvatars } from '../../reducers/action/fetchAvatar'
-import { GetSuccess } from './../action/notification'
+// import { GetSuccess } from './../action/notification'
 // import { updateObject } from '../utility';
+import { GetEditForm, GetSuccess } from './../action/notification'
 import Modal from './../../components/modal/modal'
 
 const DeletePost = () => {
@@ -18,8 +19,7 @@ const DeletePost = () => {
     });
     //get edit
     const editPost = (post) => {
-        console.log("edit post button: Todo ", post)
-        // GetEditForm(post)
+        // console.log("edit post button: Todo ", post)
         // let getUpdate = updateObject({ posts: data })
         // console.log(getUpdate)
         statePost.post = post;
@@ -27,12 +27,19 @@ const DeletePost = () => {
         let showText = <div id="modal-message"><h3>Under Construction!</h3><p>Name:</p><input placeholder={post.name} /><p>Message: </p><textarea id="modal-textarea" placeholder={post.message} /></div>
         setStatePost({ post: showText })
         setStateModal({ show: true });
-
-
     }
-
-    const hideModal = () => {
+    const submitModal = () => {
+        let message = "Under Construction, to be submitted for edits."
         setStateModal({ show: false });
+        GetSuccess(message);
+        return false;
+    };
+    const hideModal = () => {
+        let message = "Disregarded for edits."
+        setStateModal({ show: false });
+        GetEditForm(message);
+        return false;
+
     };
     //get remove
     const removePost = (post) => {
@@ -54,7 +61,7 @@ const DeletePost = () => {
         return state.posts.map(post => {
             return (
                 <div key={parseInt(post.text)}>
-                    <Modal show={stateModal.show} handleClose={hideModal}>
+                    <Modal show={stateModal.show} handleClose={hideModal} handleSubmit={submitModal}>
                         {statePost.post}
                     </Modal>
                     <Post
@@ -72,8 +79,8 @@ const DeletePost = () => {
             );
         })
     }
+    //reload if to send the page
     FetchCardAvatars()
-
     return (
         <div>
             <Main />
