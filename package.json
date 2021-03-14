@@ -2,7 +2,7 @@
   "name": "prw-reactapp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://aimeelramirez.github.io/prw",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",

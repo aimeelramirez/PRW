@@ -15,7 +15,7 @@ const FetchCardAvatars = () => {
         getData.then((data) => {
             // console.log(data)
             arrayAvatars.push(...data.results)
-            // console.log(arrayAvatars)
+            console.log(JSON.stringify(arrayAvatars[0]))
             let getList = document.getElementById("list-avatars")
             let getList2 = document.getElementById("list-avatars-2")
             if (getList != null) {
