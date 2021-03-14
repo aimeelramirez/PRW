@@ -21,6 +21,8 @@ Image API
 
 https://emojiapi.dev/emojis
 
+https://create-react-app.dev/docs/deployment
+
 See
 https://github.com/aimeelramirez/PRW/tree/4e5f0987db5e19d074a1b035b39dd14819fdb090
 
