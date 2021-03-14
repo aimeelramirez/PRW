@@ -47,11 +47,13 @@ const AddPost = () => {
         let name = event.target[1].value
         if (name === "") {
             let text = "Please fill in name!";
-            GetError(text)
+            GetError(text);
+            return false;
         }
         else if (message === "") {
             let text = "Please fill in message!";
-            GetError(text)
+            GetError(text);
+            return false;
         }
         else if (name !== "" && message !== "") {
             let stringKey = initialState.posts.length.toString();

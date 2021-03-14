@@ -58,8 +58,8 @@ const DeletePost = () => {
                         {statePost.post}
                     </Modal>
                     <Post
-                        key={parseInt(post.text)}
-                        text={post.text}
+                        key={parseInt(post.txt)}
+                        text={post.txt}
                         name={post.name}
                         message={post.message}
                         clicked={() => {
