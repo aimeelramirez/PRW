@@ -1,10 +1,11 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import * as actionTypes from '../action/action';
 import { data } from '../../data';
 import DeletePost from './deletePost'
 import { FetchCardAvatars } from '../../reducers/action/fetchAvatar'
 import { updateObject } from '../utility';
-let getUpdate = {}
+import MainButton from '../../components/button/mainButton'
+import { GetError } from '../action/notification';
 const initialState = {
     posts: data,
     post: {
@@ -40,54 +41,64 @@ const AddPost = () => {
     }
     const handleClick = (event) => {
         event.preventDefault()
-        console.log(event.target[0])
-        console.log(event.target[1])
+        // console.log(event.target[0])
+        // console.log(event.target[1])
         let message = event.target[0].value
         let name = event.target[1].value
-        let stringKey = initialState.posts.length.toString();
-        let post = {}
-        for (let i = 0; i < initialState.posts.length; i++) {
-            let num = parseInt(initialState.posts[i].text)
-            if (num !== stringKey) {
-                post = {
-                    text: stringKey,
-                    name: name,
-                    message: message
+        if (name === "") {
+            let text = "Please fill in name!";
+            GetError(text)
+        }
+        else if (message === "") {
+            let text = "Please fill in message!";
+            GetError(text)
+        }
+        else if (name !== "" && message !== "") {
+            let stringKey = initialState.posts.length.toString();
+            let post = {}
+            for (let i = 0; i < initialState.posts.length; i++) {
+                let num = parseInt(initialState.posts[i].text)
+                if (num !== stringKey) {
+                    post = {
+                        text: stringKey,
+                        name: name,
+                        message: message
+                    }
+                } else {
+                    stringKey = (num + 1).toString()
+                    post = {
+                        text: stringKey,
+                        name: name,
+                        message: message
+                    }
                 }
-            } else {
-                stringKey = (num + 1).toString()
-                post = {
-                    text: stringKey,
-                    name: name,
-                    message: message
-                }
+
             }
 
+            // let review = ""
+            // console.log(event)
+            let posts = [...initialState.posts, post]
+            //this is the same as action on reducer above
+            let getUpdate = updateObject({
+                posts,
+                post
+
+            })
+            //console.log(getUpdate)
+            //** the only way i can get the page to reload with data shown...
+            state.posts.push(post)
+            // setState(() => ({ posts: getUpdate.posts }))
+            dispatch({
+                type: actionTypes.ADD_POST,
+                posts: getUpdate.posts,
+                post: post
+
+            })
         }
-
-        // let review = ""
-        // console.log(event)
-        let posts = [...initialState.posts, post]
-        //this is the same as action on reducer above
-        getUpdate = updateObject({
-            posts,
-            post
-
-        })
-        //console.log(getUpdate)
-        //** the only way i can get the page to reload with data shown...
-        state.posts.push(post)
-        // setState(() => ({ posts: getUpdate.posts }))
-        dispatch({
-            type: actionTypes.ADD_POST,
-            posts: state.posts,
-            post: post
-
-        })
         event.target.reset()
     }
     return (<div>
-        <div id="hello">
+        <div id="delete-container">
             <DeletePost />
         </div>
         <form onSubmit={handleClick} >
@@ -99,7 +110,7 @@ const AddPost = () => {
             <p>
                 <input type="text" name="name" />
             </p>
-            <button type="submit" onChange={handleChange}>Submit</button>
+            <MainButton type="submit" onChange={handleChange}>Submit</MainButton>
         </form></div>
     )
 

@@ -12,7 +12,7 @@ const Post = (props) => {
             <article
                 key={text}
                 className="Info">
-                <h1>{name}</h1>
+                <h2>{name}</h2>
                 <div className="Message">{message}</div>
                 <button onClick={clicked}><FiTrash2></FiTrash2></button>
                 <button onClick={edit}><FiEdit /></button>

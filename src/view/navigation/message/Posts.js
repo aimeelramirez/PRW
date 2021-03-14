@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Spinner from '../../../../components/spinner/spinner';
-import { data } from '../../../../data.js';
+import Spinner from './../../../components/spinner/spinner';
+import { data } from './../../../data'
 // import Button from '../components/button/button'
-import AddPost from '../../../../reducers/post/addPost'
+import AddPost from './../../../reducers/post/addPost'
 // import Portal from '../../../../reducers/portal'
+
 
 //component on props child post
 class Posts extends Component {
@@ -18,7 +19,7 @@ class Posts extends Component {
             return <Spinner />
         }
         return (
-            <div>
+            <div className="Body">
                 <div className="Posts" id="list-avatars-2">
                     <AddPost />
                 </div>
