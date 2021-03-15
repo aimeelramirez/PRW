@@ -308,7 +308,7 @@ button {
 }
 
 .Post {
-  /* width: 250px; */
+  width: 250px !important;
   padding: 16px;
   text-align: center;
   /* border: 1px solid #eee; */

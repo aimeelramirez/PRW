@@ -21,6 +21,8 @@
 <code>
 </code>
 
+## Tree
+
 ## Installed
 
 - https://react-icons.github.io/react-icons/

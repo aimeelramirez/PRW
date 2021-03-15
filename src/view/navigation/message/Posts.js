@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Spinner from './../../../components/spinner/spinner';
 import { data } from './../../../data'
 // import Button from '../components/button/button'
-import AddPost from './../../../reducers/post/addPost'
+import UpdatePost from './../../../reducers/post/updatePost'
 // import Portal from '../../../../reducers/portal'
 // import * as Icon from "react-icons/fi";
 
@@ -22,7 +22,7 @@ class Posts extends Component {
         return (
             <div className="Body">
                 <div className="Posts" id="list-avatars-2">
-                    <AddPost />
+                    <UpdatePost />
                 </div>
             </div>
         )
