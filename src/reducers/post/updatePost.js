@@ -21,29 +21,52 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_POST:
             return handlePost(state, action)
+        case actionTypes.REMOVE_POST:
+            return handleDelete(state, action)
         default:
             return state;
     }
 
 }
-const handlePost = (state, action) => {
-    //passing state up with dispatching
-    GetSuccess(action.confirm)
-    console.log("compare the state: ", state.posts)
-    //to update state using setState
-    // state.posts = action.posts
-    console.log("compare the update: ", action.posts)
+const handleDelete = (state, action) => {
+    console.log("Sending to delete action before: ", action)
+    console.log("Sending to delete state before: ", state)
 
-    return {
-        posts: action.posts,
-        post: action.post
+    // state.posts.filter(item => item.name !== action.name)
+    let post = action.post
+    // let review = ""
+    for (var i = 0; i < state.posts.length; i++) {
+        if (state.posts[i] === post) {
+            state.posts.splice(i, 1);
+            // review = state.posts
+        }
+
+        FetchCardAvatars()
     }
+    console.log("Sending to delete action after: ", action)
+    console.log("Sending to delete state: ", state)
+    return state
+
+}
+const handlePost = (state, action) => {
+
+    //to update state using setState
+    state.posts = action.posts
+    console.log("compare the update: ", action.posts)
+    console.log("compare the state: ", state.posts)
+    // return {
+    //     posts: action.posts,
+    //     post: action.post
+    // }
+    return state;
+
 }
 const UpdatePost = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const [statePosts, setState] = useState({
-        posts: state.posts
+        post: "",
+        posts: initialState
     });
     const [statePost, setStatePost] = useState({
         post: ""
@@ -108,7 +131,7 @@ const UpdatePost = () => {
             // state.posts.push(post)
             let newState = [...state.posts, post]
             let confirm = "Success!"
-
+            statePosts.posts = newState
             dispatch({
                 type: actionTypes.ADD_POST,
                 posts: newState,
@@ -116,11 +139,14 @@ const UpdatePost = () => {
                 confirm: confirm
 
             })
-            //for delete method
+            // //for delete method
             setState({
                 posts: newState
             })
+            //passing state up with dispatching
+            GetSuccess(confirm)
         }
+
         event.target.reset()
     }
 
@@ -151,21 +177,24 @@ const UpdatePost = () => {
 
     };
     //get deletePost
-    const removePost = (post) => {
-        const newPostValue = state.posts;
-        let review = ""
-        for (var i = 0; i < newPostValue.length; i++) {
-            if (newPostValue[i] === post) {
-                newPostValue.splice(i, 1);
-                review = newPostValue
-            }
+    const removePost = (e, post) => {
+        e.preventDefault()
+        // console.log(post)
+        setState({
+            posts: state.posts,
+            post: post
+        })
+        state.post = post
+        dispatch({
+            type: actionTypes.REMOVE_POST,
+            posts: state.posts,
+            post: state.post
 
-            FetchCardAvatars()
-            setState({ posts: review });
-        }
+        })
+
+        FetchCardAvatars()
         let message = "This is getting deleted: " + JSON.stringify(post);
         GetSuccess(message)
-        console.log("Check delete state: ", statePosts)
 
     }
     const Main = () => {
@@ -183,8 +212,8 @@ const UpdatePost = () => {
                             text={post.txt}
                             name={post.name}
                             message={post.message}
-                            clicked={() => {
-                                removePost(post)
+                            clicked={(e) => {
+                                removePost(e, post)
                             }}
                             edit={() => {
                                 editPost(post)
