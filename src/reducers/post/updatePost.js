@@ -31,7 +31,6 @@ const reducer = (state = initialState, action) => {
 const handleDelete = (state, action) => {
     console.log("Sending to delete action before: ", action)
     console.log("Sending to delete state before: ", state)
-
     // state.posts.filter(item => item.name !== action.name)
     let post = action.post
     // let review = ""
@@ -40,7 +39,6 @@ const handleDelete = (state, action) => {
             state.posts.splice(i, 1);
             // review = state.posts
         }
-
         FetchCardAvatars()
     }
     console.log("Sending to delete action after: ", action)
@@ -49,7 +47,6 @@ const handleDelete = (state, action) => {
 
 }
 const handlePost = (state, action) => {
-
     //to update state using setState
     state.posts = action.posts
     console.log("compare the update: ", action.posts)
@@ -146,7 +143,6 @@ const UpdatePost = () => {
             //passing state up with dispatching
             GetSuccess(confirm)
         }
-
         event.target.reset()
     }
 
