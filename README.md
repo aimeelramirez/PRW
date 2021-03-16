@@ -58,3 +58,6 @@ https://github.com/aimeelramirez/PRW/tree/4e5f0987db5e19d074a1b035b39dd14819fdb0
 
 <code>REACT_APP_API_KEY=nBAYk2vkWhWn_frzSCYPHRU5bwFjHjSCrsCDEEyJcbA
 </code>
+
+Resource:
+Hooks api reference. (n.d.). Retrieved March 16, 2021, from https://reactjs.org/docs/hooks-reference.html#additional-hooks
