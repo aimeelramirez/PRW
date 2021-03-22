@@ -4,7 +4,7 @@
 // import Ad from './../../components/ad/ad'
 import SearchBar from './search'
 // import Message from '../../view/navigation/message/Posts';
-import Portal from '../../reducers/Portal';
+import Portal from './../../reducers/portal'
 // import MainButton from './../../components/button/mainButton';
 
 // import React, { useState, useEffect } from 'react';
