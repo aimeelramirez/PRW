@@ -12,24 +12,26 @@ const Navigation = () => {
         console.log(history)
     }
     return (
-        <div>
+        <div id="navigation-route">
             <nav className="Nav">
-                <div className="Nav_container">
-                    <ul className="Nav_item-wrapper">
-                        <li className="Nav_item">
-                            <Link className="Nav_link" to="/Home" onClick={handleClick} >Home</Link>
-                        </li>
-                        <li className="Nav_item">
-                            <Link className="Nav_link" to="/NewsFeed" onClick={handleClick}>NewsFeed</Link>
-                        </li>
-                        <li className="Nav_item">
-                            <Link className="Nav_link" to="/Messages" onClick={handleClick} >Messages</Link>
-                        </li>
-                        <li className="Nav_item">
-                            <Link className="Nav_link" to="/Watch" onClick={handleClick}>Watch</Link>
-                        </li>
-                    </ul>
-                </div>
+                <ul>
+                    <li>
+
+                        <Link className="Nav_link" to="/" onClick={handleClick} >Home</Link>
+                    </li>
+                    <li>
+
+                        <Link className="Nav_link" to="/NewsFeed" onClick={handleClick}>NewsFeed</Link>
+                    </li>
+                    <li>
+
+                        <Link className="Nav_link" to="/Messages" onClick={handleClick} >Messages</Link>
+                    </li>
+                    <li>
+
+                        <Link className="Nav_link" to="/Watch" onClick={handleClick}>Watch</Link>
+                    </li>
+                </ul>
             </nav>
         </div >
     )

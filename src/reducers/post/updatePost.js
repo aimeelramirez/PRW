@@ -95,15 +95,27 @@ const UpdatePost = () => {
         else if (name !== "" && message !== "") {
             let stringKey = state.posts.length.toString();
             let post = {}
+            console.log("state: ", state.posts.length)
+            if (state.posts.length === 0) {
+                post = {
+                    text: stringKey,
+                    name: name,
+                    message: message
+                }
+                console.log("posted: ", post)
+
+            }
             for (let i = 0; i < state.posts.length; i++) {
                 let num = parseInt(state.posts[i].text)
+
                 if (num !== stringKey) {
                     post = {
                         text: stringKey,
                         name: name,
                         message: message
                     }
-                } else {
+                }
+                else {
                     stringKey = (num + 1).toString()
                     post = {
                         text: stringKey,
@@ -196,7 +208,7 @@ const UpdatePost = () => {
     const Main = () => {
         return state.posts.map((post, index) => {
             return (
-                <div key={index}>
+                <div key={index} id="Post-item">
                     <div>
                         <Modal show={stateModal.show} handleClose={hideModal} handleSubmit={submitModal}>
                             {statePost.post}
@@ -220,22 +232,26 @@ const UpdatePost = () => {
     }
     FetchCardAvatars()
 
-    return (<div>
-        <div id="delete-container">
-            {/* <DeletePost /> */}
-            <Main />
+    return (
+        <div id="post-container">
+            <div id="delete-container">
+                {/* <DeletePost /> */}
+                <Main />
+            </div>
+            <div id="form-container">
+                <form onSubmit={handleClick} >
+                    <label>Leave a Message:</label>
+                    <p>
+                        <textarea type="text" name="message" />
+                    </p>
+                    <label>Name:</label>
+                    <p>
+                        <input type="text" name="name" />
+                    </p>
+                    <MainButton type="submit" onChange={handleChange}>Submit</MainButton>
+                </form>
+            </div>
         </div>
-        <form onSubmit={handleClick} >
-            <label>Leave a Message:</label>
-            <p>
-                <textarea type="text" name="message" />
-            </p>
-            <label>Name:</label>
-            <p>
-                <input type="text" name="name" />
-            </p>
-            <MainButton type="submit" onChange={handleChange}>Submit</MainButton>
-        </form></div>
     )
 
 }

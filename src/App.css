@@ -105,6 +105,7 @@ h1 {
 .container > .clip {
   margin-left: 7%;
 }
+
 .container > div:not(.clip, .clip2) {
   width: 50%;
 }
@@ -119,18 +120,9 @@ h1 {
   flex-wrap: wrap;
 }
 #list-avatars > div {
-  margin: 0 auto;
+  margin: auto 0;
+
   padding: 0;
-}
-.clip {
-  float: left;
-}
-.list-feed {
-  /* outline: 1px solid palevioletred; */
-  width: 50%;
-  /* text-indent: 1rem; */
-  text-align: left;
-  float: right;
 }
 .card-feed {
   /* border: 1px solid #eee; */
@@ -138,15 +130,32 @@ h1 {
   box-sizing: border-box;
   width: 100%;
 }
+.card-feed {
+  display: flex;
+  flex-direction: row !important;
+}
+.clip {
+  float: left;
+}
+.list-feed {
+  /* outline: 1px solid palevioletred; */
+  width: 75%;
+  /* text-indent: 1rem; */
+  text-align: left;
+  float: right;
+}
+
 section {
-  margin: 0 auto;
+  margin: auto 0;
+
   padding: 0;
   /* outline: 1px solid green; */
   display: flex;
   flex-direction: row !important;
 }
 .description {
-  margin: 0 auto;
+  margin: auto 0;
+
   padding: 0;
 }
 .profile {
@@ -155,7 +164,8 @@ section {
 .Search {
   /* outline: 1rem solid red; */
   width: 100%;
-  margin: 0 auto;
+  margin: auto 0;
+
   padding: 0;
   text-align: center;
   background-color: white;
@@ -163,8 +173,8 @@ section {
 #List-Search {
   display: flex;
   color: var(--black);
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
 }
 #List-Search > .list-search {
   padding: 1rem;
@@ -195,7 +205,8 @@ section {
   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
 }
 #filtered {
-  margin: 0 auto;
+  margin: auto 0;
+
   text-align: center;
   background-color: white;
   box-shadow: 0 2px 3px #ccc;
@@ -310,22 +321,40 @@ button {
   /* flex-flow: row wrap; */
   /* justify-content: center; */
   width: 100%;
-  /* margin: 0 auto; */
+  /*     margin: auto 0;
+ */
 }
 
-.Post {
+/* .Post {
   width: 250px !important;
   padding: 16px;
   text-align: center;
-  /* border: 1px solid #eee; */
+  border: 1px solid #eee;
   box-shadow: 0 2px 3px #ccc;
   margin: 10px;
   box-sizing: border-box;
   cursor: pointer;
-}
+} */
 /* .Post > p {
   color: red;
 } */
+
+#post-container,
+#Post-item,
+#form-container {
+  margin: auto 0;
+  padding: 0;
+}
+#Post-item {
+  min-width: 15rem;
+}
+.Post > div {
+  box-shadow: 0px 2px 3px var(--black);
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+  min-width: 40rem;
+}
 .Post:hover,
 .Post:active {
   background-color: #c0ddf5;
@@ -337,7 +366,8 @@ button {
 }
 
 #delete-container {
-  margin: 0 auto;
+  margin: auto 0;
+
   padding: 1rem;
   justify-content: center;
   /* outline: 1px solid green; */
@@ -381,7 +411,8 @@ button {
   height: 10rem;
 }
 #header-icons {
-  margin: 0 auto;
+  margin: auto 0;
+
   padding: 0;
   display: flex;
   justify-content: flex-end;
@@ -396,17 +427,80 @@ button {
   #list-ads {
     width: 100%;
   }
+
   .App-body {
     flex-direction: column !important;
+    width: 100%;
   }
 }
 @media only screen and (max-width: 300px) {
-  .App-body {
-    flex-direction: column !important;
-  }
   .container-left,
   .ad,
   #list-ads {
+    max-width: 20rem;
+  }
+  .App-body {
+    flex-direction: column !important;
     width: 100%;
+  }
+}
+/* needed  to get on App.css until refactoring */
+@media only screen and (max-width: 500px) {
+  .App-header {
+    width: 100%;
+  }
+  .App-body {
+    flex-direction: column !important;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .App-header {
+    width: 100%;
+  }
+  .App-body {
+    flex-direction: column !important;
+    width: 100%;
+  }
+
+  .Post {
+    width: 100%;
+    /* margin: 0 auto !important;
+    padding: 0 !important; */
+  }
+
+  .list-feed {
+    width: 100% !important;
+    padding: 0.5rem;
+  }
+  .card-feed {
+    display: flex;
+    flex-direction: column !important;
+  }
+  .card-feed > .clip {
+    margin: 0 auto;
+    padding: 0;
+  }
+  .list-feed > h2,
+  .list-feed > p {
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 200px) {
+  .App-header {
+    width: 100%;
+  }
+  .App-body {
+    flex-direction: column !important;
+    width: 100%;
+  }
+
+  .Post {
+    width: 50%;
+  }
+  .card-feed {
+    display: flex;
+    flex-direction: column !important;
   }
 }

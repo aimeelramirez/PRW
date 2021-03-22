@@ -10,14 +10,16 @@ const Post = (props) => {
     const { txt, clicked, edit, name, message } = { ...props }
     return (
         <div className="Post">
-            <div className="card-photo"><div className="clip2"><img src={placer} className="profile" alt="description" /> </div></div>
-            <article
-                key={txt}
-                className="Info">
-                <h2>{name}</h2>
-                <div className="Message">{message}</div>
-                <button onClick={clicked}><FiTrash2></FiTrash2></button>
-                <button onClick={edit}><FiEdit /></button>
+            <article className="card-feed">
+                <div className="clip">
+                    <img src={placer} className="profile" alt="description" />
+                </div>
+                <div className="list-feed" key={txt}>
+                    <h2>{name}</h2>
+                    <p> {message}</p>
+                    <button onClick={clicked}><FiTrash2></FiTrash2></button>
+                    <button onClick={edit}><FiEdit /></button>
+                </div>
             </article>
         </div>
     );

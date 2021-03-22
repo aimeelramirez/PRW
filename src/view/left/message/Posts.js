@@ -21,7 +21,7 @@ class Posts extends Component {
         }
         return (
             <div className="Body">
-                <div className="Posts" id="list-avatars-2">
+                <div className="Posts" id="list-avatars">
                     <UpdatePost />
                 </div>
             </div>

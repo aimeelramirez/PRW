@@ -4,7 +4,7 @@ import { FiSearch } from "react-icons/fi";
 // import MainButton from '../../components/button/mainButton';
 let props = {
 
-    items: ["Keep in touch ☝️", "Search for Family Home 🏡", "About this application 📱"]
+    items: ["A Keep in touch ☝️", "Search for this Family Home 🏡", "About this application 📱"]
 
 }
 
@@ -30,12 +30,19 @@ const SearchBar = () => {
                 return lc.includes(filter);
 
             });
-            if (newList.length === 0) {
+            if (newList.length === 0 || e.target[0].value.length !== 1) {
                 newList = ["Please, try again. 🔦"]
 
             }
-        } else {
+
+        } else if (e.target[0].value === "") {
             newList = props.items
+            // console.log("props.items ", props.items)
+
+        }
+        else {
+            newList = props.items
+
         }
         state.filtered = newList
         setState({
@@ -63,9 +70,9 @@ const SearchBar = () => {
                         </p>
                     </form>
                 </div>
-                <div className="list-search">
+                {/* <div className="list-search">
                     <h3>Results:</h3>
-                </div>
+                </div> */}
                 <div className="list-search">
                     <FilteredItems />
                 </div>
