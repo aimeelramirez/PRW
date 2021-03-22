@@ -1,61 +1,89 @@
 import React, { useState } from 'react';
-
+import {
+    useHistory
+} from "react-router-dom";
+import { data } from './../../data'
 import { FiSearch } from "react-icons/fi";
 // import MainButton from '../../components/button/mainButton';
-let props = {
+// import { updateObject } from './../../reducers/utility'
+// let props = {
 
-    items: ["A Keep in touch ☝️", "Search for this Family Home 🏡", "About this application 📱"]
+//     items: ["A Keep in touch ☝️", "Search for this Family Home 🏡", "About this application 📱"]
 
+// }
+const initialState = {
+    posts: data
 }
 
-
 const SearchBar = () => {
-
-    const [state, setState] = useState({ filtered: props.items })
+    let history = useHistory();
+    const [statePosts, setStatePosts] = useState({
+        posts: initialState
+    });
+    const [state, setState] = useState({ filtered: initialState.posts })
     // const [stateToggle, setStateToggle] = useState({ clicked: false })
-    const handleChange = (event) => {
-        event.preventDefault()
-        // console.log(event)
-        event.target.reset()
-    }
+    // const handleChange = (event) => {
+    //     event.preventDefault()
+    //     // console.log(event)
+    //     handleClick(event)
+    //     event.target.reset()
+    // }
     const onSearchClick = (e) => {
         e.preventDefault()
         // console.log(e.target[0].value)
         let newList = [];
 
         if (e.target[0].value !== "") {
-            newList = props.items.filter(item => {
-                const lc = item.toLowerCase();
+            newList = initialState.posts.filter(item => {
+                const lc = item.name.toLowerCase();
                 const filter = e.target[0].value.toLowerCase();
                 return lc.includes(filter);
 
             });
-            if (newList.length === 0 || e.target[0].value.length !== 1) {
+            state.filtered = newList
+            statePosts.posts = newList
+
+            if (newList.length === 0) {
                 newList = ["Please, try again. 🔦"]
-
+                state.filtered = newList
+                statePosts.posts = newList
             }
-
-        } else if (e.target[0].value === "") {
-            newList = props.items
-            // console.log("props.items ", props.items)
+            setStatePosts({
+                posts: newList
+            })
+            setState({
+                filtered: newList
+            });
+            state.filtered = newList
+            statePosts.posts = newList
+            // updateObject({ statePosts, newList })
 
         }
         else {
-            newList = props.items
-
+            // newList = props.items
+            setStatePosts({
+                posts: initialState.posts
+            })
+            setState({
+                filtered: initialState.posts
+            });
+            state.filtered = initialState.posts
+            statePosts.posts = initialState.posts
         }
-        state.filtered = newList
-        setState({
-            filtered: newList
-        });
+
+
+        handleClick()
+
 
     }
-    const FilteredItems = () => {
-        return state.filtered.map((item, index) => {
-            return (<div id="filtered" key={index} >{item}</div>)
-        })
-
+    //for each click handle the path
+    const handleClick = () => {
+        //pass state in next component
+        history.push('/Filtered', { posts: statePosts.posts, post: state.filtered });
+        console.log(history)
+        // console.log(statePosts.posts)
     }
+
     return (
         <div className="Search">
             <div id="List-Search">
@@ -65,17 +93,15 @@ const SearchBar = () => {
                             <label>Search:</label>
                         </p>
                         <p id="searchInput">
-                            <input type="text" name="search" />
-                            <button type="submit" onChange={handleChange}><strong>Search</strong><FiSearch /></button>
+                            <input type="text" name="search" placeholder="search people. click 🔍" />
+                            <button type="submit"><strong>Search</strong><FiSearch /></button>
                         </p>
                     </form>
                 </div>
                 {/* <div className="list-search">
                     <h3>Results:</h3>
                 </div> */}
-                <div className="list-search">
-                    <FilteredItems />
-                </div>
+
 
             </div>
         </div>)

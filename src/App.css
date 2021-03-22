@@ -205,15 +205,15 @@ section {
   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
 }
 #filtered {
-  margin: auto 0;
-
+  margin: 0 auto;
+  padding: 0;
   text-align: center;
   background-color: white;
   box-shadow: 0 2px 3px #ccc;
-  margin: 1rem;
+  /* margin: 1rem; */
   box-sizing: border-box;
   color: var(--black);
-  width: 100%;
+  width: 90%;
 }
 .clip {
   width: 8rem;
