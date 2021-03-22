@@ -38,6 +38,7 @@ function App() {
             <Route path="/" component={App}>
               <Redirect exact from="/" to="/Home" />
               <Route path="/Home" component={Home}>
+                <Home />
               </Route>
               <Route path="/NewsFeed" component={Feed}>
               </Route>

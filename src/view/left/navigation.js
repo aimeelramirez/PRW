@@ -15,10 +15,10 @@ const Navigation = () => {
         <div id="navigation-route">
             <nav className="Nav">
                 <ul>
-                    <li>
+                    {/* <li>
 
-                        <Link className="Nav_link" to="/" onClick={handleClick} >Home</Link>
-                    </li>
+                        <Link className="Nav_link" to="/Home" onClick={handleClick} >Home</Link>
+                    </li> */}
                     <li>
 
                         <Link className="Nav_link" to="/NewsFeed" onClick={handleClick}>NewsFeed</Link>
