@@ -1,18 +1,28 @@
+import {
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+import { FiCoffee } from "react-icons/fi";
 import './App.css';
-import Posts from './view/navigation/message/Posts';
+// import Posts from './view/left/message/Posts';
 import Header from './view/header/header'
 // import Portal from './reducers/portal'
 // import SearchBar from './view/header/search'
-import { FiCoffee } from "react-icons/fi";
-import Ads from './view/ads';
-import Navigation from './view/navigation/navigation'
+import Ads from './view/right/ads';
+import Watch from './view/left/watch/watch'
+import Feed from './view/left/feed/feed'
+import Message from './view/left/message/message'
+import Navigation from './view/left/navigation'
+import Settings from './view/header/settings'
 //not sure if to to use this api since able to use emojis
 // let emoji = "https://emojiapi.dev/api/v1/beaming_face_with_smiling_eyes.svg"
 
 function App() {
+
+
   return (
     <div className="App">
-
       <header className="App-header">
         <h1><strong>Logo</strong><FiCoffee /></h1>
         <h2>Coffee.</h2>
@@ -24,7 +34,21 @@ function App() {
           <Navigation />
         </div>
         <div className="container-center">
-          <Posts />
+          <Switch>
+            <Route path="/" component={App}>
+              <Redirect exact from="/" to="/Home" />
+              <Route path="/Home" component={Home}>
+              </Route>
+              <Route path="/NewsFeed" component={Feed}>
+              </Route>
+              <Route path="/Watch" component={Watch}>
+              </Route>
+              <Route path="/Messages" component={Message}>
+              </Route>
+              <Route path="/Settings" component={Settings}>
+              </Route>
+            </Route>
+          </Switch>
         </div>
         <div className="container-right ">
           <Ads />
@@ -32,6 +56,9 @@ function App() {
       </div>
     </div>
   );
+}
+const Home = () => {
+  return (<div><h2>Home</h2></div>)
 }
 
 export default App;

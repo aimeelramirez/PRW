@@ -1,6 +1,6 @@
 
 import placer from './../../../image.svg'
-import { FetchCardAvatars } from './../../../reducers/action/fetchAvatar'
+import { FetchCardAvatars } from '../../../reducers/action/fetchAvatar'
 const ApiAvatars = () => {
     FetchCardAvatars()
     return (

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Spinner from './../../../components/spinner/spinner';
-import { data } from './../../../data'
+import Spinner from '../../../components/spinner/spinner';
+import { data } from '../../../data'
 // import Button from '../components/button/button'
-import UpdatePost from './../../../reducers/post/updatePost'
+import UpdatePost from '../../../reducers/post/updatePost'
 // import Portal from '../../../../reducers/portal'
 // import * as Icon from "react-icons/fi";
 

@@ -23,15 +23,6 @@
   justify-content: flex-end;
   padding: 1rem;
 }
-.Body {
-  margin: auto 0;
-  padding: 0;
-  background-color: var(--white);
-  color: var(--black);
-  margin-top: 0.5rem;
-  /* display: flex;
-  flex-direction: row !important; */
-}
 
 h1 {
   display: flex;
@@ -71,6 +62,21 @@ h1 {
 #navigation-route > nav > ul > li > a:active {
   color: var(--paradise-pink);
 }
+#navigation-route > .Body {
+  /* display: flex; */
+
+  outline: 1px solid red;
+}
+.Body {
+  margin: auto 0;
+  padding: 0;
+  background-color: var(--white);
+  color: var(--black);
+  margin-top: 0.5rem;
+  /* display: flex;
+  flex-direction: row !important; */
+}
+
 #list-ads {
   margin: auto 0;
   padding: 0;

@@ -1,5 +1,12 @@
 import React, { useReducer, useEffect, useState } from 'react';
+
+import {
+    useHistory
+} from "react-router-dom";
+
 import * as actionTypes from './action/action';
+import Button from '../components/button/Button'
+
 import MainButton from '../components/button/mainButton'
 import { FiLogIn, FiLogOut, FiUser, FiSettings } from "react-icons/fi";
 import { GetError } from './action/notification';
@@ -7,6 +14,8 @@ const initialState = {
     user: "",
     isAuth: false,
 }
+
+
 const reducer = (state, action) => {
     switch (action.type) {
         case actionTypes.LOGIN_USER:
@@ -23,12 +32,21 @@ const reducer = (state, action) => {
             return state;
     }
 }
+
 const Portal = () => {
+    let history = useHistory();
+    const handleClick = () => {
+        //set to go back to settings 
+        history.push('/Settings');
+        // console.log(history)
+    }
+
     const [stateAuth, setState] = useState({
         isAuth: false
     });
     const [state, dispatch] = useReducer(reducer, initialState)
     // console.log(stateAuth.isAuth)
+
     useEffect(() => {
 
         if (stateAuth.isAuth === false) {
@@ -65,19 +83,21 @@ const Portal = () => {
         let message = "Sorry, Under Construction!"
         GetError(message);
     }
-
     return (
         <div>
-
+            {/* <MainButton >Settings</MainButton> */}
             <div className="login-portal">
                 <div onClick={switchLogin}>
                     <MainButton>{state.isAuth ? <FiLogOut /> : <FiLogIn />}</MainButton>
                 </div>
-                <MainButton handleClose={ErrorHandle}><FiUser /></MainButton> <MainButton handleClose={ErrorHandle}><FiSettings /></MainButton>
+                <Button onClick={ErrorHandle}><FiUser /></Button>
+                <Button onClick={handleClick}>
+                    <FiSettings />
+                </Button>
             </div>
             <div>{state.isAuth ? <div> Welcome, {state.user} <FiUser /> </div> : "Please sign in first!"} </div>
 
-            {/* <p>Auth: {JSON.stringify(state.isAuth)} </p> */}
+            <p>Auth: {JSON.stringify(state.isAuth)} </p>
         </div>
     )
 }
