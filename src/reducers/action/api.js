@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
     useHistory
 } from "react-router-dom";
-import ARRAY_USERS from './action'
+// import ARRAY_USERS from './action'
 let apiKey = process.env.REACT_APP_API_USERS_KEY;
 let arrayUsers = []
 let count = 0;
@@ -28,8 +28,8 @@ const API = () => {
                     setData(arrayUsers[0])
                     stateData = arrayUsers[0]
                     //console.log(stateData)
-                    ARRAY_USERS.push(stateData)
-                    console.log("api: ", ARRAY_USERS)
+                    // ARRAY_USERS.push(stateData)
+                    // console.log("api: ", ARRAY_USERS)
                     arrayUsers = []
                     count += 1;
                     history.push('/Home', { data: stateData })

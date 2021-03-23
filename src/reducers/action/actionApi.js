@@ -5,8 +5,8 @@ import {
 import Spinner from './../../components/spinner/spinner'
 import Contact from './../../components/contact/contact'
 
-import { API } from './api'
-import ARRAY_USERS from './action';
+// import { API } from './api'
+// import ARRAY_USERS from './action';
 
 let apiKey = process.env.REACT_APP_API_USERS_KEY
 let arrayUsers = []
@@ -34,26 +34,16 @@ const ActionApi = () => {
                     setData(arrayUsers[0])
                     stateData = arrayUsers[0]
                     //console.log(stateData)
-                    ARRAY_USERS.push(stateData)
+                    //ARRAY_USERS.push(stateData)
                     //  console.log("api: ", ARRAY_USERS)
                     arrayUsers = []
-                    history.push('/Home', { data: stateData })
-
-
+                    //history.push('/Home', { data: stateData })
                     //  return stateData
                 } else {
                     return false
                 }
-                //return stateData
             })
         // .catch((error) => { console.error(error); return false })
-
-        // if (arrayUsers.length === 1) {
-        //     //return state data
-        //     return stateData
-        // }
-
-
     }
 
 

@@ -24,16 +24,16 @@ import Spinner from './components/spinner/spinner'
 //not sure if to to use this api since able to use emojis
 // let emoji = "https://emojiapi.dev/api/v1/beaming_face_with_smiling_eyes.svg"
 import { API } from './reducers/action/api'
-import ARRAY_USERS from './reducers/action/action';
+// import ARRAY_USERS from './reducers/action/action';
 
 
 function App() {
   //get api since to be reusing it
   API()
-  console.log("array: ", ARRAY_USERS)
-  let history = useHistory()
-  //get history on users
-  console.log(history)
+  // console.log("array: ", ARRAY_USERS)
+  // let history = useHistory()
+  // //get history on users
+  // console.log(history)
 
 
   //
