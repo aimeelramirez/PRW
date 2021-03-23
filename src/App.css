@@ -12,7 +12,18 @@
 /* #api {
   outline: 0.5rem dashed red;
 } */
-
+label {
+  display: none;
+}
+#message-container {
+  display: flex;
+  flex-direction: row;
+}
+#form-container {
+  outline: 1px solid red;
+  display: flex;
+  flex-direction: row imp !important;
+}
 .App {
   text-align: center;
   margin-bottom: 2rem;
@@ -472,9 +483,17 @@ button {
   justify-content: flex-end;
   padding: 3rem;
 }
+
 @media only screen and (max-width: 1000px) {
   #list-ads {
     width: 100%;
+  }
+  /* #delete-container {
+    outline: 1px solid red;
+  } */
+  .card-feed {
+    display: flex;
+    flex-direction: column !important;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -486,28 +505,16 @@ button {
     flex-direction: column !important;
     width: 100%;
   }
-}
-@media only screen and (max-width: 300px) {
-  .container-left,
-  .ad,
-  #list-ads {
-    max-width: 20rem;
-  }
-  .App-body {
-    flex-direction: column !important;
-    width: 100%;
-  }
-}
-/* needed  to get on App.css until refactoring */
-@media only screen and (max-width: 500px) {
   .App-header {
     width: 100%;
   }
-  .App-body {
+
+  .card-feed {
+    display: flex;
     flex-direction: column !important;
-    width: 100%;
   }
 }
+
 @media only screen and (max-width: 400px) {
   .App-header {
     width: 100%;
@@ -545,6 +552,21 @@ button {
     padding: 0;
   }
 }
+@media only screen and (max-width: 300px) {
+  .container-left,
+  .ad,
+  #list-ads {
+    max-width: 20rem;
+  }
+  .App-body {
+    flex-direction: column !important;
+    width: 100%;
+  }
+}
+/* needed  to get on App.css until refactoring */
+/* @media only screen and (max-width: 500px) {
+
+} */
 @media only screen and (max-width: 200px) {
   .App-header {
     width: 100%;

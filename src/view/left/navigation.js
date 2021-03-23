@@ -3,33 +3,41 @@ import {
     Link,
     useHistory
 } from "react-router-dom";
-
+// import { API } from './../../reducers/action/api'
+let data = ""
 const Navigation = () => {
-    let history = useHistory();
-    //for each click handle the path
-    const handleClick = (e) => {
-        history.push(e.view.location.pathname);
-        console.log(history)
-    }
+    // API()
+    // let history = useHistory();
+    // console.log("Navigation : ", history)
+    // if (history.location.state !== undefined) {
+    //     data = history.location.state.data
+    //     //for each click handle the path
+
+    // }
+    // const handleClick = (e) => {
+    //     history.replace(e.view.location, { data: data });
+    //     console.log(e.view.location)
+
+    // }
+
     return (
         <div id="navigation-route">
             <nav className="Nav">
                 <ul>
-                    {/* <li>
-
-                        <Link className="Nav_link" to="/Home" onClick={handleClick} >Home</Link>
-                    </li> */}
                     <li>
-
-                        <Link className="Nav_link" to="/NewsFeed" onClick={handleClick}>NewsFeed</Link>
+                        <Link className="Nav_link" to="/Home" >Home</Link>
                     </li>
                     <li>
 
-                        <Link className="Nav_link" to="/Messages" onClick={handleClick} >Messages</Link>
+                        <Link className="Nav_link" to="/NewsFeed">NewsFeed</Link>
                     </li>
                     <li>
 
-                        <Link className="Nav_link" to="/Watch" onClick={handleClick}>Watch</Link>
+                        <Link className="Nav_link" to="/Messages"  >Messages</Link>
+                    </li>
+                    <li>
+
+                        <Link className="Nav_link" to="/Watch" >Watch</Link>
                     </li>
                 </ul>
             </nav>

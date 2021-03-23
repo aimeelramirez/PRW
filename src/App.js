@@ -1,7 +1,8 @@
 import {
   Switch,
   Route,
-  Redirect
+  Redirect,
+  useHistory
 } from "react-router-dom";
 import { FiCoffee } from "react-icons/fi";
 import './App.css';
@@ -18,12 +19,24 @@ import Settings from './view/header/settings'
 // import Search from './view/header/search'
 import Filtered from './view/header/filtered'
 import ActionApi from './reducers/action/actionApi'
+import Spinner from './components/spinner/spinner'
 // import { updateObject } from './reducers/utility'
 //not sure if to to use this api since able to use emojis
 // let emoji = "https://emojiapi.dev/api/v1/beaming_face_with_smiling_eyes.svg"
+import { API } from './reducers/action/api'
+import ARRAY_USERS from './reducers/action/action';
+
 
 function App() {
+  //get api since to be reusing it
+  API()
+  console.log("array: ", ARRAY_USERS)
+  let history = useHistory()
+  //get history on users
+  console.log(history)
 
+
+  //
   return (
     <div className="App">
       <header className="App-header">
@@ -43,6 +56,7 @@ function App() {
             <Route path='/Home' >
               <ActionApi />
             </Route>
+
             <Route path="/NewsFeed" component={Feed} />
 
             <Route path="/Watch" component={Watch} />
@@ -68,10 +82,11 @@ function App() {
     </div>
   );
 }
+
 // const Home = () => {
 //   return (<div><h2>Home</h2></div>)
 // }
-// const Users = () => {
-//   return (<ActionApi />)
-// }
+const Users = () => {
+  return (<ActionApi />)
+}
 export default App;

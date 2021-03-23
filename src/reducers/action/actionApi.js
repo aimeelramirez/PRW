@@ -4,13 +4,16 @@ import {
 } from "react-router-dom";
 import Spinner from './../../components/spinner/spinner'
 import Contact from './../../components/contact/contact'
+
+import { API } from './api'
+import ARRAY_USERS from './action';
+
 let apiKey = process.env.REACT_APP_API_USERS_KEY
 let arrayUsers = []
 // let arrayNames = []
 
 const ActionApi = () => {
     let history = useHistory();
-
     //response on fetch on let
     let [stateData, setData] = useState([]);
     //async await
@@ -25,28 +28,39 @@ const ActionApi = () => {
         }).then((res) => res.json())
             .then((req) => {
                 arrayUsers.push(req.results)
+                //  console.log(count)
                 if (arrayUsers.length === 1) {
                     //get state data to save
                     setData(arrayUsers[0])
                     stateData = arrayUsers[0]
                     //console.log(stateData)
+                    ARRAY_USERS.push(stateData)
+                    //  console.log("api: ", ARRAY_USERS)
                     arrayUsers = []
+                    history.push('/Home', { data: stateData })
 
+
+                    //  return stateData
+                } else {
+                    return false
                 }
                 //return stateData
             })
-            .catch((error) => console.error(error))
+        // .catch((error) => { console.error(error); return false })
 
         // if (arrayUsers.length === 1) {
         //     //return state data
         //     return stateData
         // }
 
+
     }
+
+
     const LocalItems = () => {
         let items = [];
 
-        // console.log("hello ", stateData)
+        console.log("hello ", stateData)
         //save only names on localStorage for privacy if that was in real data
         stateData.forEach((item, index) => {
             if (items.length <= 25) {

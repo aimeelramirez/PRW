@@ -8,7 +8,10 @@ import MainButton from '../../components/button/mainButton'
 import { GetError, GetSuccess, GetEditForm } from '../action/notification';
 import Modal from '../../components/modal/modal'
 import Post from '../../components/post/Post'
-
+import {
+    Link,
+    useHistory
+} from "react-router-dom";
 let getUpdate = ""
 const initialState = {
     posts: data,
@@ -59,6 +62,8 @@ const handlePost = (state, action) => {
 
 }
 const UpdatePost = () => {
+    let history = useHistory()
+    console.log(history)
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const [statePosts, setState] = useState({
@@ -234,13 +239,9 @@ const UpdatePost = () => {
 
     return (
         <div id="post-container">
-            <div id="delete-container">
-                {/* <DeletePost /> */}
-                <Main />
-            </div>
             <div id="form-container">
                 <form onSubmit={handleClick} >
-                    <label>Leave a Message:</label>
+                    <label>Create a Post:</label>
                     <p>
                         <textarea type="text" name="message" />
                     </p>
@@ -250,6 +251,10 @@ const UpdatePost = () => {
                     </p>
                     <MainButton type="submit" onChange={handleChange}>Submit</MainButton>
                 </form>
+            </div>
+            <div id="delete-container">
+                {/* <DeletePost /> */}
+                <Main />
             </div>
         </div>
     )

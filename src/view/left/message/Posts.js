@@ -14,6 +14,7 @@ class Posts extends Component {
     //     this.setState({ count: this.state.count + 1 })
     // }
     render() {
+
         if (data.length <= 0) {
             // console.log(data.length)
             // return <div id="Spinner"><Icon.FiLoader /></div>
