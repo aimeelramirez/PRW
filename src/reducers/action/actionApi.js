@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
+import {
+    useHistory
+} from "react-router-dom";
 import Spinner from './../../components/spinner/spinner'
-
+import Contact from './../../components/contact/contact'
 let apiKey = process.env.REACT_APP_API_USERS_KEY
-const arrayUsers = []
+let arrayUsers = []
+// let arrayNames = []
+
 const ActionApi = () => {
+    let history = useHistory();
+
     //response on fetch on let
     let [stateData, setData] = useState([]);
     //async await
     const getApi = async () => {
-        await fetch('https://randomuser.me/api?results=10', {
+        await fetch('https://randomuser.me/api?results=25', {
             method: 'GET',
             headers: {
                 'Authorization': 'Client-ID ' + apiKey,
@@ -17,14 +24,16 @@ const ActionApi = () => {
             }
         }).then((res) => res.json())
             .then((req) => {
-                // console.log(req)
                 arrayUsers.push(req.results)
-                if (arrayUsers.length <= 1) {
+                if (arrayUsers.length === 1) {
                     //get state data to save
                     setData(arrayUsers[0])
                     stateData = arrayUsers[0]
+                    //console.log(stateData)
+                    arrayUsers = []
 
                 }
+                //return stateData
             })
             .catch((error) => console.error(error))
 
@@ -34,33 +43,53 @@ const ActionApi = () => {
         // }
 
     }
-    const UserItems = () => {
-        console.log("hello ", stateData)
-        return stateData.map((item, index) => {
-            console.log("map: ", item.email)
-            if (item.name.title === 'Miss') {
-                return (<div className="api-text" key={index}>
-                    <div className="clip3">
-                        <img src={item.picture.medium} alt="portrait profile" />
+    const LocalItems = () => {
+        let items = [];
 
-                    </div>
-                    <div className="list-feed">
-                        <ul className="descriptions">
-                            <li>{item.name.title} {item.name.first} {item.name.last}</li>
-                            <li>{item.email}</li>
-                        </ul></div></div>)
-            } else {
-                return (<div className="api-text" key={index}>
-                    <div className="clip3">
-                        <img src={item.picture.large} alt="portrait profile" />
-                    </div>
-                    <div className="list-feed">
-                        <ul className="descriptions">
-                            <li>{item.name.title}. {item.name.first} {item.name.last}</li>
-                            <li>{item.email}</li>
-                        </ul>
-                    </div></div>)
+        // console.log("hello ", stateData)
+        //save only names on localStorage for privacy if that was in real data
+        stateData.forEach((item, index) => {
+            if (items.length <= 25) {
+                //console.log("for each:", index)
+                items.push(item)
+
+                localStorage.getItem('names')
+                localStorage.setItem('names', JSON.stringify(items));
+                //pass state in next component
+                //console.log(items.length)
+
             }
+            else if (index >= 26 || items.length >= 26) {
+
+                delete localStorage[index]
+                localStorage.setItem('names', JSON.stringify(items));
+
+            }
+
+            //to clear if to under developement
+            //localStorage.clear();
+
+        })
+        let getNames = localStorage.getItem('names')
+
+        history.push('/Home', { data: JSON.parse(getNames) });
+    }
+    const UserItems = () => {
+        LocalItems()
+        // console.log(history)
+        return stateData.map((item, index) => {
+            return (<div className="api-text" key={index}>
+                <div className="clip3">
+                    <img src={item.picture.large} alt="portrait profile" />
+                </div>
+                <div className="list-feed">
+                    <ul className="descriptions">
+                        <li>{item.name.title} {item.name.first} {item.name.last}</li>
+                        <li>{item.email}</li>
+                    </ul></div></div>)
+
+
+
         })
     }
     if (stateData.length === 0) {
@@ -68,11 +97,10 @@ const ActionApi = () => {
         return <Spinner />
         // console.log("readData: ", stateData)
     } else if (stateData.length > 0) {
-        // console.log("readData after populating: ", stateData)
-        return <UserItems />
+        return (
+            <div >
+                <UserItems /></div>)
     }
-    return (<div className="card-feed">API</div>)
-
 }
 
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
     useHistory
 } from "react-router-dom";
-import { data } from './../../data'
+// import { data } from './../../data'
 import { FiSearch } from "react-icons/fi";
 // import MainButton from '../../components/button/mainButton';
 // import { updateObject } from './../../reducers/utility'
@@ -11,16 +11,21 @@ import { FiSearch } from "react-icons/fi";
 //     items: ["A Keep in touch ☝️", "Search for this Family Home 🏡", "About this application 📱"]
 
 // }
-const initialState = {
-    posts: data
-}
+// const initialState = {
+//     posts: data
+// }
 
 const SearchBar = () => {
+
     let history = useHistory();
-    const [statePosts, setStatePosts] = useState({
-        posts: initialState
-    });
-    const [state, setState] = useState({ filtered: initialState.posts })
+
+    //get history
+
+    //console.log(history)
+
+    const [stateHistory, setStateHistory] = useState(history)
+
+    let [state, setState] = useState({ query: [] })
     // const [stateToggle, setStateToggle] = useState({ clicked: false })
     // const handleChange = (event) => {
     //     event.preventDefault()
@@ -30,57 +35,81 @@ const SearchBar = () => {
     // }
     const onSearchClick = (e) => {
         e.preventDefault()
-        // console.log(e.target[0].value)
+        //console.log(e.target[0].value)
         let newList = [];
-
+        //console.log(stateHistory.location.state.data)
         if (e.target[0].value !== "") {
-            newList = initialState.posts.filter(item => {
-                const lc = item.name.toLowerCase();
+            newList = stateHistory.location.state.data.filter(item => {
+                const lc = item.name.first.toLowerCase();
                 const filter = e.target[0].value.toLowerCase();
+                // console.log(item)
                 return lc.includes(filter);
 
             });
-            state.filtered = newList
-            statePosts.posts = newList
+            // state.query = newList
+            // console.log("new list: ", newList)
+            //  statePosts.posts = newList
 
             if (newList.length === 0) {
-                newList = ["Please, try again. 🔦"]
-                state.filtered = newList
-                statePosts.posts = newList
+                console.log("Please, try again.")
+                return false
+                //state.query = newList
+                // statePosts.posts = newList
+            } else {
+                setStateHistory(history)
+                setState({
+                    query: newList
+                });
+                state.query = newList
+
+                // state.filtered = newList
+                // statePosts.posts = newList
+                // updateObject({ statePosts, newList })
+                history.replace('/Filtered', { data: state.query });
+                e.target[0].value = ""
+                // console.log(e.target[1])
+                return true
             }
-            setStatePosts({
-                posts: newList
-            })
-            setState({
-                filtered: newList
-            });
-            state.filtered = newList
-            statePosts.posts = newList
-            // updateObject({ statePosts, newList })
 
         }
         else {
             // newList = props.items
-            setStatePosts({
-                posts: initialState.posts
-            })
+            // setStatePosts({
+            //     posts: initialState.posts
+            // })
+
             setState({
-                filtered: initialState.posts
+                query: stateHistory.location.state.data
             });
-            state.filtered = initialState.posts
-            statePosts.posts = initialState.posts
+            history.push('/Home', { data: stateHistory.location.state.data });
+            return true
+            // state.filtered = initialState.posts
+            // statePosts.posts = initialState.posts
         }
 
 
-        handleClick()
+
+
 
 
     }
     //for each click handle the path
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault()
+        //  console.log(e)
+        if (history.location.state === undefined || history.location.state === "") {
+            history.replace('/Home', { data: stateHistory.location.state.data });
+            //console.log(history)
+            // e.target.reset()
+
+
+        } else if (history.location.state !== undefined) {
+            onSearchClick(e)
+        }
         //pass state in next component
-        history.push('/Filtered', { posts: statePosts.posts, post: state.filtered });
-        console.log(history)
+        // history.push('/Filtered', { oldNames: stateHistory, stateNames: state });
+        // console.log(history)
+
         // console.log(statePosts.posts)
     }
 
@@ -88,7 +117,7 @@ const SearchBar = () => {
         <div className="Search">
             <div id="List-Search">
                 <div className="list-search">
-                    <form onSubmit={onSearchClick} >
+                    <form onSubmit={handleClick} >
                         <p>
                             <label>Search:</label>
                         </p>

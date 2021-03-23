@@ -1,15 +1,36 @@
-
+import {
+    useHistory
+} from "react-router-dom";
 const Flitered = (e) => {
-    console.log("filtered : ", e.location.state)
+    let history = useHistory();
+    //get history
+    // console.log(history)
+    console.log("filtered : ", e.location.state.data)
     const FilteredItems = () => {
-        return e.location.state.posts.map((item, index) => {
-            return (<div id="filtered" key={index}>{item.name}
-                <p> {item.message}</p></div>)
-        })
+        if (e.location.state.data[0] !== "Please, try again.") {
+            return e.location.state.data.map((item, index) => {
+                console.log("filtered: ", item)
+                return (<div className="api-text" key={index}>
+                    <div className="clip3">
+                        <img src={item.picture.large} alt="portrait profile" />
+                    </div>
+                    <div className="list-feed">
+                        <ul className="descriptions">
+                            <li>{item.name.title}. {item.name.first} {item.name.last}</li>
+                            <li>{item.email}</li>
+                        </ul>
+                    </div></div>)
+
+            })
+        } else {
+            history.replace('/Search', { data: history.location.state.data });
+            // console.log(history)
+
+        }
 
     }
-    console.log(e.location.state)
-    if (e.location.state.length > 0) {
+    console.log(e.location.state.data)
+    if (e.location.state.data.length > 0) {
         return (
             <div className="list-search" >
                 <FilteredItems />

@@ -15,7 +15,7 @@ import Feed from './view/left/feed/feed'
 import Message from './view/left/message/message'
 import Navigation from './view/left/navigation'
 import Settings from './view/header/settings'
-import Search from './view/header/search'
+// import Search from './view/header/search'
 import Filtered from './view/header/filtered'
 import ActionApi from './reducers/action/actionApi'
 // import { updateObject } from './reducers/utility'
@@ -40,8 +40,8 @@ function App() {
           <Switch>
             {/* <Route path="/" component={App}> */}
             <Redirect exact from="/" to="/Home" />
-            <Route path="/Home">
-              <Home />
+            <Route path='/Home' >
+              <ActionApi />
             </Route>
             <Route path="/NewsFeed" component={Feed} />
 
@@ -51,11 +51,14 @@ function App() {
 
             <Route path="/Settings" component={Settings} />
 
-            <Route path="/Search" component={Search} />
+            {/* <Route path="/Search" component={Search} /> */}
+            {/* <Redirect exact from="/Filtered" to="/Search" /> */}
+            {/* <Route component={Search} >
 
+            </Route> */}
             <Route path="/Filtered" component={Filtered} />
-            {/* </Route> */}
-            <Route path='/Users' component={Users} />
+            {/* </Route>*/}
+
           </Switch>
         </div>
         <div className="container-right ">
@@ -65,10 +68,10 @@ function App() {
     </div>
   );
 }
-const Home = () => {
-  return (<div><h2>Home</h2></div>)
-}
-const Users = () => {
-  return (<ActionApi />)
-}
+// const Home = () => {
+//   return (<div><h2>Home</h2></div>)
+// }
+// const Users = () => {
+//   return (<ActionApi />)
+// }
 export default App;
