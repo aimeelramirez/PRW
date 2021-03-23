@@ -122,7 +122,7 @@ const SearchBar = () => {
                             <label>Search:</label>
                         </p>
                         <p id="searchInput">
-                            <input type="text" name="search" placeholder="search people. click 🔍" />
+                            <input type="text" name="search" placeholder="search first name." />
                             <button type="submit"><strong>Search</strong><FiSearch /></button>
                         </p>
                     </form>
