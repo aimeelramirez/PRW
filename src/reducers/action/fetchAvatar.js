@@ -1,3 +1,4 @@
+
 let arrayAvatars = []
 
 let apiKey = process.env.REACT_APP_API_KEY
@@ -47,6 +48,13 @@ const FetchCardAvatars = () => {
             // getImgs[i].style.cssText = `width: 50%`
         }
     }
+
+
+
+
+    //Replace to the api on actionApi
+
+
 
 }
 // const FetchAds = () => {

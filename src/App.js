@@ -17,13 +17,12 @@ import Navigation from './view/left/navigation'
 import Settings from './view/header/settings'
 import Search from './view/header/search'
 import Filtered from './view/header/filtered'
-
+import ActionApi from './reducers/action/actionApi'
 // import { updateObject } from './reducers/utility'
 //not sure if to to use this api since able to use emojis
 // let emoji = "https://emojiapi.dev/api/v1/beaming_face_with_smiling_eyes.svg"
 
 function App() {
-
 
   return (
     <div className="App">
@@ -56,6 +55,7 @@ function App() {
 
             <Route path="/Filtered" component={Filtered} />
             {/* </Route> */}
+            <Route path='/Users' component={Users} />
           </Switch>
         </div>
         <div className="container-right ">
@@ -68,5 +68,7 @@ function App() {
 const Home = () => {
   return (<div><h2>Home</h2></div>)
 }
-
+const Users = () => {
+  return (<ActionApi />)
+}
 export default App;

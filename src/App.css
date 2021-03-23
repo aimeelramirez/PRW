@@ -8,6 +8,12 @@
   --white: #fcfcfcff;
   --black: #282c34;
 }
+#api-text {
+  outline: 1px dashed blue;
+}
+#api {
+  outline: 0.5rem dashed red;
+}
 
 .App {
   text-align: center;
@@ -105,7 +111,15 @@ h1 {
 .container > .clip {
   margin-left: 7%;
 }
-
+.clip {
+  margin-left: 10%;
+}
+.container > .clip3 {
+  margin-left: 7%;
+}
+.clip3 {
+  margin-left: 10%;
+}
 .container > div:not(.clip, .clip2) {
   width: 50%;
 }
@@ -135,6 +149,9 @@ h1 {
   flex-direction: row !important;
 }
 .clip {
+  float: left;
+}
+.clip3 {
   float: left;
 }
 .list-feed {
@@ -218,8 +235,33 @@ section {
 .clip {
   width: 8rem;
   height: 8rem;
+  clip-path: circle(3.5rem at 3.5rem 4.5rem);
+}
+.clip3 {
+  width: 8rem;
+  height: 8rem;
   clip-path: circle(3rem at 3.5rem 4.5rem);
 }
+.clip3 > img {
+  width: 100%;
+}
+.api-text {
+  display: flex;
+  flex-direction: row;
+}
+.descriptions {
+  width: 50%;
+}
+.descriptions > li {
+  display: flex;
+  outline: 1px solid red;
+
+  margin: 0 auto;
+  padding: 0;
+  font-size: 0.2rem;
+  flex-direction: column !important;
+}
+
 /* @media (prefers-reduced-motion: no-preference) {
   #spinner,
   .App-logo {
@@ -388,7 +430,7 @@ button {
   text-align: center;
 }
 
-.clip2 > img {
+/* .clip2 > img {
   z-index: 0;
   min-height: 7.9rem;
   min-width: 7rem;
@@ -402,7 +444,7 @@ button {
   width: 8rem;
   height: 8rem;
   clip-path: circle(3rem at 4rem 4.5rem);
-}
+} */
 
 #modal-message {
   padding: 1rem;
@@ -478,6 +520,10 @@ button {
     flex-direction: column !important;
   }
   .card-feed > .clip {
+    margin: 0 auto;
+    padding: 0;
+  }
+  .card-feed > .clip3 {
     margin: 0 auto;
     padding: 0;
   }
