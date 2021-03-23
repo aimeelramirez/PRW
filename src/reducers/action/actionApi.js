@@ -4,53 +4,29 @@ import {
 } from "react-router-dom";
 import Spinner from './../../components/spinner/spinner'
 import Contact from './../../components/contact/contact'
-
-// import { API } from './api'
-// import ARRAY_USERS from './action';
-
-let apiKey = process.env.REACT_APP_API_USERS_KEY
-let arrayUsers = []
-// let arrayNames = []
+import { getApi } from './api'
 
 const ActionApi = () => {
     let history = useHistory();
     //response on fetch on let
     let [stateData, setData] = useState([]);
-    //async await
-    const getApi = async () => {
-        await fetch('https://randomuser.me/api?results=25', {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Client-ID ' + apiKey,
-                'Accept': 'application/json',
-                'Cache-Control': 'no-cache'
-            }
-        }).then((res) => res.json())
-            .then((req) => {
-                arrayUsers.push(req.results)
-                //  console.log(count)
-                if (arrayUsers.length === 1) {
-                    //get state data to save
-                    setData(arrayUsers[0])
-                    stateData = arrayUsers[0]
-                    //console.log(stateData)
-                    //ARRAY_USERS.push(stateData)
-                    //  console.log("api: ", ARRAY_USERS)
-                    arrayUsers = []
-                    //history.push('/Home', { data: stateData })
-                    //  return stateData
-                } else {
-                    return false
-                }
-            })
-        // .catch((error) => { console.error(error); return false })
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const GetUsers = () => {
+        //get users to read on data
+        getApi().then(json => {
+            setData(json.results)
+            console.log(json)
+            setLoading(false);
+        }).catch(err => {
+            console.error(err);
+            setError(err);
+        });
     }
 
-
-    const LocalItems = () => {
+    const UserItems = () => {
         let items = [];
-
-        console.log("hello ", stateData)
+        // console.log("hello ", stateData)
         //save only names on localStorage for privacy if that was in real data
         stateData.forEach((item, index) => {
             if (items.length <= 25) {
@@ -77,9 +53,6 @@ const ActionApi = () => {
         let getNames = localStorage.getItem('names')
 
         history.push('/Home', { data: JSON.parse(getNames) });
-    }
-    const UserItems = () => {
-        LocalItems()
         // console.log(history)
         return stateData.map((item, index) => {
             // console.log("filtered: ", item)
@@ -94,13 +67,14 @@ const ActionApi = () => {
         })
     }
     if (stateData.length === 0) {
-        getApi()
+        GetUsers()
         return <Spinner />
         // console.log("readData: ", stateData)
     } else if (stateData.length > 0) {
         return (
-            <div >
-                <UserItems /></div>)
+            <div><h2>Action Api</h2>
+                <UserItems />
+            </div>)
     }
 }
 

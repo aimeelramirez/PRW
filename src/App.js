@@ -23,20 +23,10 @@ import Spinner from './components/spinner/spinner'
 // import { updateObject } from './reducers/utility'
 //not sure if to to use this api since able to use emojis
 // let emoji = "https://emojiapi.dev/api/v1/beaming_face_with_smiling_eyes.svg"
-import { API } from './reducers/action/api'
 // import ARRAY_USERS from './reducers/action/action';
-
+import Routes from './components/routes/routes'
 
 function App() {
-  //get api since to be reusing it
-  API()
-  // console.log("array: ", ARRAY_USERS)
-  // let history = useHistory()
-  // //get history on users
-  // console.log(history)
-
-
-  //
   return (
     <div className="App">
       <header className="App-header">
@@ -51,8 +41,6 @@ function App() {
         </div>
         <div className="container-center">
           <Switch>
-            {/* <Route path="/" component={App}> */}
-            <Redirect exact from="/" to="/Home" />
             <Route path='/Home' >
               <ActionApi />
             </Route>
@@ -70,16 +58,15 @@ function App() {
             {/* <Route component={Search} >
 
             </Route> */}
-            <Route path="/Filtered" component={Filtered} />
-            {/* </Route>*/}
-
+            <Routes path="/Filtered" component={Filtered} />
           </Switch>
+
         </div>
         <div className="container-right ">
           <Ads />
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
