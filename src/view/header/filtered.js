@@ -1,6 +1,7 @@
 import {
     useHistory
 } from "react-router-dom";
+import Contact from './../../components/contact/contact'
 const Flitered = (e) => {
     let history = useHistory();
     //get history
@@ -10,16 +11,16 @@ const Flitered = (e) => {
         if (e.location.state.data[0] !== "Please, try again.") {
             return e.location.state.data.map((item, index) => {
                 console.log("filtered: ", item)
-                return (<div className="api-text" key={index}>
-                    <div className="clip3">
-                        <img src={item.picture.large} alt="portrait profile" />
-                    </div>
-                    <div className="list-feed">
-                        <ul className="descriptions">
-                            <li>{item.name.title}. {item.name.first} {item.name.last}</li>
-                            <li>{item.email}</li>
-                        </ul>
-                    </div></div>)
+                return (<Contact
+                    key={index.toString()}
+                    title={item.name.title}
+                    first={item.name.first}
+                    last={item.name.last}
+                    email={item.email}
+                    picture={item.picture.large}
+                />)
+
+
 
             })
         } else {

@@ -82,18 +82,15 @@ const ActionApi = () => {
         LocalItems()
         // console.log(history)
         return stateData.map((item, index) => {
-            return (<div className="api-text" key={index}>
-                <div className="clip3">
-                    <img src={item.picture.large} alt="portrait profile" />
-                </div>
-                <div className="list-feed">
-                    <ul className="descriptions">
-                        <li>{item.name.title} {item.name.first} {item.name.last}</li>
-                        <li>{item.email}</li>
-                    </ul></div></div>)
-
-
-
+            // console.log("filtered: ", item)
+            return (<Contact
+                key={index.toString()}
+                title={item.name.title}
+                first={item.name.first}
+                last={item.name.last}
+                email={item.email}
+                picture={item.picture.large}
+            />)
         })
     }
     if (stateData.length === 0) {
