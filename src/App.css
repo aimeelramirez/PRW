@@ -240,7 +240,7 @@ section {
 .clip3 {
   width: 8rem;
   height: 8rem;
-  clip-path: circle(3rem at 3.5rem 4.5rem);
+  clip-path: circle(3.5rem at 3.5rem 4.5rem);
 }
 .clip3 > img {
   width: 100%;
@@ -249,9 +249,7 @@ section {
   display: flex;
   flex-direction: row;
 }
-.descriptions {
-  width: 50%;
-}
+
 .descriptions > li {
   display: flex;
   outline: 1px solid red;
