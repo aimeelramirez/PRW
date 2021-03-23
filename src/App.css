@@ -55,6 +55,14 @@ h1 {
   border-right: 1px solid #ebebeb;
   margin: 0.5rem;
 }
+.container-left {
+  /* width: 100%; */
+  width: 35rem;
+}
+.container-center {
+  width: 100%;
+  min-width: 40rem;
+}
 #navigation-route > nav > ul {
   flex-direction: column !important;
   padding: 0;
@@ -238,12 +246,12 @@ section {
   clip-path: circle(3.5rem at 3.5rem 4.5rem);
 }
 .clip3 {
-  width: 8rem;
-  height: 8rem;
-  clip-path: circle(3.5rem at 3.5rem 4.5rem);
+  width: 5rem;
+  height: 5rem;
+  clip-path: circle(2rem at 2.5rem 3rem);
 }
 .clip3 > img {
-  width: 100%;
+  width: 5rem;
 }
 .api-text {
   display: flex;
