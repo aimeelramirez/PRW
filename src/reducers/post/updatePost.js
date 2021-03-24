@@ -9,7 +9,6 @@ import { GetError, GetSuccess, GetEditForm } from '../action/notification';
 import Modal from '../../components/modal/modal'
 import Post from '../../components/post/Post'
 import {
-    Link,
     useHistory
 } from "react-router-dom";
 let getUpdate = ""

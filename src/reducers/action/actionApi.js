@@ -9,18 +9,19 @@ import { getApi } from './api'
 const ActionApi = () => {
     let history = useHistory();
     //response on fetch on let
-    let [stateData, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+
+    const [stateData, setData] = useState([]);
+    //const [loading, setLoading] = useState(true);
+    //const [error, setError] = useState(null);
     const GetUsers = () => {
         //get users to read on data
         getApi().then(json => {
             setData(json.results)
             console.log(json)
-            setLoading(false);
+            // setLoading(false);
         }).catch(err => {
             console.error(err);
-            setError(err);
+            // setError(err);
         });
     }
 

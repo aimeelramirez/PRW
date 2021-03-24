@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
-    useHistory
+    useHistory,
+    Redirect
 } from "react-router-dom";
 // import { data } from './../../data'
 import { FiSearch } from "react-icons/fi";
@@ -81,7 +82,7 @@ const SearchBar = () => {
             setState({
                 query: stateHistory.location.state.data
             });
-            history.push('/Home', { data: stateHistory.location.state.data });
+            history.push('/Search', { data: stateHistory.location.state.data });
             return true
             // state.filtered = initialState.posts
             // statePosts.posts = initialState.posts
@@ -98,11 +99,11 @@ const SearchBar = () => {
         e.preventDefault()
         //  console.log(e)
         if (history.location.state === undefined || history.location.state === "") {
-            history.replace('/Home', { data: stateHistory.location.state.data });
+            // history.replace('/Home', { data: stateHistory.location.state.data });
             //console.log(history)
             // e.target.reset()
 
-
+            return <Redirect to="/Home" />
         } else if (history.location.state !== undefined) {
             onSearchClick(e)
         }

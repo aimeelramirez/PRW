@@ -1,25 +1,8 @@
 
 import {
-    Link,
-    useHistory
+    Link
 } from "react-router-dom";
-// import { API } from './../../reducers/action/api'
-let data = ""
 const Navigation = () => {
-    // API()
-    // let history = useHistory();
-    // console.log("Navigation : ", history)
-    // if (history.location.state !== undefined) {
-    //     data = history.location.state.data
-    //     //for each click handle the path
-
-    // }
-    // const handleClick = (e) => {
-    //     history.replace(e.view.location, { data: data });
-    //     console.log(e.view.location)
-
-    // }
-
     return (
         <div id="navigation-route">
             <nav className="Nav">

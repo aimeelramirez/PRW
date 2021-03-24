@@ -1,8 +1,6 @@
 import {
   Switch,
-  Route,
-  Redirect,
-  useHistory
+  Route
 } from "react-router-dom";
 import { FiCoffee } from "react-icons/fi";
 import './App.css';
@@ -19,12 +17,7 @@ import Settings from './view/header/settings'
 // import Search from './view/header/search'
 import Filtered from './view/header/filtered'
 import ActionApi from './reducers/action/actionApi'
-import Spinner from './components/spinner/spinner'
-// import { updateObject } from './reducers/utility'
-//not sure if to to use this api since able to use emojis
-// let emoji = "https://emojiapi.dev/api/v1/beaming_face_with_smiling_eyes.svg"
-// import ARRAY_USERS from './reducers/action/action';
-import Routes from './components/routes/routes'
+// import Spinner from './components/spinner/spinner'
 
 function App() {
   return (
@@ -45,20 +38,20 @@ function App() {
               <ActionApi />
             </Route>
 
-            <Route path="/NewsFeed" component={Feed} />
+            <Route exact path="/NewsFeed" component={Feed} />
 
-            <Route path="/Watch" component={Watch} />
+            <Route exact path="/Watch" component={Watch} />
 
-            <Route path="/Messages" component={Message} />
+            <Route exact path="/Messages" component={Message} />
 
-            <Route path="/Settings" component={Settings} />
+            <Route exact path="/Settings" component={Settings} />
 
             {/* <Route path="/Search" component={Search} /> */}
             {/* <Redirect exact from="/Filtered" to="/Search" /> */}
             {/* <Route component={Search} >
 
             </Route> */}
-            <Routes path="/Filtered" component={Filtered} />
+            <Route path="/Filtered" component={Filtered} />
           </Switch>
 
         </div>
@@ -73,7 +66,5 @@ function App() {
 // const Home = () => {
 //   return (<div><h2>Home</h2></div>)
 // }
-const Users = () => {
-  return (<ActionApi />)
-}
+
 export default App;

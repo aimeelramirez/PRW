@@ -1,8 +1,8 @@
 // to reuse api
 let apiKey = process.env.REACT_APP_API_USERS_KEY;
-export const getApi = () => {
+export const getApi = async () => {
     //async await
-    return fetch('https://randomuser.me/api?results=25', {
+    return await fetch('https://randomuser.me/api?results=25', {
         method: 'GET',
         headers: {
             'Authorization': 'Client-ID ' + apiKey,

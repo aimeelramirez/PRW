@@ -9,7 +9,7 @@ import Button from '../components/button/Button'
 
 import MainButton from '../components/button/mainButton'
 import { FiLogIn, FiLogOut, FiUser, FiSettings } from "react-icons/fi";
-import { GetError } from './action/notification';
+// import { GetError } from './action/notification';
 const initialState = {
     user: "",
     isAuth: false,
@@ -38,6 +38,11 @@ const Portal = () => {
     const handleClick = () => {
         //set to go back to settings 
         history.push('/Settings');
+        // console.log(history)
+    }
+    const handleClickUsers = () => {
+        //set to go back to settings 
+        history.push('/Search');
         // console.log(history)
     }
 
@@ -79,10 +84,10 @@ const Portal = () => {
             });
         }
     }
-    const ErrorHandle = () => {
-        let message = "Sorry, Under Construction!"
-        GetError(message);
-    }
+    // const ErrorHandle = () => {
+    //     let message = "Sorry, Under Construction!"
+    //     GetError(message);
+    // }
     return (
         <div>
             {/* <MainButton >Settings</MainButton> */}
@@ -90,13 +95,12 @@ const Portal = () => {
                 <div onClick={switchLogin}>
                     <MainButton>{state.isAuth ? <FiLogOut /> : <FiLogIn />}</MainButton>
                 </div>
-                <Button onClick={ErrorHandle}><FiUser /></Button>
+                <Button onClick={handleClickUsers}><FiUser /></Button>
                 <Button onClick={handleClick}>
                     <FiSettings />
                 </Button>
             </div>
             <div>{state.isAuth ? <div> Welcome, {state.user} <FiUser /> </div> : "Please sign in first!"} </div>
-
             <p>Auth: {JSON.stringify(state.isAuth)} </p>
         </div>
     )
