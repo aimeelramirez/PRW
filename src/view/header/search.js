@@ -82,7 +82,7 @@ const SearchBar = () => {
             setState({
                 query: stateHistory.location.state.data
             });
-            history.push('/Search', { data: stateHistory.location.state.data });
+            history.push('/Home', { data: stateHistory.location.state.data });
             return true
             // state.filtered = initialState.posts
             // statePosts.posts = initialState.posts

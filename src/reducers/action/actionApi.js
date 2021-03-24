@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     useHistory
 } from "react-router-dom";
@@ -11,19 +11,33 @@ const ActionApi = () => {
     //response on fetch on let
 
     const [stateData, setData] = useState([]);
-    //const [loading, setLoading] = useState(true);
-    //const [error, setError] = useState(null);
-    const GetUsers = () => {
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    useEffect(() => {
         //get users to read on data
-        getApi().then(json => {
-            setData(json.results)
-            console.log(json)
-            // setLoading(false);
-        }).catch(err => {
-            console.error(err);
-            // setError(err);
-        });
-    }
+        const fetchData = () => {
+            getApi().then(json => {
+                setData(json.results)
+                console.log(json)
+                setLoading(false);
+            }).catch(err => {
+                console.error(err);
+                setError(err);
+            });
+        }
+        function doStartFetch() {
+            if (loading) return "Loading..."
+                && fetchData()
+            if (error) return "Oops!";
+        }
+
+        const startingFetch = setInterval(doStartFetch, 500)
+        // aborting request when cleaning
+        return () => {
+            clearInterval(startingFetch)
+        }
+
+    }, [loading, error])
 
     const UserItems = () => {
         let items = [];
@@ -68,7 +82,7 @@ const ActionApi = () => {
         })
     }
     if (stateData.length === 0) {
-        GetUsers()
+        // GetUsers()
         return <Spinner />
         // console.log("readData: ", stateData)
     } else if (stateData.length > 0) {
