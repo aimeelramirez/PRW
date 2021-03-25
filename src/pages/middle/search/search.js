@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     useHistory,
     Redirect
@@ -8,27 +8,23 @@ import { FiSearch } from "react-icons/fi";
 // import Contact from './../../../components/contact/contact'
 // import Button from './../../../components/button/Button'
 import { GetError } from './../../../reducers/action/notification'
-// import MainButton from '../../components/button/mainButton';
-// import { updateObject } from './../../reducers/utility'
-// let props = {
-//     items: ["A Keep in touch ☝️", "Search for this Family Home 🏡", "About this application 📱"]
-
-// }
-// const initialState = {
-//     posts: data
-// }
-
-const SearchBar = () => {
+import { ApiContext } from './../../../Context'
+import FilteredItems from './filtered'
+const Search = () => {
 
     let history = useHistory();
-    const [stateHistory, setStateHistory] = useState(history)
+    let context = useContext(ApiContext)
+
+
+    let [stateHistory, setStateHistory] = useState(history)
     let [state, setState] = useState({ data: [] })
 
     const onSearchClick = (e) => {
         e.preventDefault()
-        //console.log(e.target[0].value)
+
+
         let newList = [];
-        //console.log(stateHistory.location.state.data)
+
         if (e.target[0].value !== "") {
             newList = stateHistory.location.state.data.filter(item => {
                 const name = Object.values(item.name)
@@ -38,7 +34,8 @@ const SearchBar = () => {
                 const removeItem = filter.split(' ').join('');
                 return check.includes(removeItem)
             });
-            // console.log("new list: ", newList)
+            //console.log("new list: ", newList)
+
             if (newList.length === 0) {
                 let message = "Please, try again."
                 console.log(message)
@@ -60,25 +57,23 @@ const SearchBar = () => {
                 e.target[0].value = ""
                 // console.log(e.target[1])
                 console.log("replacing state")
-
-                // history.replace('/Users', state);
                 // console.log("History: ", history.location)
-
-                return history.push('/Users', state);
+                // console.log(history)
+                return history.push(history.location.pathname, state);
             }
+
 
         }
         else {
 
-
-            setState({
-                data: stateHistory.location.state.data
-            });
+            let getItems = localStorage.getItem('names')
+            setState({ data: JSON.parse(getItems) });
             console.log("pushing update")
-            let message = "Please, fillinput and try again."
+            let message = "Please, fill input and try again."
             console.log(message)
             GetError(message)
-            history.push('/', { data: stateHistory.location.state.data });
+            history.replace(history.location.pathname, { data: JSON.parse(getItems) });
+
             return true
             // state.filtered = initialState.posts
             // statePosts.posts = initialState.posts
@@ -94,7 +89,9 @@ const SearchBar = () => {
     //for each click handle the path
     const handleClick = (e) => {
         e.preventDefault()
-        //  console.log(e)
+        console.log(e)
+        console.log("context on search! ", context)
+        console.log("context on history! ", stateHistory)
         if (history.location.state === undefined || history.location.state === "") {
             // history.replace('/Home', { data: stateHistory.location.state.data });
             //console.log(history)
@@ -103,6 +100,7 @@ const SearchBar = () => {
             return <Redirect to="/" />
         } else if (history.location.state !== undefined) {
             onSearchClick(e)
+
         }
         //pass state in next component
         // history.push('/Filtered', { oldNames: stateHistory, stateNames: state });
@@ -155,4 +153,4 @@ const SearchBar = () => {
 
 }
 
-export default SearchBar;
+export default Search;

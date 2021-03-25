@@ -20,10 +20,10 @@ const FetchCardAvatars = () => {
             let getList = document.getElementById("list-avatars")
             let getList2 = document.getElementById("list-avatars-2")
             if (getList != null) {
-                getAvatarsAll1()
+                // getAvatarsAll1()
 
             } if (getList2 != null) {
-                getAvatarsAll2()
+                //getAvatarsAll2()
 
             }
         })

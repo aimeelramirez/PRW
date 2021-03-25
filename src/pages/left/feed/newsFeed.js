@@ -1,47 +1,20 @@
-import React, { useState, useContext, useEffect } from 'react';
+
+import React, { useContext, useEffect } from 'react';
 import {
     useHistory
 } from "react-router-dom";
-import Spinner from './../../../components/spinner/spinner'
-import Contact from './../../../components/contact/contact'
-import FilteredItems from './../search/filtered'
-import Button from './../../../components/button/Button'
-import { ApiContext } from "./../../../Context";
-import Message from './../../left/message/Posts'
-const Users = () => {
-    let history = useHistory();
-    // //response on fetch on let
+import Spinner from '../../../components/spinner/spinner'
+import Contact from '../../../components/contact/contact'
+// import { getApi } from './../../../reducers/action/api'
+// import FilteredItems from './../../middle/search/filtered'
+// import Button from './../../../components/button/Button'
+import { ApiContext } from "../../../Context";
+// import Context from "./../../../Context";
 
-    // const [stateData, setData] = useState([]);
-    //const [loading, setLoading] = useState(true);
-    //const [error, setError] = useState(null);
-    // useEffect(() => {
-    //     //get users to read on data
-    //     const fetchData = () => {
-    //         getApi().then(json => {
-    //             setData(json.results)
-    //             console.log(json)
-    //             setLoading(false);
-    //         }).catch(err => {
-    //             console.error(err);
-    //             setError(err);
-    //         });
-    //     }
-    //     function doStartFetch() {
-    //         if (loading) return "Loading..."
-    //             && fetchData()
-    //         if (error) return "Oops!";
-    //     }
-
-    //     const startingFetch = setInterval(doStartFetch, 500)
-    //     // aborting request when cleaning
-    //     return () => {
-    //         clearInterval(startingFetch)
-    //     }
-
-    // }, [loading, error])
+const PostList = () => {
+    const history = useHistory();
     const context = useContext(ApiContext);
-
+    console.log("getting about: ", history)
     const onHandleBack = () => {
         history.replace('/')
     }
@@ -72,9 +45,9 @@ const Users = () => {
             //localStorage.clear();
 
         })
-        if (history.location.state != undefined) {
+        if (history.location.state !== undefined) {
             return history.location.state.data.map((item, index) => {
-                //  console.log("filtered: ", item)
+                // console.log("filtered: ", item)
                 return (<Contact
                     key={index.toString()}
                     title={item.name.title}
@@ -86,8 +59,10 @@ const Users = () => {
             })
         } else {
             return context.map((item, index) => {
+                //get the new route
+                history.push("/NewsFeed", { data: context })
                 //just in case for history not updating
-                // console.log("context ", item)
+                //  console.log("context ", item)
                 return (<Contact
                     key={index.toString()}
                     title={item.name.title}
@@ -97,7 +72,9 @@ const Users = () => {
                     picture={item.picture.large}
                 />)
             })
+
         }
+
     }
     if (context.length === 0) {
         // GetUsers()
@@ -106,12 +83,9 @@ const Users = () => {
         // console.log("readData: ", stateData)
     }
     //check the filtered item to get on the 
-    if (context.length > 0 && history.location.pathname === '/') {
+    if (context.length > 0 && history.location.pathname === '/NewsFeed') {
         return (
-            <><h2>Reused to get List of Users</h2>
-                <Message />
-                <UserItems />
-            </>
+            <UserItems />
         )
     }
 
@@ -119,5 +93,4 @@ const Users = () => {
 }
 
 
-
-export default Users
+export default PostList;

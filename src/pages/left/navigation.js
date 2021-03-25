@@ -9,11 +9,11 @@ import Watch from './watch/watch'
 import Feed from './feed/feed'
 import Message from './message/message'
 import Settings from './../header/settings'
-// import Search from './pages/middle/search/search'
-// import Filtered from './pages/middle/search/filtered'
+import Search from './../middle/search/search'
+import FilteredItems from './../middle/search/filtered'
 import Users from './../middle/users/users'
 // import Spinner from './components/spinner/spinner'
-
+import Context from './../../Context'
 const Navigation = () => {
     return (
         <section id="navigation-route">
@@ -42,14 +42,16 @@ const Navigation = () => {
             </nav>
             <article className="users-list">
                 <Switch>
-                    <Route exact path="/">
-                        <Users />
-                    </Route>
-                    <Route exact path="/Home" component={Home} />
-                    <Route exact path="/NewsFeed" component={Feed} />
-                    <Route exact path="/Watch" component={Watch} />
-                    <Route exact path="/Messages" component={Message} />
-                    <Route exact path="/Settings" component={Settings} />
+                    <Context>
+                        <Route exact path="/" component={() => <Users />} />
+                        <Route exact path="/Home" component={Home} />
+                        <Route exact path="/NewsFeed" render={Feed} />
+                        <Route exact path="/Watch" component={Watch} />
+                        <Route exact path="/Messages" component={Message} />
+                        <Route exact path="/Settings" component={Settings} />
+                        {/* <Route exact path="/Flitered" component={FilteredItems} /> */}
+
+                    </Context>
                 </Switch>
             </article>
         </section>

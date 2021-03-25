@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useContext } from 'react';
 import * as actionTypes from '../action/action';
 import { data } from '../../data';
 // import DeletePost from './deletePost'
@@ -8,12 +8,13 @@ import MainButton from '../../components/button/mainButton'
 import { GetError, GetSuccess, GetEditForm } from '../action/notification';
 import Modal from '../../components/modal/modal'
 import Post from '../../components/post/Post'
+import { ApiContext } from './../../Context'
 import {
     useHistory
 } from "react-router-dom";
 // let getUpdate = ""
 const initialState = {
-    posts: data,
+    posts: [],
     post: {
         name: "",
         message: ""
@@ -75,6 +76,8 @@ const UpdatePost = () => {
     const [stateModal, setStateModal] = useState({
         show: false
     });
+    const getContext = useContext(ApiContext)
+    console.log(getContext)
     const handleChange = (event) => {
         event.preventDefault()
         // console.log(event)
@@ -85,25 +88,24 @@ const UpdatePost = () => {
         // console.log(event.target[0])
         // console.log(event.target[1])
         let message = event.target[0].value
-        let name = event.target[1].value
-        if (name === "") {
-            let text = "Please fill in name!";
-            GetError(text);
-            return false;
-        }
-        else if (message === "") {
+        let name = ""
+        if (message === "") {
             let text = "Please fill in message!";
             GetError(text);
             return false;
         }
-        else if (name !== "" && message !== "") {
+        else if (message !== "") {
             let stringKey = state.posts.length.toString();
             let post = {}
             console.log("state: ", state.posts.length)
+            let num = Math.random() * Math.floor(24)
+            let context = Object.values(getContext)
+            console.log(context[num.toFixed()].picture.large)
             if (state.posts.length === 0) {
                 post = {
+                    pic: context[num.toFixed()].picture.large,
                     text: stringKey,
-                    name: name,
+                    name: context[num.toFixed()].name.first,
                     message: message
                 }
                 console.log("posted: ", post)
@@ -114,16 +116,18 @@ const UpdatePost = () => {
 
                 if (num !== stringKey) {
                     post = {
+                        pic: context[num].picture.large,
                         text: stringKey,
-                        name: name,
+                        name: context[num].name.first,
                         message: message
                     }
                 }
                 else {
                     stringKey = (num + 1).toString()
                     post = {
+                        pic: context[num].picture.large,
                         text: stringKey,
-                        name: name,
+                        name: context[num].name.first,
                         message: message
                     }
                 }
@@ -221,6 +225,7 @@ const UpdatePost = () => {
                     <div>
                         <Post
                             key={parseInt(post.txt)}
+                            pic={post.pic}
                             text={post.txt}
                             name={post.name}
                             message={post.message}
@@ -245,9 +250,9 @@ const UpdatePost = () => {
                         <textarea type="text" name="message" />
                     </p>
                     <label>Name:</label>
-                    <p>
+                    {/* <p>
                         <input type="text" name="name" />
-                    </p>
+                    </p> */}
                     <MainButton type="submit" onChange={handleChange}>Submit</MainButton>
                 </form>
             </div>

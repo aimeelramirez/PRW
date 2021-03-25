@@ -1,7 +1,8 @@
-import PostList from './about';
+import PostList from './newsFeed';
 
 const Feed = () => {
-    return (<><h2>Feed</h2>
+    return (<>
+        <h2>To be used for NewsFeed</h2>
         <PostList />
     </>)
 }
