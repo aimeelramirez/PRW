@@ -1,6 +1,6 @@
 
 const Watch = () => {
-    return (<div><h2>Watch</h2></div>)
+    return (<><h2>Watch</h2></>)
 }
 
 export default Watch;

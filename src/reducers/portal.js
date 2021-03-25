@@ -35,6 +35,8 @@ const reducer = (state, action) => {
 
 const Portal = () => {
     let history = useHistory();
+    console.log("history on portal:", history.location)
+
     const handleClick = () => {
         //set to go back to settings 
         history.push('/Settings');
@@ -42,7 +44,7 @@ const Portal = () => {
     }
     const handleClickUsers = () => {
         //set to go back to settings 
-        history.push('/Search');
+        history.push('/');
         // console.log(history)
     }
 

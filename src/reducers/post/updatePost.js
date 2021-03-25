@@ -3,7 +3,7 @@ import * as actionTypes from '../action/action';
 import { data } from '../../data';
 // import DeletePost from './deletePost'
 import { FetchCardAvatars } from '../action/fetchAvatar'
-import { updateObject } from '../utility';
+// import { updateObject } from '../utility';
 import MainButton from '../../components/button/mainButton'
 import { GetError, GetSuccess, GetEditForm } from '../action/notification';
 import Modal from '../../components/modal/modal'
@@ -11,7 +11,7 @@ import Post from '../../components/post/Post'
 import {
     useHistory
 } from "react-router-dom";
-let getUpdate = ""
+// let getUpdate = ""
 const initialState = {
     posts: data,
     post: {
@@ -132,14 +132,14 @@ const UpdatePost = () => {
 
             // let review = ""
             // console.log(event)
-            let posts = [...state.posts, post]
+            //let posts = [...state.posts, post]
             // //this is the same as action on reducer above
-            getUpdate = updateObject({
-                posts,
-                post
+            // getUpdate = updateObject({
+            //     posts,
+            //     post
 
-            })
-            console.log(getUpdate)
+            // })
+            //console.log(getUpdate)
             //** the only way i can get the page to reload with data shown...
             // state.posts.push(post)
             let newState = [...state.posts, post]

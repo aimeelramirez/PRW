@@ -84,10 +84,16 @@ h1 {
 #navigation-route > nav > ul > li > a:active {
   color: var(--paradise-pink);
 }
-#navigation-route > .Body {
-  /* display: flex; */
-
-  outline: 1px solid red;
+#navigation-route {
+  display: flex;
+}
+.users-list {
+  /* outline: 1px solid red; */
+  /* margin: auto 0;
+  padding: 0; */
+  min-width: 50rem;
+  width: 100%;
+  flex-direction: column !important;
 }
 .Body {
   margin: auto 0;
@@ -179,9 +185,9 @@ h1 {
 }
 
 section {
-  margin: auto 0;
+  /* margin: auto 0;
 
-  padding: 0;
+  padding: 0; */
   /* outline: 1px solid green; */
   display: flex;
   flex-direction: row !important;

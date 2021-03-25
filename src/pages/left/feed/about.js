@@ -1,12 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
 import {
     useHistory
 } from "react-router-dom";
-import Spinner from './../../components/spinner/spinner'
-import Contact from './../../components/contact/contact'
-import { getApi } from './api'
+import Spinner from './../../../components/spinner/spinner'
+import Contact from './../../../components/contact/contact'
+import { getApi } from './../../../reducers/action/api'
+import FilteredItems from './../../middle/search/filtered'
+import Button from './../../../components/button/Button'
 
-const ActionApi = () => {
+const PostList = () => {
     let history = useHistory();
     //response on fetch on let
 
@@ -38,7 +41,9 @@ const ActionApi = () => {
         }
 
     }, [loading, error])
-
+    const onHandleBack = () => {
+        history.replace('/')
+    }
     const UserItems = () => {
         let items = [];
         // console.log("hello ", stateData)
@@ -65,9 +70,9 @@ const ActionApi = () => {
             //localStorage.clear();
 
         })
-        let getNames = localStorage.getItem('names')
+        // let getNames = localStorage.getItem('names')
 
-        history.push('/Home', { data: JSON.parse(getNames) });
+        //history.push('/NewsFeed', { data: JSON.parse(getNames) });
         // console.log(history)
         return stateData.map((item, index) => {
             // console.log("filtered: ", item)
@@ -85,14 +90,17 @@ const ActionApi = () => {
         // GetUsers()
         return <Spinner />
         // console.log("readData: ", stateData)
-    } else if (stateData.length > 0) {
-        return (
-            <div><h2>Action Api</h2>
-                <UserItems />
-            </div>)
     }
+    //check the filtered item to get on the 
+    else if (stateData.length > 0 && history.location.pathname === '/NewsFeed') {
+        return (
+
+            <UserItems />
+
+        )
+    }
+
 }
 
 
-
-export default ActionApi
+export default PostList;
