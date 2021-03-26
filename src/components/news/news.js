@@ -1,21 +1,9 @@
 import PropTypes from 'prop-types'
 
-
-// first name
-// last name
-// street
-// city
-// state
-// postcode
-// username
-// password
-// phone
-// picture.
-
-const Contact = (props) => {
-    const { index, title, first, last, email, picture } = { ...props }
+const News = (props) => {
+    const { txt, title, first, last, email, picture, message } = { ...props }
     return (
-        <div className="api-text" key={index}>
+        <div className="api-text" key={txt}>
             <div className="clip3">
                 <img src={picture} alt="portrait profile" />
             </div>
@@ -23,19 +11,22 @@ const Contact = (props) => {
                 <ul className="descriptions">
                     <li>{title} {first} {last}</li>
                     <li>{email}</li>
-                </ul></div></div>
+                    <li>{message}</li>
+                </ul>
+            </div>
+        </div>
     )
 }
-Contact.propTypes = {
-    index: PropTypes.string,
+News.propTypes = {
+    txt: PropTypes.string,
     first: PropTypes.string,
     last: PropTypes.string,
     title: PropTypes.string,
     email: PropTypes.string,
     picture: PropTypes.string,
-    // clicked: PropTypes.func,
-    // edit: PropTypes.func,
+    message: PropTypes.string,
+
 
 }
 
-export default Contact
+export default News

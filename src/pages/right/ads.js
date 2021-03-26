@@ -2,10 +2,9 @@
 import Ad from '../../components/ad/ad'
 
 const Ads = () => {
-  return (<section className="Body" id="list-ads">
-    <h2>Homes
-          <br />For Sale:</h2>
+  return (<article className="Body" id="list-ads">
+    <h2>Homes For Sale:</h2>
     <Ad />
-  </section>)
+  </article>)
 }
 export default Ads;

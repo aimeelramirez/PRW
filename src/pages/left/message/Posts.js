@@ -8,11 +8,7 @@ import UpdatePost from '../../../reducers/post/updatePost'
 
 //component on props child post
 class Posts extends Component {
-    // clickCounter = (e) => {
-    //     e.preventDefault()
-    //     // console.log(e.target)
-    //     this.setState({ count: this.state.count + 1 })
-    // }
+
     render() {
 
         if (data.length <= 0) {

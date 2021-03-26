@@ -14,14 +14,16 @@ import Portal from './../../reducers/portal'
 
 const Header = () => {
     return (
-        <div>
-            <h1><strong>Logo</strong><FiCoffee /></h1>
-            <h2>Coffee.</h2>
-            <div id="header-icons">
+        <header>
+            <section>
+                <h1><strong>Logo</strong><FiCoffee /></h1>
+                <h2>Coffee.</h2>
+            </section>
+            <article id="header-icons">
                 <Portal />
-            </div>
+            </article>
             <Search />
-        </div>
+        </header>
     )
 }
 

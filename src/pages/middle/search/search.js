@@ -7,9 +7,9 @@ import {
 import { FiSearch } from "react-icons/fi";
 // import Contact from './../../../components/contact/contact'
 // import Button from './../../../components/button/Button'
-import { GetError } from './../../../reducers/action/notification'
+import { GetError, GetEditForm } from './../../../reducers/action/notification'
 import { ApiContext } from './../../../Context'
-import FilteredItems from './filtered'
+// import FilteredItems from './filtered'
 const Search = () => {
 
     let history = useHistory();
@@ -59,7 +59,9 @@ const Search = () => {
                 console.log("replacing state")
                 // console.log("History: ", history.location)
                 // console.log(history)
-                return history.push(history.location.pathname, state);
+                let message = "If to delete or modify, please go back for changes!"
+                GetEditForm(message);
+                return history.replace(history.location.pathname, state);
             }
 
 
@@ -124,25 +126,14 @@ const Search = () => {
                             </p>
                         </form>
                     </div>
-                    {/* <div className="list-search">
-                    <h3>Results:</h3>
-                </div> */}
-
 
                 </div>
             </div>
         )
     }
-    // const onHandleBack = () => {
-    //     history.replace('/Home')
-    // }
     if (state.data.length > 0) {
         return (
             <> <SearchBarInput />
-                {/* <div className="list-search" > */}
-                {/* <Button onClick={onHandleBack}>Go Back</Button>
-                <FilteredItems /> */}
-                {/* </div> */}
             </>
         )
     }

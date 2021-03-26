@@ -7,9 +7,14 @@ import {
 import * as actionTypes from './action/action';
 import Button from '../components/button/Button'
 
-import MainButton from '../components/button/mainButton'
+import MainButton from './../components/button/mainButton'
 import { FiLogIn, FiLogOut, FiUser, FiSettings } from "react-icons/fi";
 // import { GetError } from './action/notification';
+// import Profile from './../components/profile/profile'
+
+// import { ApiContext } from './../Context'
+
+
 const initialState = {
     user: "",
     isAuth: false,
@@ -35,13 +40,9 @@ const reducer = (state, action) => {
 
 const Portal = () => {
     let history = useHistory();
-    console.log("history on portal:", history.location)
+    // console.log("history on portal:", history.location)
 
-    const handleClick = () => {
-        //set to go back to settings 
-        history.push('/Settings');
-        // console.log(history)
-    }
+
     const handleClickUsers = () => {
         //set to go back to settings 
         history.push('/');
@@ -63,6 +64,12 @@ const Portal = () => {
 
         }
     });
+
+    const handleClick = () => {
+        //set to go back to settings 
+        history.push('/Settings', { data: history.location.state.data });
+        console.log(history)
+    }
     const switchLogin = () => {
 
         if (state.isAuth === false) {
@@ -94,9 +101,9 @@ const Portal = () => {
         <div>
             {/* <MainButton >Settings</MainButton> */}
             <div className="login-portal">
-                <div onClick={switchLogin}>
-                    <MainButton>{state.isAuth ? <FiLogOut /> : <FiLogIn />}</MainButton>
-                </div>
+
+                <MainButton handleClose={switchLogin}>{state.isAuth ? <FiLogOut /> : <FiLogIn />}</MainButton>
+
                 <Button onClick={handleClickUsers}><FiUser /></Button>
                 <Button onClick={handleClick}>
                     <FiSettings />

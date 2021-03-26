@@ -7,12 +7,14 @@ import {
 export const ApiContext = React.createContext();
 
 const Context = props => {
-    let history = useHistory();
     //response on fetch on let
     const [stateData, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    let history = useHistory();
+
     useEffect(() => {
+
         //get users to read on data
         const fetchData = () => {
             getApi().then(json => {
@@ -22,8 +24,9 @@ const Context = props => {
                 // console.log(json)
                 // console.log(history)
                 //to get path to location
-                history.replace(history.location.pathname, { data: obj });
                 setLoading(false);
+
+                return history.replace(history.location.pathname, { data: obj });
             }).catch(err => {
                 console.error(err);
                 setError(err);
@@ -41,7 +44,7 @@ const Context = props => {
             clearInterval(startingFetch)
         }
 
-    }, [loading, error])
+    }, [loading, error, history])
 
     return (
         <ApiContext.Provider value={stateData}>

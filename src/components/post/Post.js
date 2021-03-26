@@ -1,5 +1,5 @@
 import './Post.css';
-import placer from '../../image.svg'
+// import placer from '../../image.svg'
 import PropTypes from 'prop-types'
 
 import { FiTrash2, FiEdit } from "react-icons/fi";
@@ -7,27 +7,33 @@ import { FiTrash2, FiEdit } from "react-icons/fi";
 //child props
 const Post = (props) => {
     //this could be like this  ({ txt, name, message, clicked, edit })=> or this on spread operator
-    const { txt, clicked, edit, name, message, pic } = { ...props }
+    const { txt, clicked, edit, email, first, last, title, message, picture } = { ...props }
     return (
-        <div className="Post">
-            <article className="card-feed">
-                <div className="clip">
-                    <img src={pic} className="profile" alt="description" />
-                </div>
-                <div className="list-feed" key={txt}>
-                    <h2>{name}</h2>
-                    <p> {message}</p>
-                    <button onClick={clicked}><FiTrash2></FiTrash2></button>
-                    <button onClick={edit}><FiEdit /></button>
-                </div>
-            </article>
+        <div className="api-text" key={txt}>
+            <div className="clip3">
+                <img src={picture} alt="portrait profile" />
+            </div>
+            <div className="list-feed">
+                <ul className="descriptions">
+
+                    <li>{title} {first} {last}</li>
+                    <li>{email}</li>
+                    <li>{message}</li>
+                    <footer>
+                        <button onClick={clicked}><FiTrash2></FiTrash2></button>
+                        <button onClick={edit}><FiEdit /></button></footer>
+                </ul>
+            </div>
         </div>
     );
 }
 Post.propTypes = {
-    pic: PropTypes.string,
     txt: PropTypes.string,
-    name: PropTypes.string,
+    first: PropTypes.string,
+    last: PropTypes.string,
+    title: PropTypes.string,
+    email: PropTypes.string,
+    picture: PropTypes.string,
     message: PropTypes.string,
     clicked: PropTypes.func,
     edit: PropTypes.func,

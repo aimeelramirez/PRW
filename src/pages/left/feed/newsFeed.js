@@ -1,10 +1,10 @@
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import {
     useHistory
 } from "react-router-dom";
 import Spinner from '../../../components/spinner/spinner'
-import Contact from '../../../components/contact/contact'
+import News from '../../../components/news/news'
 // import { getApi } from './../../../reducers/action/api'
 // import FilteredItems from './../../middle/search/filtered'
 // import Button from './../../../components/button/Button'
@@ -14,13 +14,12 @@ import { ApiContext } from "../../../Context";
 const PostList = () => {
     const history = useHistory();
     const context = useContext(ApiContext);
-    console.log("getting about: ", history)
-    const onHandleBack = () => {
-        history.replace('/')
-    }
+    // console.log("getting about: ", history)
+    // const onHandleBack = () => {
+    //     history.replace('/')
+    // }
     const UserItems = () => {
         let items = [];
-
         // console.log("hello ", stateData)
         //save only names on localStorage for privacy if that was in real data
         context.map((item, index) => {
@@ -40,7 +39,7 @@ const PostList = () => {
                 localStorage.setItem('names', JSON.stringify(items));
 
             }
-
+            return localStorage
             //to clear if to under developement
             //localStorage.clear();
 
@@ -48,7 +47,7 @@ const PostList = () => {
         if (history.location.state !== undefined) {
             return history.location.state.data.map((item, index) => {
                 // console.log("filtered: ", item)
-                return (<Contact
+                return (<News
                     key={index.toString()}
                     title={item.name.title}
                     first={item.name.first}
@@ -63,7 +62,7 @@ const PostList = () => {
                 history.push("/NewsFeed", { data: context })
                 //just in case for history not updating
                 //  console.log("context ", item)
-                return (<Contact
+                return (<News
                     key={index.toString()}
                     title={item.name.title}
                     first={item.name.first}

@@ -1,17 +1,18 @@
 import React, { useReducer, useState, useContext } from 'react';
 import * as actionTypes from '../action/action';
-import { data } from '../../data';
+// import { data } from '../../data';
 // import DeletePost from './deletePost'
-import { FetchCardAvatars } from '../action/fetchAvatar'
+// import { FetchCardAvatars } from '../action/fetchAvatar'
 // import { updateObject } from '../utility';
 import MainButton from '../../components/button/mainButton'
 import { GetError, GetSuccess, GetEditForm } from '../action/notification';
 import Modal from '../../components/modal/modal'
 import Post from '../../components/post/Post'
 import { ApiContext } from './../../Context'
-import {
-    useHistory
-} from "react-router-dom";
+// import { QuotesApiContext } from './quotes'
+// import {
+//     useHistory
+// } from "react-router-dom";
 // let getUpdate = ""
 const initialState = {
     posts: [],
@@ -32,8 +33,8 @@ const reducer = (state = initialState, action) => {
 
 }
 const handleDelete = (state, action) => {
-    console.log("Sending to delete action before: ", action)
-    console.log("Sending to delete state before: ", state)
+    // console.log("Sending to delete action before: ", action)
+    // console.log("Sending to delete state before: ", state)
     // state.posts.filter(item => item.name !== action.name)
     let post = action.post
     // let review = ""
@@ -42,10 +43,10 @@ const handleDelete = (state, action) => {
             state.posts.splice(i, 1);
             // review = state.posts
         }
-        FetchCardAvatars()
+        // FetchCardAvatars()
     }
-    console.log("Sending to delete action after: ", action)
-    console.log("Sending to delete state: ", state)
+    // console.log("Sending to delete action after: ", action)
+    // console.log("Sending to delete state: ", state)
     return state
 
 }
@@ -62,8 +63,8 @@ const handlePost = (state, action) => {
 
 }
 const UpdatePost = () => {
-    let history = useHistory()
-    console.log(history)
+    // let history = useHistory()
+    // console.log(history)
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const [statePosts, setState] = useState({
@@ -77,7 +78,11 @@ const UpdatePost = () => {
         show: false
     });
     const getContext = useContext(ApiContext)
-    console.log(getContext)
+    // const getQuotesContext = useContext(QuotesApiContext)
+
+    // console.log("context: ", getContext)
+    // console.log("quotes: ", getQuotesContext)
+
     const handleChange = (event) => {
         event.preventDefault()
         // console.log(event)
@@ -88,7 +93,6 @@ const UpdatePost = () => {
         // console.log(event.target[0])
         // console.log(event.target[1])
         let message = event.target[0].value
-        let name = ""
         if (message === "") {
             let text = "Please fill in message!";
             GetError(text);
@@ -100,13 +104,18 @@ const UpdatePost = () => {
             console.log("state: ", state.posts.length)
             let num = Math.random() * Math.floor(24)
             let context = Object.values(getContext)
-            console.log(context[num.toFixed()].picture.large)
+            let user = context[num.toFixed()]
+            //console.log(context[num.toFixed()].picture.large)
             if (state.posts.length === 0) {
                 post = {
-                    pic: context[num.toFixed()].picture.large,
+                    picture: user.picture.large,
                     text: stringKey,
-                    name: context[num.toFixed()].name.first,
-                    message: message
+                    title: user.name.title,
+                    first: user.name.first,
+                    last: user.name.last,
+                    message: message,
+                    email: user.email
+
                 }
                 console.log("posted: ", post)
 
@@ -116,36 +125,30 @@ const UpdatePost = () => {
 
                 if (num !== stringKey) {
                     post = {
-                        pic: context[num].picture.large,
+                        picture: user.picture.large,
                         text: stringKey,
-                        name: context[num].name.first,
-                        message: message
+                        title: user.name.title,
+                        first: user.name.first,
+                        last: user.name.last,
+                        message: message,
+                        email: user.email
                     }
                 }
                 else {
                     stringKey = (num + 1).toString()
                     post = {
-                        pic: context[num].picture.large,
+                        picture: user.picture.large,
                         text: stringKey,
-                        name: context[num].name.first,
-                        message: message
+                        title: user.name.title,
+                        first: user.name.first,
+                        last: user.name.last,
+                        message: message,
+                        email: user.email
+
                     }
                 }
 
             }
-
-            // let review = ""
-            // console.log(event)
-            //let posts = [...state.posts, post]
-            // //this is the same as action on reducer above
-            // getUpdate = updateObject({
-            //     posts,
-            //     post
-
-            // })
-            //console.log(getUpdate)
-            //** the only way i can get the page to reload with data shown...
-            // state.posts.push(post)
             let newState = [...state.posts, post]
             let confirm = "Success!"
             statePosts.posts = newState
@@ -172,8 +175,8 @@ const UpdatePost = () => {
         // let getUpdate = updateObject({ posts: data })
         // console.log(getUpdate)
         statePost.post = post;
-        //console.log(post)
-        let showText = <div id="modal-message"><h3>Under Construction!</h3><p>Name:</p><input placeholder={post.name} /><p>Message: </p><textarea id="modal-textarea" placeholder={post.message} /></div>
+        console.log(post)
+        let showText = <div id="modal-message"><h3>Under Construction!</h3><p>Message: </p><textarea id="modal-textarea" placeholder={post.message} /></div>
         setStatePost({ post: showText })
         setStateModal({ show: true });
     }
@@ -208,13 +211,13 @@ const UpdatePost = () => {
 
         })
 
-        FetchCardAvatars()
-        let message = "This is getting deleted: " + JSON.stringify(post);
+        // FetchCardAvatars()
+        let message = "This is getting deleted: " + JSON.stringify(post.first);
         GetSuccess(message)
 
     }
     const Main = () => {
-        return state.posts.map((post, index) => {
+        return state.posts.map((item, index) => {
             return (
                 <div key={index} id="Post-item">
                     <div>
@@ -224,44 +227,42 @@ const UpdatePost = () => {
                     </div>
                     <div>
                         <Post
-                            key={parseInt(post.txt)}
-                            pic={post.pic}
-                            text={post.txt}
-                            name={post.name}
-                            message={post.message}
+                            key={index.toString()}
+                            first={item.first}
+                            last={item.last}
+                            title={item.title}
+                            email={item.email}
+                            picture={item.picture}
+                            message={item.message}
                             clicked={(e) => {
-                                removePost(e, post)
+                                removePost(e, item)
                             }}
                             edit={() => {
-                                editPost(post)
+                                editPost(item)
                             }}
                         /></div></div>
             );
         })
     }
-    FetchCardAvatars()
+    //FetchCardAvatars()
 
     return (
         <div id="post-container">
             <div id="form-container">
                 <form onSubmit={handleClick} >
                     <label>Create a Post:</label>
-                    <p>
-                        <textarea type="text" name="message" />
-                    </p>
-                    <label>Name:</label>
-                    {/* <p>
-                        <input type="text" name="name" />
-                    </p> */}
+
+                    <input type="text" name="message" placeholder="What's on your mind?" />
+
                     <MainButton type="submit" onChange={handleChange}>Submit</MainButton>
                 </form>
             </div>
             <div id="delete-container">
-                {/* <DeletePost /> */}
                 <Main />
             </div>
         </div>
     )
 
 }
+
 export default UpdatePost;
