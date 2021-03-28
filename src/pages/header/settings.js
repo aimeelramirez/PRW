@@ -1,13 +1,17 @@
+import React, { useContext } from 'react';
+
 import Profile from './../../components/profile/profile'
 import {
     useHistory
 } from "react-router-dom";
-// import { ApiContext } from './../../Context'
+import { ApiContext } from './../../Context'
 // import React, { useState, useContext, useEffect, useReducer } from 'react';
 
 const Settings = () => {
     // let num = Math.random() * Math.floor(24)
     let history = useHistory()
+    let context = useContext(ApiContext)
+    console.log(context)
     // let content = Object.values(context)
     // console.log(content)
     // let user = content[num.toFixed()]
@@ -20,7 +24,8 @@ const Settings = () => {
     }
 
     const ShowProfile = () => {
-        console.log(history.location.state.data)
+
+        console.log(history)
         let context = history.location.state.data
         let num = (Math.random() * Math.random(24)).toFixed()
         let concatSt = context[num].location.street.number + " " + context[num].location.street.name

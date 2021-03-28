@@ -40,7 +40,7 @@ const reducer = (state, action) => {
 
 const Portal = () => {
     let history = useHistory();
-    // console.log("history on portal:", history.location)
+    console.log("history on portal:", history.location)
 
 
     const handleClickUsers = () => {
@@ -65,10 +65,20 @@ const Portal = () => {
         }
     });
 
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault()
+        if (history.location.state === undefined) {
+            let getStorage = localStorage.getItem('names')
+            history.push('/Settings', { data: JSON.parse(getStorage) });
+
+        }
         //set to go back to settings 
+        //console.log(e.target)
+
+        //console.log(history)
+
         history.push('/Settings', { data: history.location.state.data });
-        console.log(history)
+        // console.log(history)
     }
     const switchLogin = () => {
 
