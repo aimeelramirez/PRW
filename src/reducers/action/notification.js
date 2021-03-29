@@ -25,17 +25,10 @@ const GetEditForm = (post) => {
   }).show();
 };
 const GetSuccess = (message) => {
-  let getSuccess = document.getElementById("noty_layout__topRight");
-  if (getSuccess !== "") {
-    getSuccess.close();
-  } else {
-    getSuccess = new Noty({
-      type: "success",
-      theme: "nest",
-      text: ` <div id="note"> ${successIcon} ${message} <button id='closeSuccess'><strong>close</strong>${exit}</button> </div>`,
-    }).show();
-  }
-
-  return getSuccess;
+  return new Noty({
+    type: "success",
+    theme: "nest",
+    text: ` <div id="note"> ${successIcon} ${message} <button id='closeSuccess'><strong>close</strong>${exit}</button> </div>`,
+  }).show();
 };
 export { GetError, GetEditForm, GetSuccess };

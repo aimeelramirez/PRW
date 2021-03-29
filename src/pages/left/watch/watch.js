@@ -31,9 +31,11 @@ const Watch = () => {
       let vid = "https://www.youtube.com/embed/" + item.contentDetails.videoId;
       return (
         <div key={index}>
-          <div>{item.snippet.title}</div>
           <div className="video">
+            <title>{item.snippet.title}</title>
+
             <iframe
+              title={index}
               id="ytplayer"
               type="text/html"
               width="720"
