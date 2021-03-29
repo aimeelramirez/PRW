@@ -1,9 +1,11 @@
-import PostList from './newsFeed';
+import PostList from "./newsFeed";
 
 const Feed = () => {
-    return (<>
-        <PostList />
-    </>)
-}
+  return (
+    <>
+      <PostList />
+    </>
+  );
+};
 
 export default Feed;
