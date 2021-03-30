@@ -9,7 +9,7 @@ const YouTubeVideo = () => {
 
     const componentDidMount = () => {
         // On mount, check to see if the API script is already loaded
-        console.log("component");
+        // console.log("component");
         if (!window.YT) {
             // If not, load the script asynchronously
             const tag = document.createElement("script");
@@ -42,6 +42,7 @@ const YouTubeVideo = () => {
     };
     //Get activities
     const loadClient = () => {
+        //todo env it
         window.gapi.client.setApiKey("AIzaSyB_GbBCE2h64IhuQqEdNcUJDnvuF1cz7NY");
         return window.gapi.client
             .load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")

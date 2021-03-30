@@ -6,18 +6,6 @@ import { backup } from "./backup";
 
 const Watch = () => {
   let history = useHistory();
-  //TODO
-  // const onPlayVideo = () => {
-  //     player.playVideo();
-  // };
-
-  // const onPauseVideo = () => {
-  //     player.pauseVideo();
-  // };
-
-  // const onChangeVideo = () => {
-  //     setVideoId(videoId === videoIdA ? videoIdB : videoIdA);
-  // };
   //if some reason there is no state
   if (!history.location.state) {
     //load to api and send to show
