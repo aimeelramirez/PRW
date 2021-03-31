@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getApi } from "./reducers/action/api";
 import { useHistory } from "react-router-dom";
+import { backupUsers } from './pages/middle/users/backup'
 export const ApiContext = React.createContext();
 
 const Context = (props) => {
@@ -23,7 +24,29 @@ const Context = (props) => {
           //to get path to location
           setLoading(false);
 
-          return history.replace(history.location.pathname, { data: obj });
+          if (history.location.state === undefined) {
+            history.push(history.location.pathname, { data: backupUsers });
+            console.log("api: ", backupUsers)
+
+            return history.replace(history.location.pathname, { data: backupUsers });
+
+          }
+          else if (!history.location.state.data) {
+
+            history.location.state.push({ data: backupUsers })
+            console.log("api: ", history.location.state)
+
+
+            return history.replace(history.location.pathname, { data: backupUsers });
+
+          }
+          else {
+            history.push(history.location.pathname, { data: obj });
+
+            return history.replace(history.location.pathname, { data: obj });
+
+          }
+
         })
         .catch((err) => {
           console.error(err);
