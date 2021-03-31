@@ -24,26 +24,26 @@ const Context = (props) => {
           //to get path to location
           setLoading(false);
 
-          if (history.location.state === undefined) {
-            history.push(history.location.pathname, { data: backupUsers });
+          if (history.location.state.posts === undefined) {
+            history.push(history.location.pathname, { posts: backupUsers });
             console.log("api: ", backupUsers)
 
-            return history.replace(history.location.pathname, { data: backupUsers });
+            return history.replace(history.location.pathname, { posts: backupUsers });
 
           }
           else if (!history.location.state.data) {
 
-            history.location.state.push({ data: backupUsers })
+            history.location.state.push({ posts: backupUsers })
             console.log("api: ", history.location.state)
 
 
-            return history.replace(history.location.pathname, { data: backupUsers });
+            return history.replace(history.location.pathname, { posts: backupUsers });
 
           }
           else {
-            history.push(history.location.pathname, { data: obj });
+            history.push(history.location.pathname, { posts: obj });
 
-            return history.replace(history.location.pathname, { data: obj });
+            return history.replace(history.location.pathname, { posts: obj });
 
           }
 

@@ -5,6 +5,7 @@ import Feed from "./feed/feed";
 import Message from "./message/message";
 import Settings from "./../header/settings";
 import YoutubeVideo from "./../left/watch/YoutubeVideo";
+import Edit from './../../reducers/post/editPost'
 // import Search from './../middle/search/search'
 // import ShowFilter from './../middle/search/filtered'
 import Users from "./../middle/users/users";
@@ -58,6 +59,8 @@ const Navigation = () => {
             <Route exact path="/Messages" component={Message} />
             <Route exact path="/Settings" component={Settings} />
             <Route exact path="/loadYt" component={YoutubeVideo} />
+            <Route exact path="/Edit" component={Edit} />
+            {/* add edit path */}
           </Context>
         </Switch>
       </article>

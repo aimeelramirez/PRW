@@ -1,5 +1,7 @@
 import React, { useReducer, useState, useContext } from "react";
 import * as actionTypes from "../action/action";
+import { useHistory } from "react-router-dom";
+
 // import { data } from '../../data';
 // import DeletePost from './deletePost'
 // import { FetchCardAvatars } from '../action/fetchAvatar'
@@ -10,6 +12,7 @@ import Modal from "../../components/modal/modal";
 import Post from "../../components/post/Post";
 import { ApiContext } from "./../../Context";
 // import { QuotesApiContext } from './quotes'
+import Edit from './editPost'
 // import {
 //     useHistory
 // } from "react-router-dom";
@@ -27,6 +30,8 @@ const reducer = (state = initialState, action) => {
       return handlePost(state, action);
     case actionTypes.REMOVE_POST:
       return handleDelete(state, action);
+    case actionTypes.UPDATE_POST:
+      return handleUpdate(state, action);
     default:
       return state;
   }
@@ -53,14 +58,27 @@ const handlePost = (state, action) => {
   state.posts = action.posts;
   console.log("compare the update: ", action.posts);
   console.log("compare the state: ", state.posts);
-  // return {
-  //     posts: action.posts,
-  //     post: action.post
-  // }
+
+  return state;
+};
+const handleUpdate = (state, action) => {
+  //to update state using setState
+  state.posts = action.posts;
+  console.log("compare the update: ", action.posts);
+  console.log("compare the state: ", state.posts);
+  let post = action.post;
+  // let review = ""
+  for (var i = 0; i < state.posts.length; i++) {
+    if (state.posts[i] === post) {
+      state.posts[i].message = post.message
+      // review = state.posts
+    }
+    // FetchCardAvatars()
+  }
   return state;
 };
 const UpdatePost = () => {
-  // let history = useHistory()
+  let history = useHistory()
   // console.log(history)
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -80,11 +98,11 @@ const UpdatePost = () => {
   // console.log("context: ", getContext)
   // console.log("quotes: ", getQuotesContext)
 
-  const handleChange = (event) => {
-    event.preventDefault();
-    // console.log(event)
-    event.target.reset();
-  };
+  // const handleChange = (event) => {
+  //   event.preventDefault();
+  //   // console.log(event)
+  //   event.target.reset();
+  // };
   const handleClick = (event) => {
     event.preventDefault();
     // console.log(event.target[0])
@@ -157,39 +175,54 @@ const UpdatePost = () => {
       GetSuccess(confirm);
     }
     event.target.reset();
-  };
+  }
+
 
   //get edit
-  const editPost = (post) => {
-    // console.log("edit post button: Todo ", post)
+  const editPost = (e, post) => {
+    e.preventDefault()
+    console.log("edit post button: Todo ", post)
     // let getUpdate = updateObject({ posts: data })
     // console.log(getUpdate)
     statePost.post = post;
-    console.log(post);
-    let showText = (
-      <div id="modal-message">
-        <h3>Under Construction!</h3>
-        <p>Message: </p>
-        <textarea id="modal-textarea" placeholder={post.message} />
-      </div>
-    );
-    setStatePost({ post: showText });
+
+
+
+
+    //passing state up with dispatching
+    setStatePost({ post: post });
     setStateModal({ show: true });
+    if (history.location.state.post === undefined) {
+      return history.push("/Edit", {
+        post: post,
+        posts: initialState,
+      })
+    } else {
+      console.log(history)
+      setStatePost({ post: history.location.state.post });
+
+      // history.push("/Edit", { post: post })
+      //return history.push("/", { post: history.location.state.post })
+    }
+    console.log(statePosts.post)
+
+
+
+
+    // let newState = [...state.posts, readPost];
+
+    // dispatch({
+    //   type: actionTypes.UPDATE_POST,
+    //   posts: state,
+    //   post: readPost
+    // });
+
+
+
+
+
   };
-  //under construction
-  const submitModal = () => {
-    let message = "Under Construction, to be submitted for edits.";
-    setStateModal({ show: false });
-    GetSuccess(message);
-    return false;
-  };
-  //under construction
-  const hideModal = () => {
-    let message = "Disregarded for edits.";
-    setStateModal({ show: false });
-    GetEditForm(message);
-    return false;
-  };
+
   //get deletePost
   const removePost = (e, post) => {
     e.preventDefault();
@@ -216,8 +249,7 @@ const UpdatePost = () => {
           <div>
             <Modal
               show={stateModal.show}
-              handleClose={hideModal}
-              handleSubmit={submitModal}
+
             >
               {statePost.post}
             </Modal>
@@ -234,8 +266,8 @@ const UpdatePost = () => {
               clicked={(e) => {
                 removePost(e, item);
               }}
-              edit={() => {
-                editPost(item);
+              edit={(e) => {
+                editPost(e, item);
               }}
             />
           </div>
@@ -257,7 +289,7 @@ const UpdatePost = () => {
             placeholder="What's on your mind?"
           />
 
-          <MainButton type="submit" onChange={handleChange}>
+          <MainButton type="submit" >
             Submit
           </MainButton>
         </form>

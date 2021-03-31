@@ -182,7 +182,7 @@ const Users = () => {
       //localStorage.clear();
     });
     let check = context.length > 0 && history.location.state === undefined;
-    if (check || history.location.state.data.length >= 25) {
+    if (check || history.location.state.posts.length >= 25) {
       //  console.log("context ", stateAll.contact.length)
 
       return stateAll.contact.map((item, index) => {
@@ -221,7 +221,7 @@ const Users = () => {
       });
     }
     if (history.location.state !== undefined) {
-      return history.location.state.data.map((item, index) => {
+      return history.location.state.posts.map((item, index) => {
         // console.log("filtered: ", item)
         item.message = stateAll.quotes[index];
         // history.push("/", { data: history.location.state.data })
