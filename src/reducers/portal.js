@@ -9,8 +9,12 @@ import MainButton from "./../components/button/mainButton";
 import { FiLogIn, FiLogOut, FiUser, FiSettings } from "react-icons/fi";
 // import { GetError } from './action/notification';
 // import Profile from './../components/profile/profile'
+import { backupUsers } from './../pages/middle/users/backup'
 
-// import { ApiContext } from './../Context'
+/*
+ This is for mockup on Settings to handle if that to Update
+ */
+
 
 const initialState = {
   user: "",
@@ -40,8 +44,11 @@ const Portal = () => {
 
   const handleClickUsers = () => {
     //set to go back to settings
-    history.push("/");
-    // console.log(history)
+    history.push("/", {
+      posts: backupUsers,
+      data: backupUsers
+    });
+
   };
 
   const [stateAuth, setState] = useState({
@@ -65,12 +72,7 @@ const Portal = () => {
       history.push("/Settings", { data: JSON.parse(getStorage) });
     }
     //set to go back to settings
-    //console.log(e.target)
-
-    //console.log(history)
-
     history.push("/Settings", { data: history.location.state.data });
-    // console.log(history)
   };
   const switchLogin = () => {
     if (state.isAuth === false) {
@@ -94,13 +96,9 @@ const Portal = () => {
       });
     }
   };
-  // const ErrorHandle = () => {
-  //     let message = "Sorry, Under Construction!"
-  //     GetError(message);
-  // }
+
   return (
     <div>
-      {/* <MainButton >Settings</MainButton> */}
       <div className="login-portal">
         <MainButton handleClose={switchLogin}>
           {state.isAuth ? <FiLogOut /> : <FiLogIn />}
@@ -120,8 +118,8 @@ const Portal = () => {
             Welcome, {state.user} <FiUser />{" "}
           </div>
         ) : (
-          "Please sign in first!"
-        )}{" "}
+            "Please sign in first!"
+          )}{" "}
       </div>
       <p>Auth: {JSON.stringify(state.isAuth)} </p>
     </div>

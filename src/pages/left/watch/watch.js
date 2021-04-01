@@ -27,8 +27,9 @@ const Watch = () => {
   };
 
   const onReady = (event) => {
-    if (history.location.state.video.length > 0) {
-      setVideosId({ video: history.location.state.video })
+    if (backup.length > 0 || history.location.state.videos.length > 0) {
+      console.log(history)
+      setVideosId({ videos: history.location.state.videos })
       // console.log("length: ", history.location.state.video.length)
       setVideoId(videosId[0].contentDetails.videoId)
       videoId = videosId[0].contentDetails.videoId
@@ -50,22 +51,22 @@ const Watch = () => {
 
   const onChangeVideo = () => {
     console.log("clicked")
-    for (let i = 0; i < videosId.video.length - 1; i++) {
-      if (i >= videosId.video.length - 2 && videoId !== videosId.video[i].contentDetails.videoId) {
+    for (let i = 0; i < videosId.videos.length - 1; i++) {
+      if (i >= videosId.videos.length - 2 && videoId !== videosId.videos[i].contentDetails.videoId) {
         return setVideoId(backup[0].contentDetails.videoId)
       }
-      else if (i < videosId.video.length - 1 && videoId === videosId.video[i].contentDetails.videoId) {
-        return setVideoId(videosId.video[i + 1].contentDetails.videoId);
+      else if (i < videosId.videos.length - 1 && videoId === videosId.videos[i].contentDetails.videoId) {
+        return setVideoId(videosId.videos[i + 1].contentDetails.videoId);
       }
     }
 
   };
   if (history.location.state === undefined) {
     console.log(historyState)
-    setHistory({ video: backup })
+    setHistory({ videos: backup })
     return history.push("/loadYt", { video: backup });
-  } else if (history.location.state.video !== undefined) {
-    console.log(history.location.state.video.length)
+  } else if (history.location.state.videos !== undefined) {
+    console.log(history.location.state.videos.length)
 
     return (<div className="videos">
       <YouTube videoId={videoId} opts={opts} onReady={onReady} />
@@ -82,8 +83,8 @@ const Watch = () => {
     </div>
     )
   }
-  if (backup.length > 0 && history.location.state.video > 6) {
-    console.log(history.location.state.video)
+  if (backup.length > 0 || history.location.state.videos.length > 6) {
+    console.log(history.location.state.videos)
     return (
       <div className="videos">
         <YouTube videoId={videoId} opts={opts} onReady={onReady} />

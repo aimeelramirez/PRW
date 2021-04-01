@@ -177,8 +177,8 @@ section
   padding: 0 !important;
 }
 
-#Post-item > div > .api-text,
-section > article > div > .api-text {
+#Post-item > div > .api-item,
+section > article > div > .api-item {
   margin: 0 auto !important;
   width: 100%;
   padding: 0;
@@ -229,13 +229,6 @@ nav {
 .Body > div > img {
   width: 100%;
 }
-
-/* .container {
-  margin: auto 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  /* margin-left: 35%; */
 
 .container > .clip {
   margin-left: 7%;
@@ -391,16 +384,14 @@ section {
   width: 100%;
   min-width: 5rem;
 }
-/* .query-names {
-  outline: 1px solid red;
-} */
-.api-text {
+
+.api-item {
   display: flex;
   flex-direction: row;
   max-width: 20rem;
   width: 100%;
 }
-.api-text > p {
+.api-item > p {
   text-align: left;
   width: 10rem;
 }
@@ -413,14 +404,6 @@ section {
   font-size: 0.2rem;
   flex-direction: column !important;
 }
-
-/* @media (prefers-reduced-motion: no-preference) {
-  #spinner,
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
-
 .App-header {
   color: var(--white);
   /* min-height: 100vh; */
@@ -449,15 +432,6 @@ li {
 a {
   text-decoration: none;
 }
-
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
 button {
   background-color: transparent;
   border: none;
@@ -503,38 +477,18 @@ button {
 .feather-x:hover {
   stroke: var(--orange-yellow-crayola);
 }
-/* 
-.delete:before {
-  font-family: "Font Awesome 5 Free";
-  content: "\f2ed";
-  font-weight: 900;
-  font-size: 1rem; } */
 
 .Posts {
   display: flex;
   /* flex-flow: row wrap; */
   /* justify-content: center; */
   width: 100%;
-  /*     margin: auto 0;
- */
 }
-
-/* .Post {
-  width: 250px !important;
-  padding: 16px;
-  text-align: center;
-  border: 1px solid #eee;
-  box-shadow: 0 2px 3px #ccc;
-  margin: 10px;
-  box-sizing: border-box;
-  cursor: pointer;
-} */
-/* .Post > p {
-  color: red;
-} */
-/* .users-list {
-  outline: 1px dashed blue;
-} */
+/* make the col append up */
+#post-container > ul {
+  flex-direction: column-reverse;
+  /* outline: 1px solid red; */
+}
 
 #post-container,
 #Post-item,
@@ -586,22 +540,6 @@ button {
   justify-content: center;
   text-align: center;
 }
-
-/* .clip2 > img {
-  z-index: 0;
-  min-height: 7.9rem;
-  min-width: 7rem;
-  max-width: 7.5rem;
-  margin: auto 0;
-  padding: 0;
-  justify-content: center;
-  text-align: center;
-}
-.clip2 {
-  width: 8rem;
-  height: 8rem;
-  clip-path: circle(3rem at 4rem 4.5rem);
-} */
 
 #modal-message {
   padding: 1rem;
@@ -867,7 +805,7 @@ button {
   #login-input-text,
   .change-profile,
   form,
-  .api-text,
+  .api-item,
   #message-container,
   #searchInput,
   .list-input,
@@ -882,7 +820,7 @@ button {
     width: 80% !important;
   }
   .list-feed,
-  .api-text {
+  .api-item {
     width: 70% !important;
   }
 }
@@ -931,7 +869,7 @@ button {
   #login-input-text,
   .change-profile,
   form,
-  .api-text,
+  .api-item,
   #message-container,
   #searchInput,
   .list-input,
@@ -964,7 +902,7 @@ button {
   }
   .change-profile,
   form,
-  .api-text,
+  .api-item,
   #message-container,
   #searchInput,
   .list-input {

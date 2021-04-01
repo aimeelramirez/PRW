@@ -13,11 +13,11 @@ class Posts extends Component {
     //   return <Spinner />;
     // }
     return (
-      <div className="Body">
+      <>
         <div className="Posts" id="list-avatars">
           <UpdatePost />
         </div>
-      </div>
+      </>
     );
   }
 }

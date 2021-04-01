@@ -2,19 +2,15 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Spinner from "../../../components/spinner/spinner";
 import News from "../../../components/news/news";
-// import { getApi } from './../../../reducers/action/api'
-// import FilteredItems from './../../middle/search/filtered'
-// import Button from './../../../components/button/Button'
 import { ApiContext } from "../../../Context";
-// import Context from "./../../../Context";
 
+
+/*
+ This is for NewsFeed that shows list of data unedited
+ */
 const PostList = () => {
   const history = useHistory();
   const context = useContext(ApiContext);
-  // console.log("getting about: ", history)
-  // const onHandleBack = () => {
-  //     history.replace('/')
-  // }
   const UserItems = () => {
     let items = [];
     // console.log("hello ", stateData)
@@ -70,10 +66,8 @@ const PostList = () => {
     }
   };
   if (context.length === 0) {
-    // GetUsers()
-    // console.log("History: ", history.location)
+
     return <Spinner />;
-    // console.log("readData: ", stateData)
   }
   //check the filtered item to get on the
   if (context.length > 0 && history.location.pathname === "/NewsFeed") {

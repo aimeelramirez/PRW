@@ -7,11 +7,11 @@ import { FiTrash2, FiEdit } from "react-icons/fi";
 //child props
 const Post = (props) => {
   //this could be like this  ({ txt, name, message, clicked, edit })=> or this on spread operator
-  const { txt, clicked, edit, email, first, last, title, message, picture } = {
+  const { id, clicked, edit, email, first, last, title, message, picture } = {
     ...props,
   };
   return (
-    <div className="api-text" key={txt}>
+    <div className="api-item" key={id}>
       <div className="clip3">
         <img src={picture} alt="portrait profile" />
       </div>
@@ -33,10 +33,11 @@ const Post = (props) => {
         </ul>
       </div>
     </div>
+
   );
 };
 Post.propTypes = {
-  txt: PropTypes.string,
+  id: PropTypes.number,
   first: PropTypes.string,
   last: PropTypes.string,
   title: PropTypes.string,

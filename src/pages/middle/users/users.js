@@ -1,22 +1,27 @@
-import React, { useState, useContext, useReducer } from "react";
+import React, { useReducer, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import * as actionTypes from "./../../../reducers/action/action";
 import {
   GetSuccess,
-  GetEditForm,
+  GetError,
+  GetEditForm
 } from "./../../../reducers/action/notification";
-
+import { FiSave, FiX } from "react-icons/fi";
 import Spinner from "./../../../components/spinner/spinner";
 import Contact from "./../../../components/contact/contact";
-// import ShowFilter from './../search/filtered'
-// import Button from './../../../components/button/Button'
 import { ApiContext } from "./../../../Context";
 import Message from "./../../left/message/message";
+import Button from "./../../../components/button/Button";
 import Modal from "./../../../components/modal/modal";
-
-// let arrayQuotes = []
+import { backup } from './../../left/watch/backup'
+import { backupUsers } from './backup'
+/*
+ This is for this is loading users on the home page to be edited and interacted with.
+ */
 let initialState = {
-  contact: [],
+  contact: [
+
+  ],
   quotes: [
     "I think you can have moderate success by copying something else, but if you really want to knock it out of the park, you have to do something different and take chances.",
     "The more you know yourself, the more you forgive yourself.",
@@ -51,13 +56,14 @@ let initialState = {
   ],
   person: "",
 };
-let person = "";
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_QUOTE:
-      return handlequote(state, action);
-    case actionTypes.REMOVE_QUOTE:
+    case actionTypes.ADD_POST:
+      return handlePost(state, action);
+    case actionTypes.REMOVE_POST:
       return handleDelete(state, action);
+    case actionTypes.UPDATE_POST:
+      return handleUpdate(state, action);
     default:
       return state;
   }
@@ -65,218 +71,340 @@ const reducer = (state = initialState, action) => {
 const handleDelete = (state, action) => {
   // console.log("Sending to delete action before: ", action)
   // console.log("Sending to delete state before: ", state)
-  // // state.quotes.filter(item => item.name !== action.name)
-
-  person = action.person;
-  for (var i = 0; i < state.contact.length; i++) {
-    // console.log("delete name: ", state.contact[i].name)
-    if (state.contact[i].name === person.name) {
-      state.quotes.splice(i, 1);
-      state.contact.splice(i, 1);
-      // review = state.quotes
+  // state.posts.filter(item => item.name !== action.name)
+  let post = action.post;
+  // let review = ""
+  for (var i = 0; i < state.posts.length; i++) {
+    if (state.posts[i] === post) {
+      state.posts.splice(i, 1);
+      // review = state.posts
     }
-  }
+    // const removedArr = [...todos].filter((todoId) => todoId.id !== id);
 
+    // setStatePost(removedArr);
+  }
   // console.log("Sending to delete action after: ", action)
   // console.log("Sending to delete state: ", state)
   return state;
 };
-const handlequote = (state, action) => {
+const handlePost = (state, action) => {
   //to update state using setState
-  state.quotes = action.quotes;
-  console.log("compare the update: ", action.quotes);
-  console.log("compare the state: ", state.quotes);
-  // return {
-  //     quotes: action.quotes,
-  //     quote: action.quote
-  // }
+  state.posts = action.posts;
+  console.log("compare the update: ", action.posts);
+  console.log("compare the state: ", state.posts);
   return state;
+};
+const handleUpdate = (state, action) => {
+  //to update state using setState
+  console.log("update action: ", action.posts);
+  console.log("update state: ", state.posts);
+  return state
 };
 const Users = () => {
   let history = useHistory();
   const context = useContext(ApiContext);
-
   //response on fetch on let
-  // let [stateQuote, setQuote] = useState(initialState);
   initialState.contact = context;
-  let [stateAll] = useState(initialState);
+
+  let [stateAll,] = useState(initialState);
+  let api = []
+  let readApi = ""
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [statePosts, setState] = useState({
+    post: "",
+    oldPost: "",
+    posts: [],
+  });
   const [stateModal, setStateModal] = useState({
     show: false,
   });
-  const [statePost, setStatePost] = useState({
-    post: "",
-  });
-  const [state, dispatch] = useReducer(reducer, initialState);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const onLoad = () => {
+    if (history.location.state === undefined) {
+      history.push(window.location.pathname, {
+        data: backupUsers,
+        posts: backupUsers,
+        inbox: [],
+        videos: backup
+      });
+    }
+    readApi = history.location.state.posts.map((item, index) => {
+      item.message = stateAll.quotes[index];
+      api = {
+        first: item.name.first,
+        last: item.name.last,
+        title: item.name.title,
+        message: item.message,
+        picture: item.picture.large
+      }
+      return api
 
-  const editQuote = (e, quote) => {
-    e.preventDefault();
-    statePost.post = quote.message;
-    console.log(quote.message);
-    let showText = (
-      <div id="modal-message">
-        <h3>Under Construction!</h3>
-        <p>Message: </p>
-        <textarea id="modal-textarea" placeholder={quote.message} />
-      </div>
-    );
-    setStatePost({ post: showText });
-    setStateModal({ show: true });
-  };
-  //under construction
-  const submitModal = () => {
-    let message = "Under Construction, to be submitted for edits.";
+    })
+    return state.posts = readApi
+  }
+  onLoad()
+  let [newPost,] = useState('');
+
+  const likeButton = () => {
+    let message = "You liked this post.";
     setStateModal({ show: false });
     GetSuccess(message);
     return false;
   };
   //under construction
+  const dislikeButton = () => {
+    let message = "Disliked this post.";
+    setStateModal({ show: false });
+    GetError(message);
+    return false;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault() // stops default reloading behaviour
+    console.log(e.target[0].value);
+    // setNewPost(e.target[0].value)
+    newPost = e.target[0].value
+    console.log(e.target[0].value)
+    //set  a new array for thrown issues
+    let newArray = [...state.posts]
+    newArray.map((item) => {
+      //set this name to be read as new value to match
+      if (item.message === statePosts.oldPost) {
+        item.message = newPost
+      }
+      return item;
+
+    });
+    state.post = newPost
+
+    dispatch({
+      type: actionTypes.UPDATE_POST,
+      posts: newArray,
+      post: state.post
+    });
+    setStateModal({ show: false });
+    e.target.reset()
+
+    submitModal()
+  }
+
+  const editPost = (e, post) => {
+    e.preventDefault()
+    setStateModal({ show: true });
+    setState({
+      posts: state.posts,
+      oldPost: post.message,
+      post: ""
+    });
+    return state.posts
+
+  };
+  const submitModal = () => {
+    let message = "Success!";
+    GetSuccess(message);
+    setStateModal({ show: false });
+
+  };
+
   const hideModal = () => {
     let message = "Disregarded for edits.";
     setStateModal({ show: false });
     GetEditForm(message);
     return false;
   };
-  //get deletequote
-  const removeQuote = (e, person) => {
+  //get deletePost
+  const removePost = (e, post) => {
     e.preventDefault();
-    console.log("quote to remove: ", person);
     // console.log(post)
-    setStatePost({
-      person: person,
+    setState({
+      posts: state.posts,
+      post: post,
     });
-    state.post = person;
+    state.post = post;
     dispatch({
-      type: actionTypes.REMOVE_QUOTE,
-      person: state.post,
+      type: actionTypes.REMOVE_POST,
+      posts: state.posts,
+      post: state.post,
     });
 
-    let message =
-      "This is getting deleted: " + JSON.stringify(person.name.first);
+    // FetchCardAvatars()
+    let message = "This is getting deleted: " + JSON.stringify(post.first);
     GetSuccess(message);
-
-    // history.push("/", stateAll)
   };
-  // const GoBack = () => {
-  //     return history.replace("/", { data: history.location.state.data })
-  // }
+
   const UserItems = () => {
     let items = [];
+
+    readApi = stateAll.contact.map((item, index) => {
+      item.message = stateAll.quotes[index];
+      api = {
+        first: item.name.first,
+        last: item.name.last,
+        title: item.name.title,
+        message: item.message,
+        picture: item.picture.large
+      }
+      return api
+
+    })
+    state.posts = readApi
+    //return state.posts
+
     //save only names on localStorage for privacy if that was in real data
-    context.map((item, index) => {
+    readApi.map((item, index) => {
       if (items.length <= 25) {
-        //console.log("for each:", index)
+        // console.log("for each:", index)
         items.push(item);
 
         localStorage.getItem("names");
         localStorage.setItem("names", JSON.stringify(items));
         //pass state in next component
-        //console.log(items.length)
       } else if (index >= 26 || items.length >= 26) {
         delete localStorage[index];
         localStorage.setItem("names", JSON.stringify(items));
       }
       return localStorage;
-      //to clear if to under developement
       //localStorage.clear();
-    });
-    let check = context.length > 0 && history.location.state === undefined;
-    if (check || history.location.state.posts.length >= 25) {
-      //  console.log("context ", stateAll.contact.length)
 
-      return stateAll.contact.map((item, index) => {
-        // console.log("context ", item.name.title)
-        // history.push("/", { data: stateQuote })
-        item.message = stateAll.quotes[index];
-        //just in case for history not updating
+    });
+
+    let check = context.length > 0 && history.location.state === undefined;
+    if (check === true) {
+      return state.posts.map((item, index) => {
         return (
-          <div key={index}>
+          <li key={index} id="Post-item">
             <div>
               <Modal
-                show={stateModal.show}
-                handleClose={hideModal}
-                handleSubmit={submitModal}
-              >
-                {statePost.post}
+                show={stateModal.show}>
+                <form onSubmit={handleSubmit} >
+                  <div id="modal-message">
+                    <h3>Edit Your Post.</h3>
+                    <textarea
+                      type="text"
+                      name="message" />
+                    <div id="buttons-modal">
+                      <Button type="button">
+                        <strong> Submit</strong>
+                        <FiSave />
+                      </Button>
+                      <Button type="button" onClick={hideModal}>
+                        <strong> Close</strong>
+                        <FiX />
+                      </Button>
+                    </div>
+                  </div>
+                </form>
               </Modal>
             </div>
+
             <Contact
               key={index.toString()}
-              first={item.name.first}
-              last={item.name.last}
-              title={item.name.title}
+              first={item.first}
+              last={item.last}
+              title={item.title}
               email={item.email}
-              picture={item.picture.large}
+              picture={item.picture}
               message={item.message}
+              like={likeButton}
+              dislike={dislikeButton}
               clicked={(e) => {
-                removeQuote(e, item);
+                removePost(e, item);
               }}
               edit={(e) => {
-                editQuote(e, item);
+                editPost(e, item);
               }}
+
             />
-          </div>
+          </li>
         );
       });
     }
-    if (history.location.state !== undefined) {
-      return history.location.state.posts.map((item, index) => {
-        // console.log("filtered: ", item)
+  }
+  if (state.posts === undefined) {
+    //this is the data to be uniformed in parsing
+    const onLoad = () => {
+      if (history.location.state === undefined) {
+        history.push(window.location.pathname, {
+          data: backupUsers,
+          posts: backupUsers,
+          inbox: [],
+          videos: backup
+        });
+      }
+      readApi = history.location.state.posts.map((item, index) => {
         item.message = stateAll.quotes[index];
-        // history.push("/", { data: history.location.state.data })
-        return (
-          <div key={index}>
-            {" "}
-            <div>
-              <Modal
-                show={stateModal.show}
-                handleClose={hideModal}
-                handleSubmit={submitModal}
-              >
-                {statePost.post}
-              </Modal>
-            </div>
-            <Contact
-              key={index.toString()}
-              first={item.name.first}
-              last={item.name.last}
-              title={item.name.title}
-              email={item.email}
-              picture={item.picture.large}
-              message={item.message}
-              clicked={(e) => {
-                removeQuote(e, item);
-              }}
-              edit={(e) => {
-                editQuote(e, item);
-              }}
-            />
-          </div>
-        );
-      });
+        api = {
+          first: item.name.first,
+          last: item.name.last,
+          title: item.name.title,
+          message: item.message,
+          picture: item.picture.large
+        }
+        return api
+
+      })
+      return state.posts = readApi
     }
-  };
+    onLoad()
+  }
+
+  if (state.posts.length > 0) {
+    return state.posts.map((item, index) => {
+      return (
+        <li key={index} id="Post-item">
+          <div>
+            <Modal
+              show={stateModal.show}>
+              <form onSubmit={handleSubmit} >
+                <div id="modal-message">
+                  <h3>Edit Your Post.</h3>
+                  <textarea
+                    type="text"
+                    name="message" />
+                  <div id="buttons-modal">
+                    <Button type="button">
+                      <strong> Submit</strong>
+                      <FiSave />
+                    </Button>
+                    <Button type="button" onClick={hideModal}>
+                      <strong> Close</strong>
+                      <FiX />
+                    </Button>
+                  </div>
+                </div>
+              </form>
+            </Modal>
+          </div>
+
+          <Contact
+            key={index.toString()}
+            first={item.first}
+            last={item.last}
+            title={item.title}
+            email={item.email}
+            picture={item.picture}
+            message={item.message}
+            like={likeButton}
+            dislike={dislikeButton}
+            clicked={(e) => {
+              removePost(e, item);
+            }}
+            edit={(e) => {
+              editPost(e, item);
+            }}
+
+          />
+        </li>
+      );
+    });
+  }
+
   if (context.length === 0) {
-    // GetUsers()
-    // console.log("History: ", history.location)
     return <Spinner />;
-    // console.log("readData: ", stateData)
   }
   //check the filtered item to get on the
   if (context.length > 0 && history.location.pathname === "/") {
     return (
       <>
-        {" "}
-        <div>
-          <Modal
-            show={stateModal.show}
-            handleClose={hideModal}
-            handleSubmit={submitModal}
-          >
-            {stateAll.quote}
-          </Modal>
-        </div>
         <Message />
         <UserItems />
       </>

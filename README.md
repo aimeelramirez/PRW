@@ -19,8 +19,9 @@ https://github.com/google/google-api-javascript-client/blob/master/docs/start.md
 - Ads on the right to be shown on page on object mapping. Pictures from: https://randomuser.me/documentation
 - Post a Messages and Delete Messages.
 
-<code>
-</code>
+## Having fun with it
+
+npm install framer-motion
 
 ## Tree
 
