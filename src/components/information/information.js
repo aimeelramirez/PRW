@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { FiThumbsUp, FiThumbsDown, FiTrash2, FiEdit } from "react-icons/fi";
 
 const Information = (props) => {
     const { txt, title, first, last, email, picture, date, username, phone } = {

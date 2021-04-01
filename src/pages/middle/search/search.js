@@ -1,20 +1,18 @@
-import React, { useState, useContext } from "react";
-import { useHistory, Redirect, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { GetError, GetEditForm } from "./../../../reducers/action/notification";
-import { ApiContext } from "./../../../Context";
+// import { ApiContext } from "./../../../Context";
 
 const Search = () => {
   let history = useHistory();
-  let context = useContext(ApiContext);
+  // let context = useContext(ApiContext);
   const json = localStorage.getItem("names");
   const savedPost = JSON.parse(json);
   const jsonInbox = localStorage.getItem("inbox");
   const savedInbox = JSON.parse(jsonInbox);
   let [stateHistory, setStateHistory] = useState(savedPost);
   let [stateHistoryInbox, setStateHistoryInbox] = useState(savedInbox);
-  // let pathId = `/filtered`;
-  let params = useParams();
 
   let [state, setState] = useState({
     data: [],
@@ -41,31 +39,24 @@ const Search = () => {
         const removeItem = filter.split(" ").join("");
         return check.includes(removeItem);
       });
-      //console.log("new list: ", newList)
 
       if (newList.length === 0) {
         let message = "Please, try again.";
         console.log(message);
         GetError(message);
         return false;
-        //state.query = newList
-        // statePosts.posts = newList
+
       } else {
         setStateHistory(stateHistory);
         setState({
           data: newList,
         });
         state.data = newList;
-        // console.log("state history: ", state)
-        // state.filtered = newList
-        // statePosts.posts = newList
-        // updateObject({ statePosts, newList })
-        // history.replace('/Filtered', { data: state.query });
+
         e.target[0].value = "";
-        // console.log(e.target[1])
+
         console.log("replacing state");
-        // console.log("History: ", history.location)
-        // console.log(history)
+
         let message = "If to delete or modify, please go back for changes!";
         GetEditForm(message);
 
@@ -86,8 +77,6 @@ const Search = () => {
       });
 
       return true;
-      // state.filtered = initialState.posts
-      // statePosts.posts = initialState.posts
     }
   };
   const onSearchClickInbox = (e) => {
@@ -96,7 +85,6 @@ const Search = () => {
     let newList = [];
 
     if (e.target[0].value !== "") {
-      // console.log("hey:", stateHistoryInbox)
       const jsonInbox1 = localStorage.getItem("inbox");
       const savedInbox1 = JSON.parse(jsonInbox1);
       newList = savedInbox1.filter((item) => {
@@ -107,15 +95,11 @@ const Search = () => {
         const removeItem = filter.split(" ").join("");
         return check.includes(removeItem);
       });
-      //console.log("new list: ", newList)
-
       if (newList.length === 0) {
         let message = "Please, try again.";
         console.log(message);
         GetError(message);
         return false;
-        //state.query = newList
-        // statePosts.posts = newList
       } else {
         setStateHistoryInbox(savedInbox1);
         setState({
@@ -123,16 +107,8 @@ const Search = () => {
           oldInbox: stateHistoryInbox
         });
         state.data = newList;
-        // console.log("state history: ", state)
-        // state.filtered = newList
-        // statePosts.posts = newList
-        // updateObject({ statePosts, newList })
-        // history.replace('/Filtered', { data: state.query });
         e.target[0].value = "";
-        // console.log(e.target[1])
         console.log("replacing state");
-        // console.log("History: ", history.location)
-        // console.log(history)
         let message = "If to delete or modify, please go back for changes!";
         GetEditForm(message);
         history.push("/search/inbox", {
@@ -140,7 +116,6 @@ const Search = () => {
           oldInbox: stateHistoryInbox
 
         });
-        // return <Redirect to={window.location.pathname} component={ShowFilter} />
       }
     } else {
       let getItems = localStorage.getItem("inbox");
@@ -154,8 +129,7 @@ const Search = () => {
       });
 
       return true;
-      // state.filtered = initialState.posts
-      // statePosts.posts = initialState.posts
+
     }
   };
 

@@ -68,12 +68,12 @@ const Inbox = () => {
         show: false,
     });
 
-    let [newPost, setNewPost] = useState('');
+    let [newPost,] = useState('');
 
 
     //localStorage on messages
     useEffect(() => {
-        let items = []
+        // let items = []
         const json = JSON.stringify(newPost);
         localStorage.setItem("messages", json);
         console.log(state)
@@ -86,7 +86,7 @@ const Inbox = () => {
         }, 2000);
 
 
-    }, [newPost]);
+    }, [newPost, state]);
 
     const getContext = useContext(ApiContext);
     let context = Object.values(getContext);

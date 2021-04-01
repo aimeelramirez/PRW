@@ -145,7 +145,10 @@ const UpdatePost = () => {
       GetSuccess(confirm);
       //get
       const json = localStorage.getItem("messages");
+      //this is getting used to read
+      // eslint-disable-next-line
       let savedPost = JSON.parse(json);
+      // eslint-disable-next-line
       savedPost += post
 
       //set

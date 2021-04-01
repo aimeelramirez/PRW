@@ -11,7 +11,6 @@ import Users from "./../middle/users/users";
 import Ads from "./../right/ads";
 import Context from "./../../Context";
 import Inbox from './../left/message/inbox'
-let pathId = `/filtered`;
 
 const Navigation = () => {
   return (
