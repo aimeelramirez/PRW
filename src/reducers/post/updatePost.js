@@ -1,19 +1,18 @@
 import React, { useReducer, useState, useContext } from "react";
 import * as actionTypes from "../action/action";
-// import { data } from '../../data';
-// import DeletePost from './deletePost'
-// import { FetchCardAvatars } from '../action/fetchAvatar'
-// import { updateObject } from '../utility';
+import Button from "./../../components/button/Button";
+import { FiSave, FiX } from "react-icons/fi";
+import Spinner from './../../components/spinner/spinner';
 import MainButton from "../../components/button/mainButton";
 import { GetError, GetSuccess, GetEditForm } from "../action/notification";
 import Modal from "../../components/modal/modal";
 import Post from "../../components/post/Post";
 import { ApiContext } from "./../../Context";
-// import { QuotesApiContext } from './quotes'
-// import {
-//     useHistory
-// } from "react-router-dom";
-// let getUpdate = ""
+
+
+/*
+ This is for updating posts on Home to join with api to be read
+ */
 const initialState = {
   posts: [],
   post: {
@@ -21,91 +20,78 @@ const initialState = {
     message: "",
   },
 };
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_POST:
       return handlePost(state, action);
     case actionTypes.REMOVE_POST:
       return handleDelete(state, action);
+    case actionTypes.UPDATE_POST:
+      return handleUpdate(state, action);
     default:
       return state;
   }
 };
 const handleDelete = (state, action) => {
-  // console.log("Sending to delete action before: ", action)
-  // console.log("Sending to delete state before: ", state)
-  // state.posts.filter(item => item.name !== action.name)
+
   let post = action.post;
-  // let review = ""
   for (var i = 0; i < state.posts.length; i++) {
     if (state.posts[i] === post) {
       state.posts.splice(i, 1);
-      // review = state.posts
     }
-    // FetchCardAvatars()
   }
-  // console.log("Sending to delete action after: ", action)
-  // console.log("Sending to delete state: ", state)
+
   return state;
 };
 const handlePost = (state, action) => {
   //to update state using setState
   state.posts = action.posts;
-  console.log("compare the update: ", action.posts);
-  console.log("compare the state: ", state.posts);
-  // return {
-  //     posts: action.posts,
-  //     post: action.post
-  // }
+  // console.log("compare the update: ", action.posts);
+  // console.log("compare the state: ", state.posts);
   return state;
 };
+const handleUpdate = (state, action) => {
+  //to update state using setState
+  // console.log("update action: ", action.posts);
+  // console.log("update state: ", state.posts);
+  return state
+};
 const UpdatePost = () => {
-  // let history = useHistory()
-  // console.log(history)
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const [statePosts, setState] = useState({
     post: "",
-    posts: initialState,
+    oldPost: "",
+    posts: [],
   });
-  const [statePost, setStatePost] = useState({
-    post: "",
-  });
+
   const [stateModal, setStateModal] = useState({
     show: false,
   });
+
+  let [newPost,] = useState('');
   const getContext = useContext(ApiContext);
-  // const getQuotesContext = useContext(QuotesApiContext)
+  let context = Object.values(getContext);
 
-  // console.log("context: ", getContext)
-  // console.log("quotes: ", getQuotesContext)
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    // console.log(event)
-    event.target.reset();
-  };
   const handleClick = (event) => {
+
     event.preventDefault();
-    // console.log(event.target[0])
-    // console.log(event.target[1])
     let message = event.target[0].value;
     if (message === "") {
       let text = "Please fill in message!";
       GetError(text);
       return false;
     } else if (message !== "") {
-      let stringKey = state.posts.length.toString();
+      let stringKey = state.posts.length;
       let post = {};
       console.log("state: ", state.posts.length);
       let num = Math.random() * Math.floor(24);
-      let context = Object.values(getContext);
       let user = context[num.toFixed()];
       //console.log(context[num.toFixed()].picture.large)
       if (state.posts.length === 0) {
         post = {
           picture: user.picture.large,
-          text: stringKey,
+          id: stringKey,
           title: user.name.title,
           first: user.name.first,
           last: user.name.last,
@@ -120,7 +106,7 @@ const UpdatePost = () => {
         if (num !== stringKey) {
           post = {
             picture: user.picture.large,
-            text: stringKey,
+            id: stringKey,
             title: user.name.title,
             first: user.name.first,
             last: user.name.last,
@@ -131,7 +117,7 @@ const UpdatePost = () => {
           stringKey = (num + 1).toString();
           post = {
             picture: user.picture.large,
-            text: stringKey,
+            id: stringKey,
             title: user.name.title,
             first: user.name.first,
             last: user.name.last,
@@ -143,6 +129,8 @@ const UpdatePost = () => {
       let newState = [...state.posts, post];
       let confirm = "Success!";
       statePosts.posts = newState;
+      statePosts.post = post
+      state.post = post
       dispatch({
         type: actionTypes.ADD_POST,
         posts: newState,
@@ -155,35 +143,74 @@ const UpdatePost = () => {
       });
       //passing state up with dispatching
       GetSuccess(confirm);
+      //get
+      const json = localStorage.getItem("messages");
+      //this is getting used to read
+      // eslint-disable-next-line
+      let savedPost = JSON.parse(json);
+      // eslint-disable-next-line
+      savedPost += post
+
+      //set
+      const jsonSend = JSON.stringify(post);
+      localStorage.setItem("messages", jsonSend);
+      //get
+
+      let getItems = localStorage.getItem("names")
+      const json1 = JSON.parse(getItems);
+      json1.push(post)
+
+      //set
+      localStorage.setItem("names", JSON.stringify(json1));
     }
     event.target.reset();
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault() // stops default reloading behaviour
+    console.log(e.target[0].value);
+
+    newPost = e.target[0].value
+    //set  a new array for thrown issues
+    let newArray = [...state.posts]
+    newArray.map((item) => {
+      //set this name to be read as new value to match
+      if (item.message === statePosts.oldPost) {
+        item.message = newPost
+      }
+      return item;
+
+    });
+    state.post = newPost
+
+    dispatch({
+      type: actionTypes.UPDATE_POST,
+      posts: newArray,
+      post: state.post
+    });
+    setStateModal({ show: false });
+    e.target.reset()
+
+    submitModal()
+  }
+
+  const editPost = (e, post) => {
+    e.preventDefault()
+    setStateModal({ show: true });
+    setState({
+      posts: state.posts,
+      oldPost: post.message,
+      post: ""
+    });
+
+  };
+  const submitModal = () => {
+    let message = "Success!";
+    GetSuccess(message);
+    setStateModal({ show: false });
+
   };
 
-  //get edit
-  const editPost = (post) => {
-    // console.log("edit post button: Todo ", post)
-    // let getUpdate = updateObject({ posts: data })
-    // console.log(getUpdate)
-    statePost.post = post;
-    console.log(post);
-    let showText = (
-      <div id="modal-message">
-        <h3>Under Construction!</h3>
-        <p>Message: </p>
-        <textarea id="modal-textarea" placeholder={post.message} />
-      </div>
-    );
-    setStatePost({ post: showText });
-    setStateModal({ show: true });
-  };
-  //under construction
-  const submitModal = () => {
-    let message = "Under Construction, to be submitted for edits.";
-    setStateModal({ show: false });
-    GetSuccess(message);
-    return false;
-  };
-  //under construction
   const hideModal = () => {
     let message = "Disregarded for edits.";
     setStateModal({ show: false });
@@ -205,26 +232,40 @@ const UpdatePost = () => {
       post: state.post,
     });
 
-    // FetchCardAvatars()
     let message = "This is getting deleted: " + JSON.stringify(post.first);
     GetSuccess(message);
   };
   const Main = () => {
+    console.log("called")
     return state.posts.map((item, index) => {
       return (
-        <div key={index} id="Post-item">
+        <li key={index} id="Post-item">
           <div>
             <Modal
-              show={stateModal.show}
-              handleClose={hideModal}
-              handleSubmit={submitModal}
-            >
-              {statePost.post}
+              show={stateModal.show}>
+              <form onSubmit={handleSubmit} >
+                <div id="modal-message">
+                  <h3>Edit Your Post.</h3>
+                  <textarea
+                    type="text"
+                    name="message" />
+                  <div id="buttons-modal">
+                    <Button type="button">
+                      <strong> Submit</strong>
+                      <FiSave />
+                    </Button>
+                    <Button type="button" onClick={hideModal}>
+                      <strong> Close</strong>
+                      <FiX />
+                    </Button>
+                  </div>
+                </div>
+              </form>
             </Modal>
           </div>
           <div>
             <Post
-              key={index.toString()}
+              key={index}
               first={item.first}
               last={item.last}
               title={item.title}
@@ -234,39 +275,84 @@ const UpdatePost = () => {
               clicked={(e) => {
                 removePost(e, item);
               }}
-              edit={() => {
-                editPost(item);
+              edit={(e) => {
+                editPost(e, item);
               }}
             />
           </div>
-        </div>
+        </li>
+
       );
     });
   };
-  //FetchCardAvatars()
-
-  return (
-    <div id="post-container">
+  if (state.posts.length > 0) {
+    return (<div id="post-container" >
       <div id="form-container">
         <form onSubmit={handleClick}>
           <label>Create a Post:</label>
-
           <input
             type="text"
             name="message"
             placeholder="What's on your mind?"
           />
-
-          <MainButton type="submit" onChange={handleChange}>
+          <MainButton type="submit" >
             Submit
           </MainButton>
         </form>
       </div>
-      <div id="delete-container">
+      <h2>Feed:</h2>
+      <ul id="delete-container">
         <Main />
+      </ul>
+    </div >)
+  } else if (state.posts.length === 0) {
+    return (
+      <div id="post-container">
+        <div id="form-container">
+          <form onSubmit={handleClick}>
+            <label>Create a Post:</label>
+            <input
+              type="text"
+              name="message"
+              placeholder="What's on your mind?"
+            />
+            <MainButton type="submit" >
+              Submit
+          </MainButton>
+          </form>
+        </div>
+        <section id="delete-container" style={styles.article}>
+          <h2 style={styles.h2}>Feed:</h2>
+          <article>
+            <p>What is on your mind? </p>
+          </article>
+        </section>
       </div>
-    </div>
-  );
-};
+    );
+  };
+  //return spinner if all else fails
+  return (<Spinner />)
+}
 
+
+const styles = {
+  h2: {
+    margin: 'auto 0',
+    display: 'block',
+    textAlign: 'center'
+
+  },
+  article: {
+    textAlign: 'center',
+    margin: '0 auto',
+    display: 'block',
+    boxShadow: '0 2px 3px #ccc',
+    marginTop: '50px',
+
+
+  }
+
+
+
+}
 export default UpdatePost;

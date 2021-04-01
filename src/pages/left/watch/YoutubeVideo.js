@@ -34,6 +34,8 @@ const YouTubeVideo = () => {
     let [videoId, setVideoId] = useState([]);
     let history = useHistory();
     const LoadVideo = useCallback(() => {
+        console.log(videoId)
+
         return history.push("/Watch", { video: videoId });
     }, [videoId, history]);
 
@@ -56,6 +58,7 @@ const YouTubeVideo = () => {
                             listItems.forEach((item) => {
                                 if (listItems.length - 1 >= videoId.length || videoId.length === 0) {
                                     //store it for records
+
                                     videoId.push(item);
                                     localStorage.setItem("videos", JSON.stringify(item));
                                     setVideoId(videoId);
