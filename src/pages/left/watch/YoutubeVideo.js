@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import Spinner from "./../../../components/spinner/spinner";
 import { useHistory } from "react-router-dom";
 
-// let apiKey = process.env.REACT_APP_API_YOUTUBE;
+let apiKey = process.env.REACT_APP_API_YOUTUBE;
 const clientKey = process.env.REACT_APP_API_CLIENT
-let secretKey = process.env.REACT_APP_API_CLIENT_SECRET
+// let secretKey = process.env.REACT_APP_API_CLIENT_SECRET
 
 const YouTubeVideo = () => {
     let peopleApiDiscovery;
@@ -50,6 +50,8 @@ const YouTubeVideo = () => {
                     .list({
                         part: ["snippet,contentDetails"],
                         maxResults: 25,
+                        apiKey: apiKey,
+                        key: apiKey,
                         //playlist can only exist with certain keys
                         playlistId: "PLfCyPgplkH5DOl1VqMDGn5mcOMtEYishH",
                     }).then((response) => {
