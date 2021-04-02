@@ -36,7 +36,8 @@ const YouTubeVideo = () => {
     const LoadVideo = useCallback(() => {
         console.log(videoId)
 
-        return history.push("/Watch", { video: videoId });
+        history.push("/Watch", { videos: videoId });
+        return history.goBack()
     }, [videoId, history]);
 
 

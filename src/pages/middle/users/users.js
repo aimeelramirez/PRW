@@ -124,7 +124,7 @@ const Users = () => {
         data: backupUsers,
         posts: backupUsers,
         inbox: [],
-        videos: backup
+        videos: []
       });
     }
     readApi = history.location.state.posts.map((item, index) => {
@@ -327,7 +327,7 @@ const Users = () => {
           data: backupUsers,
           posts: backupUsers,
           inbox: [],
-          videos: backup
+          videos: []
         });
       }
       readApi = history.location.state.posts.map((item, index) => {

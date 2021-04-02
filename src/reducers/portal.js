@@ -44,7 +44,7 @@ const Portal = () => {
 
   const handleClickUsers = () => {
     //set to go back to settings
-    history.push("/", {
+    history.push("/Home", {
       posts: backupUsers,
       data: backupUsers
     });
