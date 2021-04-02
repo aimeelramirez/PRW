@@ -84,6 +84,7 @@ const YouTubeVideo = () => {
                     client_id:
                         clientKey + ".apps.googleusercontent.com",
                     apiKey: secretKey,
+                    key: "project-119854572788",
                     discoveryDocs: [peopleApiDiscovery],
                     scope: "email"
                 })
