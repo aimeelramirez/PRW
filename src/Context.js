@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getApi } from "./reducers/action/api";
 import { useHistory } from "react-router-dom";
 import { backupUsers } from './pages/middle/users/backup'
-import { backup } from "./../src/pages/left/watch/backup";
+// import { backup } from "./../src/pages/left/watch/backup";
 
 export const ApiContext = React.createContext();
 
