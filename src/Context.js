@@ -22,15 +22,16 @@ const Context = (props) => {
   //     inbox: []
   //   });
   // }
+  // }
 
   useEffect(() => {
     //to get the data to always load new data if context is updated
-    history.push(window.location.pathname, {
-      data: backupUsers,
-      posts: backupUsers,
-      inbox: [],
-      videos: backup
-    });
+    // history.push(window.location.pathname, {
+    //   data: backupUsers,
+    //   posts: backupUsers,
+    //   inbox: [],
+    //   videos: backup
+    // });
     //get users to read on data
     const fetchData = () => {
       getApi()
@@ -44,7 +45,7 @@ const Context = (props) => {
               posts: backupUsers,
               data: backupUsers,
               inbox: [],
-              videos: backup
+              videos: []
             });
           }
           else {
@@ -52,7 +53,7 @@ const Context = (props) => {
               posts: obj,
               data: obj,
               inbox: [],
-              videos: backup
+              videos: []
             });
           }
 
