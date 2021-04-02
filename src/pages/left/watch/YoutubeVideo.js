@@ -45,7 +45,7 @@ const YouTubeVideo = () => {
     const loadClient = () => {
         console.log("load client:", window.gapi.client.youtube)
         window.gapi.client.setApiKey(apiKey);
-        window.gapi.client
+        return window.gapi.client
             .load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest").then(() => {
                 window.gapi.client.youtube.playlistItems
                     .list({
@@ -89,7 +89,8 @@ const YouTubeVideo = () => {
                     apiKey: apiKey,
                     key: apiKey,
                     discoveryDocs: [peopleApiDiscovery],
-                    scope: "email"
+                    scope: 'https://www.googleapis.com/auth/youtube.force-ssl',
+
                 })
                 .then(() => {
                     loadClient()
