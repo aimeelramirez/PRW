@@ -83,8 +83,8 @@ const YouTubeVideo = () => {
                 .init({
                     client_id:
                         clientKey + ".apps.googleusercontent.com",
-                    apiKey: secretKey,
-                    key: "project-119854572788",
+                    apiKey: apiKey,
+                    key: apiKey,
                     discoveryDocs: [peopleApiDiscovery],
                     scope: "email"
                 })
