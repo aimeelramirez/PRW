@@ -89,7 +89,16 @@ const Inbox = () => {
     }, [newPost, state]);
 
     const getContext = useContext(ApiContext);
-    let context = Object.values(getContext);
+    let getItems = localStorage.getItem("inbox");
+
+    if (getContext === null) {
+        state.posts = getItems;
+        localStorage.setItem("inbox", JSON.stringify(state.posts));
+
+    }
+
+
+    let context = Object.values(JSON.parse(getItems));
 
     const handleClick = (event) => {
         event.preventDefault();

@@ -8,16 +8,23 @@
   --white: #fcfcfcff;
   --black: #282c34;
 }
+.logo-example {
+  max-width: 35em;
+}
 .cls-1 {
   font-size: 60px;
   font-family: Apple-Chancery, Apple Chancery;
 }
+
 /* #api {
   outline: 0.5rem dashed red;
 } */
 /* label {
   display: none;
 } */
+.App {
+  background-color: var(--white);
+}
 input {
   width: 100% !important;
   margin-right: 0.5rem;
