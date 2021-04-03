@@ -30,7 +30,7 @@ code {
   stroke-width: 1;
   stroke-dasharray: 1500;
   opacity: 3;
-  animation: animate 3s cubic-bezier(0, 0.23, 1, 0.1);
+  animation: animate 5s cubic-bezier(0, 0.23, 1, 0.1);
 }
 @keyframes animate {
   0% {
