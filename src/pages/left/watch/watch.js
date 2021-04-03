@@ -22,8 +22,7 @@ const Watch = () => {
     width: '640',
     frameborder: "0",
     playerVars: {
-      autoplay: 1,
-      origin: "https://localhost:3000" || "http://localhost:3000" || "https://goofy-goldstine-8cc328.netlify.app",
+      autoplay: 1
     },
   };
 
