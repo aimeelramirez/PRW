@@ -8,7 +8,10 @@
   --white: #fcfcfcff;
   --black: #282c34;
 }
-
+.cls-1 {
+  font-size: 60px;
+  font-family: Apple-Chancery, Apple Chancery;
+}
 /* #api {
   outline: 0.5rem dashed red;
 } */
