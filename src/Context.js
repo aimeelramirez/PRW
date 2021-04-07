@@ -1,8 +1,8 @@
 import React, { useState, useEffect, createContext } from "react";
 import { getApi } from "./reducers/action/api";
 import { useHistory } from "react-router-dom";
-// import { backupUsers } from './pages/middle/users/backup'
-// import { backup } from "./../src/pages/left/watch/backup";
+import { backupUsers } from './pages/middle/users/backup'
+import { backup } from "./../src/pages/left/watch/backup";
 
 export const ApiContext = createContext();
 
@@ -18,15 +18,15 @@ const Context = (props) => {
 
 
   useEffect(() => {
-    // if (history.location.state === undefined) {
-    //   history.push(window.location.pathname, {
-    //     data: backupUsers,
-    //     posts: backupUsers,
-    //     inbox: [],
-    //     videos: backup
+    if (history.location.state === undefined) {
+      history.push(window.location.pathname, {
+        data: backupUsers,
+        posts: backupUsers,
+        inbox: [],
+        videos: backup
 
-    //   });
-    // }
+      });
+    }
 
     // //to get the data to always load new data if context is updated
     // history.push(window.location.pathname, {
@@ -83,7 +83,7 @@ const Context = (props) => {
   }, [loading, error, history]);
 
   // return provider
-  //console.log(stateData)
+  console.log(stateData)
   return (
 
     <ApiContext.Provider value={stateData}>
