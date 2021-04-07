@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { getApi } from "./reducers/action/api";
 import { useHistory } from "react-router-dom";
 // import { backupUsers } from './pages/middle/users/backup'
 // import { backup } from "./../src/pages/left/watch/backup";
 
-export const ApiContext = React.createContext();
+export const ApiContext = createContext();
 
 /*
  This is for Api context
