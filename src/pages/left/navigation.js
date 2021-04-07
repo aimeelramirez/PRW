@@ -18,6 +18,11 @@ const Navigation = () => {
       <nav className="Nav">
         <ul>
           <li>
+            <Link className="Nav_link" to="/">
+              Welcome
+            </Link>
+          </li>
+          <li>
             <Link className="Nav_link" to="/Home">
               Home
             </Link>
@@ -43,7 +48,8 @@ const Navigation = () => {
       <article className="users-list">
         <Switch>
           <Context>
-            <Redirect from="/" to="/Home" />
+            <Route exact path="/" render={() => <><article><h2>Welcome to my Home Page!</h2><hr />Feel free to checkout the links on the side <br /> for cool stuff and more!<hr /> This is a demo site to be built and fixed.
+              <p>Thanks For Visiting!</p></article></>} />
             <Route exact path="/Home" component={Users} />
 
             <Route exact path="/NewsFeed" component={Feed} />

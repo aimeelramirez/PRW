@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useContext } from "react";
+import React, { useReducer, useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import * as actionTypes from "./../../../reducers/action/action";
 import {
@@ -139,9 +139,14 @@ const Users = () => {
     //   return api
 
     // })
-    // return state.posts = readApi
+    // return state.posts = context
   }
   onLoad()
+
+  // useEffect(() => {
+  //   return onLoad()
+
+  // }, [onLoad])
   let [newPost,] = useState('');
 
   const likeButton = () => {
