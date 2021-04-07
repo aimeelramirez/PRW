@@ -1,5 +1,5 @@
 
-import React, { useReducer, useState, useContext, useEffect } from "react";
+import React, { useReducer, useState } from "react";
 import Button from "./../../../components/button/Button";
 import { useHistory } from 'react-router'
 import Post from './../../../components/post/Post'
@@ -7,7 +7,7 @@ import Spinner from './../../../components/spinner/spinner'
 import { FiX, FiSave } from "react-icons/fi";
 import * as actionTypes from "./../../../reducers/action/action";
 import { GetError, GetSuccess, GetEditForm } from "./../../../reducers/action/notification";
-import { ApiContext } from "./../../../Context";
+// import { ApiContext } from "./../../../Context";
 import Modal from './../../../components/modal/modal'
 // import { backupUsers } from './../../middle/users/backup'
 const initialState = {
@@ -76,36 +76,36 @@ const Inbox = () => {
 
 
     //localStorage on messages
-    useEffect(() => {
-        // let items = []
-        const json = JSON.stringify(newPost);
-        localStorage.setItem("messages", json);
-        console.log(state.posts.length)
-        setInterval(() => {
+    // useEffect(() => {
+    //     // let items = []
+    //     const json = JSON.stringify(newPost);
+    //     localStorage.setItem("messages", json);
+    //     console.log(state.posts.length)
+    //     setInterval(() => {
 
-            localStorage.getItem("inbox");
-            localStorage.setItem("inbox", JSON.stringify(state.posts));
-
-
-        }, 2000);
+    //         localStorage.getItem("inbox");
+    //         localStorage.setItem("inbox", JSON.stringify(state.posts));
 
 
-    }, [newPost, state]);
-
-    const getContext = useContext(ApiContext);
-    let getItems = localStorage.getItem("inbox");
-
-    if (getContext === null) {
-        if (getItems > 0) {
-            //getItems = state.posts
-            // state.posts = getItems;
-            localStorage.setItem("inbox", JSON.stringify(state.posts));
-        }
-    }
+    //     }, 2000);
 
 
-    let context = Object.values(JSON.parse(getItems));
-    console.log(context)
+    // }, [newPost, state]);
+
+    // const getContext = useContext(ApiContext);
+    // let getItems = localStorage.getItem("inbox");
+
+    // if (getContext === null) {
+    //     if (getItems > 0) {
+    //         //getItems = state.posts
+    //         // state.posts = getItems;
+    //         localStorage.setItem("inbox", JSON.stringify(state.posts));
+    //     }
+    // }
+
+
+    // let context = Object.values(JSON.parse(getItems));
+    // console.log(context)
     const handleClick = (event) => {
         event.preventDefault();
         let message = event.target[0].value;
@@ -119,7 +119,7 @@ const Inbox = () => {
             console.log("state: ", state.posts.length);
             let num = Math.random() * Math.floor(24);
 
-            let user = context[num.toFixed()];
+            let user = ""
             if (user !== "") {
                 state.posts = history.location.state.posts
                 user = state.posts[num.toFixed()];
