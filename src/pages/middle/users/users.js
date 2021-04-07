@@ -69,8 +69,8 @@ const reducer = (state = initialState, action) => {
   }
 };
 const handleDelete = (state, action) => {
-  // console.log("Sending to delete action before: ", action)
-  // console.log("Sending to delete state before: ", state)
+  // //console.log("Sending to delete action before: ", action)
+  // //console.log("Sending to delete state before: ", state)
   // state.posts.filter(item => item.name !== action.name)
   let post = action.post;
   // let review = ""
@@ -83,21 +83,21 @@ const handleDelete = (state, action) => {
 
     // setStatePost(removedArr);
   }
-  // console.log("Sending to delete action after: ", action)
-  // console.log("Sending to delete state: ", state)
+  // //console.log("Sending to delete action after: ", action)
+  // //console.log("Sending to delete state: ", state)
   return state;
 };
 const handlePost = (state, action) => {
   //to update state using setState
   state.posts = action.posts;
-  console.log("compare the update: ", action.posts);
-  console.log("compare the state: ", state.posts);
+  //console.log("compare the update: ", action.posts);
+  //console.log("compare the state: ", state.posts);
   return state;
 };
 const handleUpdate = (state, action) => {
   //to update state using setState
-  console.log("update action: ", action.posts);
-  console.log("update state: ", state.posts);
+  //console.log("update action: ", action.posts);
+  //console.log("update state: ", state.posts);
   return state
 };
 const Users = () => {
@@ -160,10 +160,10 @@ const Users = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault() // stops default reloading behaviour
-    console.log(e.target[0].value);
+    //console.log(e.target[0].value);
     // setNewPost(e.target[0].value)
     newPost = e.target[0].value
-    console.log(e.target[0].value)
+    //console.log(e.target[0].value)
     //set  a new array for thrown issues
     let newArray = [...state.posts]
     newArray.map((item) => {
@@ -214,7 +214,7 @@ const Users = () => {
   //get deletePost
   const removePost = (e, post) => {
     e.preventDefault();
-    // console.log(post)
+    // //console.log(post)
     setState({
       posts: state.posts,
       post: post,
@@ -252,7 +252,7 @@ const Users = () => {
     //save only names on localStorage for privacy if that was in real data
     state.posts.map((item, index) => {
       if (items.length <= 25) {
-        // console.log("for each:", index)
+        // //console.log("for each:", index)
         items.push(item);
 
         localStorage.getItem("names");
@@ -348,7 +348,7 @@ const Users = () => {
   }
 
   if (history.location.state !== undefined) {
-    console.log(state.posts)
+    //console.log(state.posts)
     return state.posts.map((item, index) => {
       return (
         <li key={index} id="Post-item">

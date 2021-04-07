@@ -6,7 +6,7 @@ import { GetError, GetEditForm } from "./../../../reducers/action/notification";
 
 const Search = () => {
   let history = useHistory();
-  console.log(history)
+  //console.log(history)
   // let context = useContext(ApiContext);
   const json = localStorage.getItem("names");
   const savedPost = JSON.parse(json);
@@ -33,7 +33,7 @@ const Search = () => {
 
       newList = savedPost1.filter((item) => {
         const name = Object.values(item.name);
-        console.log(name)
+        //console.log(name)
         // get name and split spaces and join query
         const check = name.join("").toLowerCase();
         let filter = e.target[0].value.toLowerCase();
@@ -43,7 +43,7 @@ const Search = () => {
 
       if (newList.length === 0) {
         let message = "Please, try again.";
-        console.log(message);
+        //console.log(message);
         GetError(message);
         return false;
 
@@ -56,7 +56,7 @@ const Search = () => {
 
         e.target[0].value = "";
 
-        console.log("replacing state");
+        //console.log("replacing state");
 
         let message = "If to delete or modify, please go back for changes!";
         GetEditForm(message);
@@ -69,9 +69,9 @@ const Search = () => {
     } else {
       let getItems = localStorage.getItem("names");
       setState({ data: JSON.parse(getItems) });
-      console.log("pushing update");
+      //console.log("pushing update");
       let message = "Please, fill input and try again.";
-      console.log(message);
+      //console.log(message);
       GetError(message);
       history.replace("/search/users", {
         data: JSON.parse(getItems),
@@ -98,7 +98,7 @@ const Search = () => {
       });
       if (newList.length === 0) {
         let message = "Please, try again.";
-        console.log(message);
+        //console.log(message);
         GetError(message);
         return false;
       } else {
@@ -109,7 +109,7 @@ const Search = () => {
         });
         state.data = newList;
         e.target[0].value = "";
-        console.log("replacing state");
+        //console.log("replacing state");
         let message = "If to delete or modify, please go back for changes!";
         GetEditForm(message);
         history.push("/search/inbox", {
@@ -121,9 +121,9 @@ const Search = () => {
     } else {
       let getItems = localStorage.getItem("inbox");
       setState({ inbox: JSON.parse(getItems) });
-      console.log("pushing update");
+      //console.log("pushing update");
       let message = "Please, fill input and try again.";
-      console.log(message);
+      //console.log(message);
       GetError(message);
       history.push("/search/inbox", {
         inbox: JSON.parse(getItems),
@@ -137,7 +137,7 @@ const Search = () => {
   //for each click handle the path
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(e);
+    //console.log(e);
 
     if (window.location.pathname === "/Messages") {
       onSearchClickInbox(e);

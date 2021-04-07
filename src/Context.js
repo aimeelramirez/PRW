@@ -83,7 +83,7 @@ const Context = (props) => {
   }, [loading, error, history]);
 
   // return provider
-  console.log(stateData)
+  //console.log(stateData)
   return (
 
     <ApiContext.Provider value={stateData}>

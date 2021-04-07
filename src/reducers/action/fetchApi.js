@@ -12,11 +12,11 @@
 //         }
 //     }).then((response) => {
 //         let getData = response.json()
-//         // console.log(getData)
+//         // //console.log(getData)
 //         getData.then((data) => {
-//             // console.log(data)
+//             // //console.log(data)
 //             arrayAvatars.push(...data.results)
-//             // console.log(JSON.stringify(arrayAvatars[0]))
+//             // //console.log(JSON.stringify(arrayAvatars[0]))
 //             let getList = document.getElementById("list-feed-picture")
 //             if (getList != null) {
 //                 getAvatarsAll1()
@@ -28,7 +28,7 @@
 //         let getList = document.getElementById("list-feed-picture")
 //         let getImgs = getList.querySelectorAll("img")
 //         for (let i = 0; i < getImgs.length; i++) {
-//             // console.log("calling in fetchAvatar.js", arrayAvatars[i])
+//             // //console.log("calling in fetchAvatar.js", arrayAvatars[i])
 //             getImgs[i].src = arrayAvatars[i].urls.regular
 //             getImgs[i].alt = arrayAvatars[i].alt_description
 //             // getImgs[i].style.cssText = `width: 50%`
@@ -53,12 +53,12 @@
 // //         }
 // //     }).then((response) => {
 // //         let getData = response.json()
-// //         // console.log(getData)
+// //         // //console.log(getData)
 // //         getData.then((data) => {
-// //             // console.log(data)
+// //             // //console.log(data)
 // //             arrayAds.push(...data.results)
 // //             //getAds()
-// //             console.log(typeof arrayAds)
+// //             //console.log(typeof arrayAds)
 
 // //         })
 // //     }).catch((err) => console.error(err))
@@ -68,7 +68,7 @@
 // //         let getP = document.querySelectorAll(".ad-description")
 
 // //         for (let i = 0; i < getImgs.length; i++) {
-// //             // console.log("calling in fetchAvatar.js", arrayAvatars[i])
+// //             // //console.log("calling in fetchAvatar.js", arrayAvatars[i])
 // //             let getRand = Math.floor(Math.random() * Math.floor(10));
 // //             if (arrayAds[getRand].alt_description !== null) {
 // //                 getImgs[i].src = arrayAds[getRand].urls.regular

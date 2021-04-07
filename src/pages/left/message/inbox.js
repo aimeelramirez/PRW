@@ -46,20 +46,20 @@ const handleDelete = (state, action) => {
 const handlePost = (state, action) => {
     //to update state using setState
     state.posts = action.posts;
-    console.log("compare the update: ", action.posts);
-    console.log("compare the state: ", state.posts);
+    //console.log("compare the update: ", action.posts);
+    //console.log("compare the state: ", state.posts);
     return state;
 };
 const handleUpdate = (state, action) => {
     //to update state using setState
-    console.log("update action: ", action.posts);
-    console.log("update state: ", state.posts);
+    //console.log("update action: ", action.posts);
+    //console.log("update state: ", state.posts);
     return state
 };
 const Inbox = () => {
     let history = useHistory()
-    console.log("inbox: ", history)
-    console.log(window.location.pathname)
+    //console.log("inbox: ", history)
+    //console.log(window.location.pathname)
 
     const [state, dispatch] = useReducer(reducer, initialState);
     if (history.location.state === undefined) {
@@ -83,7 +83,7 @@ const Inbox = () => {
         // let items = []
         const json = JSON.stringify(newPost);
         localStorage.setItem("messages", json);
-        console.log(state.posts.length)
+        //console.log(state.posts.length)
         setInterval(() => {
 
             localStorage.getItem("inbox");
@@ -108,7 +108,7 @@ const Inbox = () => {
 
 
     // let context = Object.values(JSON.parse(getItems));
-    // console.log(context)
+    // //console.log(context)
     const handleClick = (event) => {
         event.preventDefault();
 
@@ -120,7 +120,7 @@ const Inbox = () => {
         } else if (message !== "") {
             let stringKey = state.posts.length;
             let post = {};
-            console.log("state: ", state.posts.length);
+            //console.log("state: ", state.posts.length);
             let num = Math.random() * Math.floor(24);
 
             let user = ""
@@ -128,7 +128,7 @@ const Inbox = () => {
                 // state.posts = history.location.state.posts
                 user = context[num.toFixed()];
 
-                //console.log(context[num.toFixed()].picture.large)
+                ////console.log(context[num.toFixed()].picture.large)
                 if (state.posts.length === 0) {
                     post = {
                         picture: user.picture,
@@ -141,7 +141,7 @@ const Inbox = () => {
                         message: message,
                         email: user.email,
                     };
-                    console.log("posted: ", post);
+                    //console.log("posted: ", post);
                 }
                 for (let i = 0; i < state.posts.length; i++) {
                     let num = parseInt(state.posts[i].text);
@@ -177,7 +177,7 @@ const Inbox = () => {
                 // state.posts = history.location.state.posts
                 user = context[num.toFixed()];
 
-                console.log(context[num.toFixed()])
+                //console.log(context[num.toFixed()])
                 if (state.posts.length === 0) {
                     post = {
                         picture: user.picture,
@@ -190,7 +190,7 @@ const Inbox = () => {
                         message: message,
                         email: user.email,
                     };
-                    console.log("posted: ", post);
+                    //console.log("posted: ", post);
                 }
                 for (let i = 0; i < state.posts.length; i++) {
                     let num = parseInt(state.posts[i].text);
@@ -247,12 +247,12 @@ const Inbox = () => {
 
     function handleSubmit(e) {
         e.preventDefault() // stops default reloading behaviour
-        console.log(e.target[0].value);
+        //console.log(e.target[0].value);
         newPost = e.target[0].value
 
-        const json = localStorage.getItem("messages");
-        const savedPost = JSON.parse(json);
-        console.log(savedPost)
+        localStorage.getItem("messages");
+        // const savedPost = JSON.parse(json);
+        //console.log(savedPost)
         //set  a new array for thrown issues
         let newArray = [...state.posts]
         newArray.map((item) => {

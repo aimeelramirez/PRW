@@ -34,7 +34,7 @@ const YouTubeVideo = () => {
     let [videoId, setVideoId] = useState([]);
     let history = useHistory();
     const LoadVideo = useCallback(() => {
-        console.log(videoId)
+        //console.log(videoId)
 
         history.push("/Watch", { videos: videoId });
         return history.goBack()
@@ -43,7 +43,7 @@ const YouTubeVideo = () => {
 
     //Get activities
     const loadClient = () => {
-        console.log("load client:", window.gapi.client.youtube)
+        //console.log("load client:", window.gapi.client.youtube)
         window.gapi.client.setApiKey(apiKey);
         return window.gapi.client
             .load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest").then(() => {
@@ -56,7 +56,7 @@ const YouTubeVideo = () => {
                         //playlist can only exist with certain keys
                         playlistId: "PLfCyPgplkH5DOl1VqMDGn5mcOMtEYishH",
                     }).then((response) => {
-                        console.log(response)
+                        //console.log(response)
                         const listItems = response.result.items;
                         if (listItems) {
                             listItems.forEach((item) => {
@@ -80,7 +80,7 @@ const YouTubeVideo = () => {
     //reads on authenticatation then loadclient or playlist. playlist exists because of client on rest.
     const authenticate = () => {
         //authenticate the  api
-        console.log("auth")
+        //console.log("auth")
         window.gapi.load("client:auth2", () => {
             return window.gapi.auth2
                 .init({

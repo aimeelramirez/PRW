@@ -47,14 +47,14 @@ const handleDelete = (state, action) => {
 const handlePost = (state, action) => {
   //to update state using setState
   state.posts = action.posts;
-  // console.log("compare the update: ", action.posts);
-  // console.log("compare the state: ", state.posts);
+  // //console.log("compare the update: ", action.posts);
+  // //console.log("compare the state: ", state.posts);
   return state;
 };
 const handleUpdate = (state, action) => {
   //to update state using setState
-  // console.log("update action: ", action.posts);
-  // console.log("update state: ", state.posts);
+  // //console.log("update action: ", action.posts);
+  // //console.log("update state: ", state.posts);
   return state
 };
 const UpdatePost = () => {
@@ -84,10 +84,10 @@ const UpdatePost = () => {
     } else if (message !== "") {
       let stringKey = state.posts.length;
       let post = {};
-      console.log("state: ", state.posts.length);
+      //console.log("state: ", state.posts.length);
       let num = Math.random() * Math.floor(24);
       let user = context[num.toFixed()];
-      //console.log(context[num.toFixed()].picture.large)
+      ////console.log(context[num.toFixed()].picture.large)
       if (state.posts.length === 0) {
         post = {
           picture: user.picture.large,
@@ -98,7 +98,7 @@ const UpdatePost = () => {
           message: message,
           email: user.email,
         };
-        console.log("posted: ", post);
+        //console.log("posted: ", post);
       }
       for (let i = 0; i < state.posts.length; i++) {
         let num = parseInt(state.posts[i].text);
@@ -168,7 +168,7 @@ const UpdatePost = () => {
 
   function handleSubmit(e) {
     e.preventDefault() // stops default reloading behaviour
-    console.log(e.target[0].value);
+    //console.log(e.target[0].value);
 
     newPost = e.target[0].value
     //set  a new array for thrown issues
@@ -220,7 +220,7 @@ const UpdatePost = () => {
   //get deletePost
   const removePost = (e, post) => {
     e.preventDefault();
-    // console.log(post)
+    // //console.log(post)
     setState({
       posts: state.posts,
       post: post,
@@ -236,7 +236,7 @@ const UpdatePost = () => {
     GetSuccess(message);
   };
   const Main = () => {
-    console.log("called")
+    //console.log("called")
     return state.posts.map((item, index) => {
       return (
         <li key={index} id="Post-item">

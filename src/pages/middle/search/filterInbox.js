@@ -9,10 +9,10 @@ const ShowInboxFilter = () => {
     let history = useHistory();
 
     const FilteredItems = () => {
-        console.log("filtered : ", history.location.state)
+        //console.log("filtered : ", history.location.state)
 
         if (history.location.state.inbox !== null || history.location.state.data === null || history.location.state.inbox.length > 0) {
-            console.log(history)
+            //console.log(history)
             return history.location.state.inbox.map((item, index) => {
                 return (
                     <Post

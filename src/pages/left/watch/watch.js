@@ -8,11 +8,11 @@ import './YoutubeVideo'
 const Watch = () => {
   let history = useHistory()
   // let intitalState = ""
-  console.log(history)
+  //console.log(history)
   let [videoId, setVideoId] = useState();
 
 
-  let [historyState, setHistory] = useState({})
+  let [, setHistory] = useState({})
   let [videosId, setVideosId] = useState();
 
   let [player, setPlayer] = useState(null);
@@ -28,15 +28,15 @@ const Watch = () => {
 
   const onReady = (event) => {
     if (history.location.state.videos.length > 0) {
-      console.log(history)
+      //console.log(history)
       setVideosId({ videos: history.location.state.videos })
-      // console.log("length: ", history.location.state.video.length)
+      // //console.log("length: ", history.location.state.video.length)
       // setVideoId(videosId[0].contentDetails.videoId)
       setVideoId(history.location.state.videos[0].contentDetails.videoId)
-      // console.log("clicked", videoId.videos.contentDetails.videoId)
+      // //console.log("clicked", videoId.videos.contentDetails.videoId)
 
       // videoId = videosId[0].contentDetails.videoId
-      console.log(`YouTube Player object for videoId: "${videoId}" has been saved to state.`);
+      //console.log(`YouTube Player object for videoId: "${videoId}" has been saved to state.`);
 
     }
     setPlayer(event.target);
@@ -53,30 +53,30 @@ const Watch = () => {
   };
 
   const onChangeVideo = () => {
-    console.log(videosId.videos)
+    //console.log(videosId.videos)
     for (let i = 0; i < videosId.videos.length; i++) {
       //this is on backup data
       if (i === videosId.videos.length - 1 && i >= 5) {
-        // console.log("click", i)
+        // //console.log("click", i)
         return setVideoId(videosId.videos[0].contentDetails.videoId);
       }
       if (i > videosId.videos.length - 1 && videoId !== videosId.videos[i].contentDetails.videoId) {
-        // console.log(videoId)
+        // //console.log(videoId)
         return setVideoId(videoId)
       }
       else if (i < videosId.videos.length - 1 && videoId === videosId.videos[i].contentDetails.videoId) {
-        // console.log(`click here ${i} `, videosId.videos.length)
+        // //console.log(`click here ${i} `, videosId.videos.length)
         return setVideoId(videosId.videos[i + 1].contentDetails.videoId);
       }
     }
 
   };
   if (history.location.state === undefined) {
-    console.log(historyState)
+    //console.log(historyState)
     setHistory({ videos: [] })
     // return history.push("/loadYt", { videos: [] });
   } else if (history.location.state.videos !== undefined) {
-    console.log(history.location.state.videos.length)
+    //console.log(history.location.state.videos.length)
 
     return (<div className="videos">
       <YouTube videoId={videoId} opts={opts} onReady={onReady} />
@@ -98,7 +98,7 @@ const Watch = () => {
     history.push(window.location.pathname, { videos: backup });
   }
   if (backup.length > 0 && history.location.state.videos.length > 6) {
-    console.log(history.location.state.videos)
+    //console.log(history.location.state.videos)
     return (
       <div className="videos">
         <YouTube videoId={videoId} opts={opts} onReady={onReady} />

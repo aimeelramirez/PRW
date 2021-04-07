@@ -5,7 +5,7 @@
 // import { FiSend, FiX } from "react-icons/fi";
 // const Edit = () => {
 //     let history = useHistory()
-//     console.log("history on edit: ", history)
+//     //console.log("history on edit: ", history)
 //     const [state, setState] = useState({
 //         newPost: "",
 //     });
@@ -22,8 +22,8 @@
 
 //         // let getItems = localStorage.getItems("names")
 //         // let readItems = JSON.parse(getItems)
-//         // console.log(readItems)
-//         // console.log(state)
+//         // //console.log(readItems)
+//         // //console.log(state)
 //         return history.replace("/", {
 //             newPost: state.newPost,
 //             post: history.location.state.post,

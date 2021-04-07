@@ -13,17 +13,17 @@ const PostList = () => {
   const context = useContext(ApiContext);
   const UserItems = () => {
     let items = [];
-    // console.log("hello ", stateData)
+    // //console.log("hello ", stateData)
     //save only names on localStorage for privacy if that was in real data
     context.map((item, index) => {
       if (items.length <= 25) {
-        //console.log("for each:", index)
+        ////console.log("for each:", index)
         items.push(item);
 
         localStorage.getItem("names");
         localStorage.setItem("names", JSON.stringify(items));
         //pass state in next component
-        //console.log(items.length)
+        ////console.log(items.length)
       } else if (index >= 26 || items.length >= 26) {
         delete localStorage[index];
         localStorage.setItem("names", JSON.stringify(items));
@@ -34,7 +34,7 @@ const PostList = () => {
     });
     if (history.location.state !== undefined) {
       return history.location.state.data.map((item, index) => {
-        // console.log("filtered: ", item)
+        // //console.log("filtered: ", item)
         return (
           <News
             key={index.toString()}
@@ -51,7 +51,7 @@ const PostList = () => {
         //get the new route
         history.push("/NewsFeed", { data: context });
         //just in case for history not updating
-        //  console.log("context ", item)
+        //  //console.log("context ", item)
         return (
           <News
             key={index.toString()}

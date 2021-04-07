@@ -9,7 +9,7 @@ const ShowFilter = () => {
 
   const FilteredItems = () => {
 
-    console.log("filtered : ", history.location.state)
+    //console.log("filtered : ", history.location.state)
     if (history.location.state.data.length > 0) {
       return history.location.state.data.map((item, index) => {
         let date = new Date(item.registered.date)

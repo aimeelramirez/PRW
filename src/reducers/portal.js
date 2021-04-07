@@ -40,7 +40,7 @@ const reducer = (state, action) => {
 
 const Portal = () => {
   let history = useHistory();
-  console.log("history on portal:", history.location);
+  //console.log("history on portal:", history.location);
 
   const handleClickUsers = () => {
     //set to go back to settings
@@ -55,7 +55,7 @@ const Portal = () => {
     isAuth: false,
   });
   const [state, dispatch] = useReducer(reducer, initialState);
-  // console.log(stateAuth.isAuth)
+  // //console.log(stateAuth.isAuth)
 
   useEffect(() => {
     if (stateAuth.isAuth === false) {
