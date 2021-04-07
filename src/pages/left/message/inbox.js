@@ -82,7 +82,7 @@ const Inbox = () => {
         localStorage.setItem("messages", json);
         console.log(state.posts.length)
 
-        if (state.posts == '') {
+        if (state.posts === '') {
 
             state.posts = history.location.state.posts
             console.log(state)
