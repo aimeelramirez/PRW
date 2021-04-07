@@ -347,7 +347,8 @@ const Users = () => {
     onLoad()
   }
 
-  if (state.posts.length > 0) {
+  if (history.location.state !== undefined) {
+    console.log(state.posts)
     return state.posts.map((item, index) => {
       return (
         <li key={index} id="Post-item">

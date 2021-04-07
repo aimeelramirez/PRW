@@ -9,7 +9,7 @@ import * as actionTypes from "./../../../reducers/action/action";
 import { GetError, GetSuccess, GetEditForm } from "./../../../reducers/action/notification";
 import { ApiContext } from "./../../../Context";
 import Modal from './../../../components/modal/modal'
-import { backupUsers } from './../../middle/users/backup'
+// import { backupUsers } from './../../middle/users/backup'
 const initialState = {
     posts: []
 }
