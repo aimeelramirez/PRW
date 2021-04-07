@@ -104,7 +104,7 @@ const Context = (props) => {
       clearInterval(startingFetch);
 
     };
-  }, [loading, error, history]);
+  }, [loading, error, history, context]);
 
   // return provider
   console.log(stateData)

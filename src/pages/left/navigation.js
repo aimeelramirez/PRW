@@ -1,4 +1,4 @@
-import { Link, Route, Switch, Redirect } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import Watch from "./watch/watch";
 import Feed from "./feed/feed";
 import Settings from "./../header/settings";
