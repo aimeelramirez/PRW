@@ -61,6 +61,7 @@ const Inbox = () => {
     console.log(history)
 
     const [state, dispatch] = useReducer(reducer, initialState);
+    state.posts = history.location.state.posts
 
     const [statePosts, setState] = useState({
         post: "",
@@ -81,14 +82,6 @@ const Inbox = () => {
         const json = JSON.stringify(newPost);
         localStorage.setItem("messages", json);
         console.log(state.posts.length)
-
-        if (state.posts === '') {
-
-            state.posts = history.location.state.posts
-            console.log(state)
-
-
-        }
         setInterval(() => {
 
             localStorage.getItem("inbox");
