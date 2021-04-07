@@ -15,14 +15,16 @@ const Context = (props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   let history = useHistory();
-  // if (history.location.state === undefined) {
-  //   history.push(window.location.pathname, {
-  //     data: backupUsers,
-  //     posts: backupUsers,
-  //     inbox: []
-  //   });
-  // }
-  // }
+  if (history.location.state === undefined) {
+    history.push(window.location.pathname, {
+      data: backupUsers,
+      posts: backupUsers,
+      inbox: [],
+      videos: backup
+
+    });
+  }
+
 
   useEffect(() => {
     //to get the data to always load new data if context is updated
