@@ -66,7 +66,7 @@ const Watch = () => {
   if (history.location.state === undefined) {
     console.log(historyState)
     setHistory({ videos: [] })
-    return history.push("/loadYt", { videos: [] });
+    // return history.push("/loadYt", { videos: [] });
   } else if (history.location.state.videos !== undefined) {
     console.log(history.location.state.videos.length)
 
@@ -85,13 +85,17 @@ const Watch = () => {
     </div>
     )
   }
-  if (backup.length > 0 || history.location.state.videos.length > 6) {
+  if (backup.length > 0 && history.location.state === undefined) {
+    setHistory({ videos: backup })
+    history.push(window.location.pathname, { videos: backup });
+  }
+  if (backup.length > 0 && history.location.state.videos.length > 6) {
     console.log(history.location.state.videos)
     return (
       <div className="videos">
         <YouTube videoId={videoId} opts={opts} onReady={onReady} />
 
-        {/* <div><button type="button" onClick={onPlayVideo} disabled={!player}>
+        <div><button type="button" onClick={onPlayVideo} disabled={!player}>
           Play
       </button>
           <button type="button" onClick={onPauseVideo} disabled={!player}>
@@ -99,8 +103,8 @@ const Watch = () => {
       </button>
           <button type="button" onClick={onChangeVideo} disabled={!player}>
             Change Video
-      </button> 
-      </div>*/}
+      </button>
+        </div>
       </div >
 
     );
