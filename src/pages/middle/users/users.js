@@ -269,7 +269,7 @@ const Users = () => {
 
     let check = context.length > 0 && history.location.state === undefined;
     if (check === true) {
-      console.log("history", history)
+      console.log("context", context)
       return state.posts.map((item, index) => {
         return (
           <li key={index} id="Post-item">
@@ -326,7 +326,7 @@ const Users = () => {
       if (history.location.state === undefined) {
         history.push(window.location.pathname, {
           data: backupUsers,
-          posts: backupUsers,
+          posts: context,
           inbox: [],
           videos: []
         });
