@@ -1,5 +1,5 @@
 
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, useContext, useEffect } from "react";
 import Button from "./../../../components/button/Button";
 import { useHistory } from 'react-router'
 import Post from './../../../components/post/Post'
@@ -7,9 +7,9 @@ import Spinner from './../../../components/spinner/spinner'
 import { FiX, FiSave } from "react-icons/fi";
 import * as actionTypes from "./../../../reducers/action/action";
 import { GetError, GetSuccess, GetEditForm } from "./../../../reducers/action/notification";
-// import { ApiContext } from "./../../../Context";
+import { ApiContext } from "./../../../Context";
 import Modal from './../../../components/modal/modal'
-// import { backupUsers } from './../../middle/users/backup'
+import { backupUsers } from './../../middle/users/backup'
 const initialState = {
     posts: []
 }
@@ -58,10 +58,14 @@ const handleUpdate = (state, action) => {
 };
 const Inbox = () => {
     let history = useHistory()
-    console.log(history)
+    console.log("inbox: ", history)
+    console.log(window.location.pathname)
 
     const [state, dispatch] = useReducer(reducer, initialState);
+    if (history.location.state === undefined) {
+        history.replace(window.location.pathname, { posts: [] })
 
+    }
     const [statePosts, setState] = useState({
         post: "",
         oldPost: "",
@@ -75,24 +79,23 @@ const Inbox = () => {
     let [newPost,] = useState('');
 
 
-    //localStorage on messages
-    // useEffect(() => {
-    //     // let items = []
-    //     const json = JSON.stringify(newPost);
-    //     localStorage.setItem("messages", json);
-    //     console.log(state.posts.length)
-    //     setInterval(() => {
+    useEffect(() => {
+        // let items = []
+        const json = JSON.stringify(newPost);
+        localStorage.setItem("messages", json);
+        console.log(state.posts.length)
+        setInterval(() => {
 
-    //         localStorage.getItem("inbox");
-    //         localStorage.setItem("inbox", JSON.stringify(state.posts));
-
-
-    //     }, 2000);
+            localStorage.getItem("inbox");
+            localStorage.setItem("inbox", JSON.stringify(state.posts));
 
 
-    // }, [newPost, state]);
+        }, 2000);
 
-    // const getContext = useContext(ApiContext);
+
+    }, [newPost, state]);
+
+    const context = useContext(ApiContext);
     // let getItems = localStorage.getItem("inbox");
 
     // if (getContext === null) {
@@ -108,6 +111,7 @@ const Inbox = () => {
     // console.log(context)
     const handleClick = (event) => {
         event.preventDefault();
+
         let message = event.target[0].value;
         if (message === "") {
             let text = "Please fill in message!";
@@ -120,14 +124,14 @@ const Inbox = () => {
             let num = Math.random() * Math.floor(24);
 
             let user = ""
-            if (user !== "") {
-                state.posts = history.location.state.posts
-                user = state.posts[num.toFixed()];
+            if (user !== "" && context !== null) {
+                // state.posts = history.location.state.posts
+                user = context[num.toFixed()];
 
                 //console.log(context[num.toFixed()].picture.large)
                 if (state.posts.length === 0) {
                     post = {
-                        picture: user.picture.large,
+                        picture: user.picture,
                         id: stringKey,
                         name: {
                             title: user.name.title,
@@ -170,10 +174,10 @@ const Inbox = () => {
                     }
                 }
             } else {
-                state.posts = history.location.state.posts
-                user = state.posts[num.toFixed()];
+                // state.posts = history.location.state.posts
+                user = context[num.toFixed()];
 
-                //console.log(context[num.toFixed()].picture.large)
+                console.log(context[num.toFixed()])
                 if (state.posts.length === 0) {
                     post = {
                         picture: user.picture,

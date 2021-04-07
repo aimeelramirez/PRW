@@ -12,15 +12,18 @@ const ShowInboxFilter = () => {
         console.log("filtered : ", history.location.state)
 
         if (history.location.state.inbox !== null || history.location.state.data === null || history.location.state.inbox.length > 0) {
+            console.log(history)
             return history.location.state.inbox.map((item, index) => {
                 return (
                     <Post
                         key={index.toString()}
-                        title={item.title}
-                        first={item.first}
-                        last={item.last}
+                        title={item.name.title}
+                        first={item.name.first}
+                        last={item.name.last}
                         email={item.email}
-                        picture={item.picture}
+                        picture={item.picture.large}
+                        message={item.message}
+
                     />
                 );
             });

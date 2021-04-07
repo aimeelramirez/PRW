@@ -6,6 +6,7 @@ import { GetError, GetEditForm } from "./../../../reducers/action/notification";
 
 const Search = () => {
   let history = useHistory();
+  console.log(history)
   // let context = useContext(ApiContext);
   const json = localStorage.getItem("names");
   const savedPost = JSON.parse(json);
@@ -83,12 +84,12 @@ const Search = () => {
     e.preventDefault();
 
     let newList = [];
-
+    debugger
     if (e.target[0].value !== "") {
       const jsonInbox1 = localStorage.getItem("inbox");
       const savedInbox1 = JSON.parse(jsonInbox1);
       newList = savedInbox1.filter((item) => {
-        const name = item.title + " " + item.first + " " + item.last
+        const name = item.name.title + " " + item.name.first + " " + item.name.last
         // get name and split spaces and join query
         const check = name.toLowerCase();
         let filter = e.target[0].value.toLowerCase();

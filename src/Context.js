@@ -15,25 +15,26 @@ const Context = (props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   let history = useHistory();
-  if (history.location.state === undefined) {
-    history.push(window.location.pathname, {
-      data: backupUsers,
-      posts: backupUsers,
-      inbox: [],
-      videos: backup
-
-    });
-  }
 
 
   useEffect(() => {
-    //to get the data to always load new data if context is updated
-    history.push(window.location.pathname, {
-      data: backupUsers,
-      posts: backupUsers,
-      inbox: [],
-      videos: backup
-    });
+    if (history.location.state === undefined) {
+      history.push(window.location.pathname, {
+        data: backupUsers,
+        posts: backupUsers,
+        inbox: [],
+        videos: backup
+
+      });
+    }
+
+    // //to get the data to always load new data if context is updated
+    // history.push(window.location.pathname, {
+    //   data: backupUsers,
+    //   posts: backupUsers,
+    //   inbox: [],
+    //   videos: backup
+    // });
     //get users to read on data
     const fetchData = () => {
       getApi()
@@ -41,16 +42,14 @@ const Context = (props) => {
           let obj = Object.values(json.results);
           setData(obj);
           setLoading(false);
-          if (history.location.state.posts.length === 0 || history.location.state === undefined) {
-
+          if (history.location.state !== undefined) {
             return history.push(window.location.pathname, {
-              posts: backupUsers,
-              data: backupUsers,
+              posts: obj,
+              data: obj,
               inbox: [],
               videos: []
             });
-          }
-          else {
+          } else {
             return history.push(window.location.pathname, {
               posts: obj,
               data: obj,
@@ -58,6 +57,7 @@ const Context = (props) => {
               videos: []
             });
           }
+
 
         })
         .catch((err) => {
@@ -78,11 +78,14 @@ const Context = (props) => {
     // aborting request when cleaning
     return () => {
       clearInterval(startingFetch);
+
     };
   }, [loading, error, history]);
 
   // return provider
+  console.log(stateData)
   return (
+
     <ApiContext.Provider value={stateData}>
       {props.children}
     </ApiContext.Provider>
