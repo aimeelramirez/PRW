@@ -167,29 +167,34 @@ const Users = () => {
     e.preventDefault() // stops default reloading behaviour
     //console.log(e.target[0].value);
     // setNewPost(e.target[0].value)
-    newPost = e.target[0].value
-    //console.log(e.target[0].value)
-    //set  a new array for thrown issues
-    let newArray = [...state.posts]
-    newArray.map((item) => {
-      //set this name to be read as new value to match
-      if (item.message === statePosts.oldPost) {
-        item.message = newPost
-      }
-      return item;
+    if (e.target[0].value !== "") {
+      newPost = e.target[0].value
+      //console.log(e.target[0].value)
+      //set  a new array for thrown issues
+      let newArray = [...state.posts]
+      newArray.map((item) => {
+        //set this name to be read as new value to match
+        if (item.message === statePosts.oldPost) {
+          item.message = newPost
+        }
+        return item;
 
-    });
-    state.post = newPost
+      });
+      state.post = newPost
 
-    dispatch({
-      type: actionTypes.UPDATE_POST,
-      posts: newArray,
-      post: state.post
-    });
-    setStateModal({ show: false });
-    e.target.reset()
+      dispatch({
+        type: actionTypes.UPDATE_POST,
+        posts: newArray,
+        post: state.post
+      });
+      setStateModal({ show: false });
+      e.target.reset()
 
-    submitModal()
+      submitModal()
+    } else {
+      e.target.reset()
+      return hideModal()
+    }
   }
 
   const editPost = (e, post) => {
@@ -198,15 +203,17 @@ const Users = () => {
     setState({
       posts: state.posts,
       oldPost: post.message,
-      post: ""
+      post: post
     });
-    return state.posts
+
+
 
   };
   const submitModal = () => {
     let message = "Success!";
     GetSuccess(message);
     setStateModal({ show: false });
+    return state.posts
 
   };
 
@@ -219,7 +226,7 @@ const Users = () => {
   //get deletePost
   const removePost = (e, post) => {
     e.preventDefault();
-    // //console.log(post)
+    //console.log(post)
     setState({
       posts: state.posts,
       post: post,
@@ -293,7 +300,7 @@ const Users = () => {
                         <FiSave />
                       </Button>
                       <Button type="button" onClick={hideModal}>
-                        <strong> Close</strong>
+                        <strong>Close</strong>
                         <FiX />
                       </Button>
                     </div>
