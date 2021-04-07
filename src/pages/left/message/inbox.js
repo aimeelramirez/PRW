@@ -98,7 +98,9 @@ const Inbox = () => {
 
     if (getContext === null) {
         if (getItems > 0) {
-            state.posts = getItems;
+            state.posts = history.location.state.posts
+            getItems = state.posts
+            // state.posts = getItems;
             localStorage.setItem("inbox", JSON.stringify(state.posts));
         } else {
             state.posts = backupUsers
@@ -107,7 +109,7 @@ const Inbox = () => {
 
 
     let context = Object.values(JSON.parse(getItems));
-
+    console.log(context)
     const handleClick = (event) => {
         event.preventDefault();
         let message = event.target[0].value;
