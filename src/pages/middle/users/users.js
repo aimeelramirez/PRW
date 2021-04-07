@@ -122,7 +122,7 @@ const Users = () => {
     if (history.location.state === undefined) {
       history.push(window.location.pathname, {
         data: backupUsers,
-        posts: backupUsers,
+        posts: context,
         inbox: [],
         videos: []
       });
@@ -269,6 +269,7 @@ const Users = () => {
 
     let check = context.length > 0 && history.location.state === undefined;
     if (check === true) {
+      console.log("history", history)
       return state.posts.map((item, index) => {
         return (
           <li key={index} id="Post-item">
@@ -333,9 +334,11 @@ const Users = () => {
       readApi = history.location.state.posts.map((item, index) => {
         item.message = stateAll.quotes[index];
         api = {
-          first: item.name.first,
-          last: item.name.last,
-          title: item.name.title,
+          name: {
+            first: item.name.first,
+            last: item.name.last,
+            title: item.name.title,
+          },
           message: item.message,
           picture: item.picture.large
         }
@@ -378,9 +381,9 @@ const Users = () => {
 
           <Contact
             key={index.toString()}
-            first={item.first}
-            last={item.last}
-            title={item.title}
+            first={item.name.first}
+            last={item.name.last}
+            title={item.name.title}
             email={item.email}
             picture={item.picture}
             message={item.message}
