@@ -61,7 +61,6 @@ const Inbox = () => {
     console.log(history)
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    state.posts = history.location.state.posts
 
     const [statePosts, setState] = useState({
         post: "",
@@ -74,6 +73,7 @@ const Inbox = () => {
     });
 
     let [newPost,] = useState('');
+    state.posts = history.location.state.posts
 
 
     //localStorage on messages
@@ -98,8 +98,7 @@ const Inbox = () => {
 
     if (getContext === null) {
         if (getItems > 0) {
-            state.posts = history.location.state.posts
-            getItems = state.posts
+            //getItems = state.posts
             // state.posts = getItems;
             localStorage.setItem("inbox", JSON.stringify(state.posts));
         } else {
@@ -325,6 +324,8 @@ const Inbox = () => {
             </ul>
         </div >)
     } else if (state.posts.length === 0) {
+        state.posts = history.location.state.posts
+
         return (
             <div id="post-container">
                 <div id="form-container">
