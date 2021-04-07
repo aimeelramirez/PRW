@@ -53,18 +53,19 @@ const Watch = () => {
   };
 
   const onChangeVideo = () => {
-    for (let i = 0; i < videosId.videos.length - 1; i++) {
+    console.log(videosId.videos)
+    for (let i = 0; i < videosId.videos.length; i++) {
       //this is on backup data
-      if (videosId.videos.length === 6) {
-        return setVideoId(videosId.videos[i + 1].contentDetails.videoId);
+      if (i === videosId.videos.length - 1 && i >= 5) {
+        // console.log("click", i)
+        return setVideoId(videosId.videos[0].contentDetails.videoId);
       }
       if (i > videosId.videos.length - 1 && videoId !== videosId.videos[i].contentDetails.videoId) {
-
+        // console.log(videoId)
         return setVideoId(videoId)
       }
-      else if (i <= videosId.videos.length - 1 && videoId === videosId.videos[i].contentDetails.videoId) {
-        console.log("click", i + videosId.videos.length - 1)
-
+      else if (i < videosId.videos.length - 1 && videoId === videosId.videos[i].contentDetails.videoId) {
+        // console.log(`click here ${i} `, videosId.videos.length)
         return setVideoId(videosId.videos[i + 1].contentDetails.videoId);
       }
     }
