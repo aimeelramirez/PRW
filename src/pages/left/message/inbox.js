@@ -1,6 +1,7 @@
 
 import React, { useReducer, useState, useContext, useEffect } from "react";
 import Button from "./../../../components/button/Button";
+import { useHistory } from 'react-router'
 import Post from './../../../components/post/Post'
 import Spinner from './../../../components/spinner/spinner'
 import { FiX, FiSave } from "react-icons/fi";
@@ -8,6 +9,7 @@ import * as actionTypes from "./../../../reducers/action/action";
 import { GetError, GetSuccess, GetEditForm } from "./../../../reducers/action/notification";
 import { ApiContext } from "./../../../Context";
 import Modal from './../../../components/modal/modal'
+import { backupUsers } from './../../middle/users/backup'
 const initialState = {
     posts: []
 }
@@ -55,6 +57,8 @@ const handleUpdate = (state, action) => {
     return state
 };
 const Inbox = () => {
+    let history = useHistory()
+    console.log(history)
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -76,7 +80,15 @@ const Inbox = () => {
         // let items = []
         const json = JSON.stringify(newPost);
         localStorage.setItem("messages", json);
-        console.log(state)
+        console.log(state.posts.length)
+
+        if (state.posts == '') {
+
+            state.posts = history.location.state.posts
+            console.log(state)
+
+
+        }
         setInterval(() => {
 
             localStorage.getItem("inbox");
@@ -92,9 +104,12 @@ const Inbox = () => {
     let getItems = localStorage.getItem("inbox");
 
     if (getContext === null) {
-        state.posts = getItems;
-        localStorage.setItem("inbox", JSON.stringify(state.posts));
-
+        if (getItems > 0) {
+            state.posts = getItems;
+            localStorage.setItem("inbox", JSON.stringify(state.posts));
+        } else {
+            state.posts = backupUsers
+        }
     }
 
 
@@ -275,11 +290,11 @@ const Inbox = () => {
 
                     <Post
                         key={index}
-                        first={item.first}
-                        last={item.last}
-                        title={item.title}
+                        first={item.name.first}
+                        last={item.name.last}
+                        title={item.name.title}
                         email={item.email}
-                        picture={item.picture}
+                        picture={item.picture.large}
                         message={item.message}
                         clicked={(e) => {
                             removePost(e, item);
@@ -292,6 +307,7 @@ const Inbox = () => {
             );
         });
     };
+
     if (state.posts.length > 0) {
 
         return (<div id="post-container" >

@@ -127,19 +127,19 @@ const Users = () => {
         videos: []
       });
     }
-    readApi = history.location.state.posts.map((item, index) => {
-      item.message = stateAll.quotes[index];
-      api = {
-        first: item.name.first,
-        last: item.name.last,
-        title: item.name.title,
-        message: item.message,
-        picture: item.picture.large
-      }
-      return api
+    // readApi = history.location.state.posts.map((item, index) => {
+    //   item.message = stateAll.quotes[index];
+    //   api = {
+    //     first: item.name.first,
+    //     last: item.name.last,
+    //     title: item.name.title,
+    //     message: item.message,
+    //     picture: item.picture.large
+    //   }
+    //   return api
 
-    })
-    return state.posts = readApi
+    // })
+    // return state.posts = readApi
   }
   onLoad()
   let [newPost,] = useState('');
@@ -234,23 +234,23 @@ const Users = () => {
   const UserItems = () => {
     let items = [];
 
-    readApi = stateAll.contact.map((item, index) => {
-      item.message = stateAll.quotes[index];
-      api = {
-        first: item.name.first,
-        last: item.name.last,
-        title: item.name.title,
-        message: item.message,
-        picture: item.picture.large
-      }
-      return api
+    // readApi = stateAll.contact.map((item, index) => {
+    //   item.message = stateAll.quotes[index];
+    //   api = {
+    //     first: item.name.first,
+    //     last: item.name.last,
+    //     title: item.name.title,
+    //     message: item.message,
+    //     picture: item.picture.large
+    //   }
+    //   return api
 
-    })
-    state.posts = readApi
+    // })
+    // state.posts = readApi
     //return state.posts
 
     //save only names on localStorage for privacy if that was in real data
-    readApi.map((item, index) => {
+    state.posts.map((item, index) => {
       if (items.length <= 25) {
         // console.log("for each:", index)
         items.push(item);
