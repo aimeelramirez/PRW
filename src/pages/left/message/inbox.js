@@ -73,7 +73,6 @@ const Inbox = () => {
     });
 
     let [newPost,] = useState('');
-    state.posts = history.location.state.posts
 
 
     //localStorage on messages
@@ -101,8 +100,6 @@ const Inbox = () => {
             //getItems = state.posts
             // state.posts = getItems;
             localStorage.setItem("inbox", JSON.stringify(state.posts));
-        } else {
-            state.posts = backupUsers
         }
     }
 
@@ -121,45 +118,107 @@ const Inbox = () => {
             let post = {};
             console.log("state: ", state.posts.length);
             let num = Math.random() * Math.floor(24);
-            let user = context[num.toFixed()];
-            //console.log(context[num.toFixed()].picture.large)
-            if (state.posts.length === 0) {
-                post = {
-                    picture: user.picture.large,
-                    id: stringKey,
-                    title: user.name.title,
-                    first: user.name.first,
-                    last: user.name.last,
-                    message: message,
-                    email: user.email,
-                };
-                console.log("posted: ", post);
-            }
-            for (let i = 0; i < state.posts.length; i++) {
-                let num = parseInt(state.posts[i].text);
 
-                if (num !== stringKey) {
+            let user = context[num.toFixed()];
+            if (user !== "") {
+                state.posts = history.location.state.posts
+                user = state.posts[num.toFixed()];
+
+                //console.log(context[num.toFixed()].picture.large)
+                if (state.posts.length === 0) {
                     post = {
                         picture: user.picture.large,
                         id: stringKey,
-                        title: user.name.title,
-                        first: user.name.first,
-                        last: user.name.last,
+                        name: {
+                            title: user.name.title,
+                            first: user.name.first,
+                            last: user.name.last,
+                        },
                         message: message,
                         email: user.email,
                     };
-                } else {
-                    stringKey = (num + 1).toString();
-                    post = {
-                        picture: user.picture.large,
-                        id: stringKey,
-                        title: user.name.title,
-                        first: user.name.first,
-                        last: user.name.last,
-                        message: message,
-                        email: user.email,
-                    };
+                    console.log("posted: ", post);
                 }
+                for (let i = 0; i < state.posts.length; i++) {
+                    let num = parseInt(state.posts[i].text);
+
+                    if (num !== stringKey) {
+                        post = {
+                            picture: user.picture,
+                            id: stringKey,
+                            name: {
+                                title: user.name.title,
+                                first: user.name.first,
+                                last: user.name.last,
+                            },
+                            message: message,
+                            email: user.email,
+                        };
+                    } else {
+                        stringKey = (num + 1).toString();
+                        post = {
+                            picture: user.picture.large,
+                            id: stringKey,
+                            name: {
+                                title: user.name.title,
+                                first: user.name.first,
+                                last: user.name.last,
+                            },
+                            message: message,
+                            email: user.email,
+                        };
+                    }
+                }
+            } else {
+                state.posts = history.location.state.posts
+                user = state.posts[num.toFixed()];
+
+                //console.log(context[num.toFixed()].picture.large)
+                if (state.posts.length === 0) {
+                    post = {
+                        picture: user.picture,
+                        id: stringKey,
+                        name: {
+                            title: user.name.title,
+                            first: user.name.first,
+                            last: user.name.last,
+                        },
+                        message: message,
+                        email: user.email,
+                    };
+                    console.log("posted: ", post);
+                }
+                for (let i = 0; i < state.posts.length; i++) {
+                    let num = parseInt(state.posts[i].text);
+
+                    if (num !== stringKey) {
+                        post = {
+                            picture: user.picture.large,
+                            id: stringKey,
+                            name: {
+                                title: user.name.title,
+                                first: user.name.first,
+                                last: user.name.last,
+                            },
+                            message: message,
+                            email: user.email,
+                        };
+                    } else {
+                        stringKey = (num + 1).toString();
+                        post = {
+                            picture: user.picture.large,
+                            id: stringKey,
+                            name: {
+                                title: user.name.title,
+                                first: user.name.first,
+                                last: user.name.last,
+                            },
+                            message: message,
+                            email: user.email,
+                        };
+                    }
+                }
+
             }
             let newState = [...state.posts, post];
             let confirm = "Success!";
@@ -323,8 +382,8 @@ const Inbox = () => {
                 <Main />
             </ul>
         </div >)
-    } else if (state.posts.length === 0) {
-        state.posts = history.location.state.posts
+    }
+    if (statePosts.posts.length === 0) {
 
         return (
             <div id="post-container">
