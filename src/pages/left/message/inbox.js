@@ -193,7 +193,7 @@ const Inbox = () => {
 
                     if (num !== stringKey) {
                         post = {
-                            picture: user.picture.large,
+                            picture: user.picture,
                             id: stringKey,
                             name: {
                                 title: user.name.title,
@@ -206,7 +206,7 @@ const Inbox = () => {
                     } else {
                         stringKey = (num + 1).toString();
                         post = {
-                            picture: user.picture.large,
+                            picture: user.picture,
                             id: stringKey,
                             name: {
                                 title: user.name.title,
