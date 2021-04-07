@@ -54,10 +54,17 @@ const Watch = () => {
 
   const onChangeVideo = () => {
     for (let i = 0; i < videosId.videos.length - 1; i++) {
-      if (i >= videosId.videos.length - 2 && videoId !== videosId.videos[i].contentDetails.videoId) {
+      //this is on backup data
+      if (videosId.videos.length === 6) {
+        return setVideoId(videosId.videos[i + 1].contentDetails.videoId);
+      }
+      if (i > videosId.videos.length - 1 && videoId !== videosId.videos[i].contentDetails.videoId) {
+
         return setVideoId(videoId)
       }
-      else if (i < videosId.videos.length - 1 && videoId === videosId.videos[i].contentDetails.videoId) {
+      else if (i <= videosId.videos.length - 1 && videoId === videosId.videos[i].contentDetails.videoId) {
+        console.log("click", i + videosId.videos.length - 1)
+
         return setVideoId(videosId.videos[i + 1].contentDetails.videoId);
       }
     }
