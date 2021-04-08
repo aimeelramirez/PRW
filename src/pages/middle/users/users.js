@@ -191,9 +191,9 @@ const Users = () => {
       e.target.reset()
 
       submitModal()
-    } else {
+    } else if (e.target[0].value === "") {
       e.target.reset()
-      return hideModal()
+      return hideModal
     }
   }
 

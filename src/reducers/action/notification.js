@@ -15,20 +15,35 @@ const GetError = (message) => {
     type: "error",
     theme: "nest",
     text: `  <div id="note">${alertIcon} ${message}<button id='closeError'><strong>close</strong>${exit}</button></div>`,
-  }).show();
+  }).on('afterShow', function () {
+    setTimeout(() => {
+      Noty.closeAll(); // Closes all notifications
+    }, 1000);
+  }).show()
+
 };
 const GetEditForm = (post) => {
   return new Noty({
     type: "info",
     theme: "nest",
     text: `  <div id="note">${infoIcon} ${post} <button id='closeError'><strong>close</strong>${exit}</button> </div>`,
-  }).show();
+  }).on('afterShow', function () {
+    setTimeout(() => {
+      Noty.closeAll(); // Closes all notifications
+    }, 500);
+  }).show()
 };
 const GetSuccess = (message) => {
   return new Noty({
     type: "success",
     theme: "nest",
     text: ` <div id="note"> ${successIcon} ${message} <button id='closeSuccess'><strong>close</strong>${exit}</button> </div>`,
-  }).show();
+
+  }).on('afterShow', function () {
+    setTimeout(() => {
+      Noty.closeAll(); // Closes all notifications
+    }, 500);
+  }).show()
+
 };
 export { GetError, GetEditForm, GetSuccess };
