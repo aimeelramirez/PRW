@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Spinner from "./../../../components/spinner/spinner";
 import { useHistory } from "react-router-dom";
 
-const apiKey = process.env.REACT_APP_API_YOUTUBE;
+let apiKey = process.env.REACT_APP_API_YOUTUBE;
 const clientKey = process.env.REACT_APP_API_CLIENT
 // let secretKey = process.env.REACT_APP_API_CLIENT_SECRET
 
@@ -44,7 +44,7 @@ const YouTubeVideo = () => {
     //Get activities
     const loadClient = () => {
         //console.log("load client:", window.gapi.client.youtube)
-        window.gapi.client.setApiKey(apiKey);
+        window.gapi.client.setApiKey("AIzaSyCLFZ4cG8Zq9s_u5qKY6VsIuMdYPR0Qz24");
         return window.gapi.client
             .load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest").then(() => {
                 window.gapi.client.youtube.playlistItems
