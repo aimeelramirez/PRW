@@ -327,8 +327,6 @@ const Users = () => {
     //return state.posts
     if (state.posts !== "") {
       let items = [];
-      console.log(state.posts)
-
       //save only names on localStorage for privacy if that was in real data
       state.posts.map((item, index) => {
 
