@@ -19,23 +19,6 @@ const Context = (props) => {
 
 
   useEffect(() => {
-    // if (history.location.state === undefined) {
-    //   history.push("/", {
-    //     data: backupUsers,
-    //     posts: backupUsers,
-    //     inbox: [],
-    //     videos: backup
-
-    //   });
-    // }
-
-    // //to get the data to always load new data if context is updated
-    // history.push(window.location.pathname, {
-    //   data: backupUsers,
-    //   posts: backupUsers,
-    //   inbox: [],
-    //   videos: backup
-    // });
     //get users to read on data
     const fetchData = () => {
       getApi()
@@ -61,28 +44,6 @@ const Context = (props) => {
 
             });
           }
-          // else {
-          //   return history.push(window.location.pathname, {
-          //     posts: obj,
-          //     data: obj,
-          //     inbox: [],
-          //     videos: []
-          //   });
-          // }
-
-          // setInterval(() => {
-          //   if (context === null) {
-          //     console.log("update")
-          //     history.push(window.location.pathname, {
-          //       data: backupUsers,
-          //       posts: context,
-          //       inbox: [],
-          //       videos: backup
-
-          //     });
-          //   }
-          // }, 2000)
-
         })
         .catch((err) => {
           console.error(err);
@@ -107,7 +68,7 @@ const Context = (props) => {
   }, [loading, error, history, context]);
 
   // return provider
-  console.log(stateData)
+  // console.log(stateData)
   return (
 
     <ApiContext.Provider value={stateData}>
