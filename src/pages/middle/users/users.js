@@ -127,26 +127,8 @@ const Users = () => {
         videos: []
       });
     }
-    // readApi = history.location.state.posts.map((item, index) => {
-    //   item.message = stateAll.quotes[index];
-    //   api = {
-    //     first: item.name.first,
-    //     last: item.name.last,
-    //     title: item.name.title,
-    //     message: item.message,
-    //     picture: item.picture.large
-    //   }
-    //   return api
-
-    // })
-    // return state.posts = context
   }
   onLoad()
-
-  // useEffect(() => {
-  //   return onLoad()
-
-  // }, [onLoad])
   let [newPost,] = useState('');
 
   const likeButton = () => {
@@ -238,8 +220,7 @@ const Users = () => {
       post: state.post,
     });
 
-    // FetchCardAvatars()
-    let message = "This is getting deleted: " + JSON.stringify(post.first);
+    let message = "This is getting deleted:<br/> Name:<hr/><h3> " + post.name.first + "</h3><hr/> Message:<br/>" + post.message;
     GetSuccess(message);
   };
 
