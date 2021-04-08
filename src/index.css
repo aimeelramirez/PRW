@@ -54,6 +54,7 @@ code {
     stroke-dashoffset: 0;
   }
 } */
+
 .noty_effects_open {
   opacity: 0;
   transform: translate(50%);

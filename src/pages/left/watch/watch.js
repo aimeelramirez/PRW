@@ -18,8 +18,6 @@ const Watch = () => {
   let [player, setPlayer] = useState(null);
   const opts = {
     id: "ytplayer",
-    height: '390',
-    width: '640',
     frameborder: "0",
     playerVars: {
       autoplay: 1
@@ -79,7 +77,7 @@ const Watch = () => {
     //console.log(history.location.state.videos.length)
 
     return (<div className="videos">
-      <YouTube videoId={videoId} opts={opts} onReady={onReady} />
+      <YouTube id="ytplayer" videoId={videoId} opts={opts} onReady={onReady} />
 
       <div><button type="button" onClick={onPlayVideo} disabled={!player}>
         Play

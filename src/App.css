@@ -610,8 +610,11 @@ button {
     display: flex;
     flex-direction: column !important;
   }
+  #ytplayer {
+    width: 90%;
+    padding: 0.5rem;
+  }
 }
-
 @media only screen and (max-width: 800px) {
   .list-input {
     margin-right: 5rem;
@@ -642,6 +645,10 @@ button {
   }
   .Body {
     width: 80% !important;
+  }
+  #ytplayer {
+    width: 90%;
+    padding: 0.5rem;
   }
 }
 @media only screen and (max-width: 700px) {
@@ -674,6 +681,10 @@ button {
   }
   .Body {
     width: 80% !important;
+  }
+  #ytplayer {
+    width: 90%;
+    padding: 0.5rem;
   }
 }
 
@@ -736,6 +747,10 @@ button {
   }
   .Body {
     width: 80% !important;
+  }
+  #ytplayer {
+    width: 90%;
+    padding: 0.5rem;
   }
 }
 
@@ -893,6 +908,10 @@ button {
   #navigation-route > nav > ul > li {
     border: 1px solid var(--black);
   }
+  #ytplayer {
+    width: 90%;
+    padding: 0.5rem;
+  }
 }
 
 @media only screen and (max-width: 200px) {
@@ -929,5 +948,9 @@ button {
   }
   #navigation-route > nav > ul {
     flex-direction: column !important;
+  }
+  #ytplayer {
+    width: 90%;
+    padding: 0.5rem;
   }
 }
