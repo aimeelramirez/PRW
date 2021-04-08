@@ -4,8 +4,8 @@ import { useHistory } from "react-router-dom";
 
 let apiKey = process.env.REACT_APP_API_YOUTUBE;
 const clientKey = process.env.REACT_APP_API_CLIENT
-// let secretKey = process.env.REACT_APP_API_CLIENT_SECRET
-
+//Simple	API calls do not access any private user data	API key
+//More here: https://github.com/google/google-api-javascript-client/blob/master/docs/start.md
 const YouTubeVideo = () => {
     let peopleApiDiscovery;
 
