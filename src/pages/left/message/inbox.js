@@ -9,6 +9,8 @@ import * as actionTypes from "./../../../reducers/action/action";
 import { GetError, GetSuccess, GetEditForm } from "./../../../reducers/action/notification";
 import { ApiContext } from "./../../../Context";
 import Modal from './../../../components/modal/modal'
+import { motion } from "framer-motion";
+
 // import { backupUsers } from './../../middle/users/backup'
 const initialState = {
     posts: []
@@ -352,7 +354,6 @@ const Inbox = () => {
                             </form>
                         </Modal>
                     </div>
-
                     <Post
                         key={index}
                         first={item.name.first}
@@ -412,12 +413,21 @@ const Inbox = () => {
                   </Button>
                     </form>
                 </div>
-                <section id="delete-container" style={styles.article}>
-                    <h2 style={styles.h2}>Inbox:</h2>
-                    <article>
-                        <p>Leave a message!</p>
-                    </article>
-                </section>
+                <motion.div
+                    animate={{
+                        scale: [1, 2, 2, 1, 1],
+                        rotate: [0, 0, 270, 270, 0],
+                        borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                    }}
+                >
+                    <section id="delete-container" style={styles.article}>
+                        <h2 style={styles.h2}>Inbox:</h2>
+
+                        <article>
+                            <p>Leave a message!</p>
+                        </article>
+                    </section>
+                </motion.div>
             </div>
         );
     };

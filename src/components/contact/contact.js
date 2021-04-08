@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { FiThumbsUp, FiThumbsDown, FiTrash2, FiEdit } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 const Contact = (props) => {
   const { txt, title, first, last, email, picture, message, like, dislike, clicked, edit } = {
@@ -25,10 +26,15 @@ const Contact = (props) => {
               <FiThumbsDown />
             </button>
             <button onClick={clicked}>
-              <FiTrash2 />
+              <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+                <FiTrash2 />
+              </motion.div>
             </button>
+
             <button onClick={edit}>
-              <FiEdit />
+              <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+                <FiEdit />
+              </motion.div>
             </button>
 
           </footer>

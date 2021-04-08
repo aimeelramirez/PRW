@@ -253,6 +253,8 @@ const Search = () => {
       </>
     );
   }
+
+
   return (
     <>
       <SearchBarInput />

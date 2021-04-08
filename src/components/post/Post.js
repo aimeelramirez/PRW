@@ -1,6 +1,7 @@
 import "./Post.css";
 // import placer from '../../image.svg'
 import PropTypes from "prop-types";
+import { motion } from "framer-motion";
 
 import { FiTrash2, FiEdit } from "react-icons/fi";
 
@@ -11,6 +12,7 @@ const Post = (props) => {
     ...props,
   };
   return (
+
     <div className="api-item" key={id}>
       <div className="clip3">
         <img src={picture} alt="portrait profile" />
@@ -24,14 +26,20 @@ const Post = (props) => {
           <li>{message}</li>
           <footer>
             <button onClick={clicked}>
-              <FiTrash2></FiTrash2>
+              <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+                <FiTrash2 />
+              </motion.div>
             </button>
             <button onClick={edit}>
-              <FiEdit />
+              <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+                <FiEdit />
+              </motion.div>
             </button>
+
           </footer>
         </ul>
       </div>
+
     </div>
 
   );
