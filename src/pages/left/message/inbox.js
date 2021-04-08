@@ -40,12 +40,15 @@ const handleDelete = (state, action) => {
         }
 
     }
+    localStorage.setItem("inbox", JSON.stringify(state.posts));
+
 
     return state;
 };
 const handlePost = (state, action) => {
     //to update state using setState
     state.posts = action.posts;
+
     //console.log("compare the update: ", action.posts);
     //console.log("compare the state: ", state.posts);
     return state;
@@ -81,13 +84,13 @@ const Inbox = () => {
 
     useEffect(() => {
         // let items = []
-        const json = JSON.stringify(newPost);
-        localStorage.setItem("messages", json);
+        localStorage.getItem("message");
+
+        // localStorage.setItem("message", JSON.stringify(newPost));
         //console.log(state.posts.length)
         setInterval(() => {
 
             localStorage.getItem("inbox");
-            localStorage.setItem("inbox", JSON.stringify(state.posts));
 
 
         }, 2000);
@@ -229,12 +232,16 @@ const Inbox = () => {
             statePosts.posts = newState;
             statePosts.post = post
             state.post = post
+
+            localStorage.setItem("inbox", JSON.stringify(newState));
+
             dispatch({
                 type: actionTypes.ADD_POST,
                 posts: newState,
                 post: post,
                 confirm: confirm,
             });
+
             // //for delete method
             setState({
                 posts: newState,
@@ -250,7 +257,6 @@ const Inbox = () => {
         //console.log(e.target[0].value);
         newPost = e.target[0].value
 
-        localStorage.getItem("messages");
         // const savedPost = JSON.parse(json);
         //console.log(savedPost)
         //set  a new array for thrown issues
@@ -260,6 +266,8 @@ const Inbox = () => {
             if (item.message === statePosts.oldPost) {
                 item.message = newPost
             }
+            localStorage.setItem("message", JSON.stringify(item));
+
             return item;
 
         });
@@ -307,6 +315,7 @@ const Inbox = () => {
             post: post,
         });
         state.post = post;
+
         dispatch({
             type: actionTypes.REMOVE_POST,
             posts: state.posts,
