@@ -43,7 +43,9 @@ const YouTubeVideo = () => {
 
     //Get activities
     const loadClient = () => {
-        //console.log("load client:", window.gapi.client.youtube)
+
+        //This needs to be here for it to run but this is protected for domain 
+        //usages but apiKey isn't the same as this.
         window.gapi.client.setApiKey("AIzaSyA8FIlVkusjzayy3ha-7UpoBNTmpN6HJvE");
         return window.gapi.client
             .load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest").then(() => {
