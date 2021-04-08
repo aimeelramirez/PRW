@@ -1,14 +1,14 @@
 // import React, { useContext } from "react";
 
 import Profile from "./../../components/profile/profile";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 // import { ApiContext } from "./../../Context";
 import { GetError } from './../../reducers/action/notification'
 // import React, { useState, useContext, useEffect, useReducer } from 'react';
 
 const Settings = () => {
   // let num = Math.random() * Math.floor(24)
-  let history = useHistory();
+  // let history = useHistory();
   // let context = useContext(ApiContext);
   //console.log(context);
   // let content = Object.values(context)
