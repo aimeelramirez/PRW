@@ -1,8 +1,13 @@
 # PRW- ReactApp
 
-Deployed: https://www.aimeelynn.dev/
-youtube data api: https://www.aimeelynn.dev/Watch
-(with limiting access only to domain)
+### Deployed:
+
+- https://www.aimeelynn.dev/
+
+### youtube data api:
+
+- https://www.aimeelynn.dev/Watch
+  - (with limiting access only to domain)
 
 ## using youtube data api and iframe
 
