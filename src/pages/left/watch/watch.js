@@ -74,7 +74,7 @@ const Watch = () => {
   if (history.location.state === undefined) {
     //console.log(historyState)
     setHistory({ videos: [] })
-    // return history.push("/loadYt", { videos: [] });
+    return history.push("/loadYt", { videos: [] });
   } else if (history.location.state.videos !== undefined) {
     //console.log(history.location.state.videos.length)
 
