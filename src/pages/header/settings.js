@@ -3,6 +3,7 @@
 import Profile from "./../../components/profile/profile";
 import { useHistory } from "react-router-dom";
 // import { ApiContext } from "./../../Context";
+import { GetError } from './../../reducers/action/notification'
 // import React, { useState, useContext, useEffect, useReducer } from 'react';
 
 const Settings = () => {
@@ -17,6 +18,7 @@ const Settings = () => {
   // const context = useContext(ApiContext);
   const changePhoto = (e) => {
     e.preventDefault();
+    GetError("Change photo unavailable at this time, sorry for the inconvenience.")
     //console.log("To be continued");
   };
 
