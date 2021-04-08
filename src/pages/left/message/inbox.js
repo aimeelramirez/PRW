@@ -313,8 +313,7 @@ const Inbox = () => {
             post: state.post,
         });
 
-        // FetchCardAvatars()
-        let message = "This is getting deleted: " + JSON.stringify(post.first);
+        let message = "This is getting deleted:<br/> Name:<hr/><h3> " + post.name.first + "</h3><hr/> Message:<br/>" + post.message;
         GetSuccess(message);
     };
     const Main = () => {
