@@ -9,7 +9,7 @@ import MainButton from "./../components/button/mainButton";
 import { FiLogIn, FiLogOut, FiUser, FiSettings } from "react-icons/fi";
 // import { GetError } from './action/notification';
 // import Profile from './../components/profile/profile'
-import { backupUsers } from './../pages/middle/users/backup'
+// import { backupUsers } from './../pages/middle/users/backup'
 
 /*
  This is for mockup on Settings to handle if that to Update
@@ -44,11 +44,9 @@ const Portal = () => {
 
   const handleClickUsers = () => {
     //set to go back to settings
-    history.push("/Home", {
-      posts: backupUsers,
-      data: backupUsers
-    });
-
+    console.log("click")
+    //history.push('/')
+    return history.push('/Home', history.location.state)
   };
 
   const [stateAuth, setState] = useState({
@@ -104,7 +102,7 @@ const Portal = () => {
           {state.isAuth ? <FiLogOut /> : <FiLogIn />}
         </MainButton>
 
-        <Button onClick={handleClickUsers}>
+        <Button onClick={handleClickUsers} >
           <FiUser />
         </Button>
         <Button onClick={handleClick}>
@@ -118,8 +116,8 @@ const Portal = () => {
             Welcome, {state.user} <FiUser />{" "}
           </div>
         ) : (
-            "Please sign in first!"
-          )}{" "}
+          "Please sign in first!"
+        )}{" "}
       </div>
       <p>Auth: {JSON.stringify(state.isAuth)} </p>
     </div>
