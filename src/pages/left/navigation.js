@@ -4,8 +4,9 @@ import Feed from "./feed/feed";
 import Settings from "./../header/settings";
 import YoutubeVideo from "./../left/watch/YoutubeVideo";
 import Edit from './../../reducers/post/editPost'
-import ShowFilter from './../middle/search/filtered'
+import ShowFilter from '../middle/search/filteredFeed'
 import ShowInboxFilter from './../middle/search/filterInbox'
+import ShowUsersFilter from './../middle/search/filterUsers'
 
 import Users from "./../middle/users/users";
 import Ads from "./../right/ads";
@@ -58,7 +59,8 @@ const Navigation = () => {
             <Route exact path="/Settings" component={Settings} />
             <Route exact path="/loadYt" component={YoutubeVideo} />
             <Route exact path="/Edit" component={Edit} />
-            <Route exact path="/search/users" component={ShowFilter} />
+            <Route exact path="/search/feed" component={ShowFilter} />
+            <Route exact path="/search/users" component={ShowUsersFilter} />
             <Route exact path="/search/inbox" component={ShowInboxFilter} />
 
           </Context>

@@ -20,13 +20,13 @@ const PostList = () => {
         ////console.log("for each:", index)
         items.push(item);
 
-        localStorage.getItem("names");
-        localStorage.setItem("names", JSON.stringify(items));
+        localStorage.getItem("feed");
+        localStorage.setItem("feed", JSON.stringify(items));
         //pass state in next component
         ////console.log(items.length)
       } else if (index >= 26 || items.length >= 26) {
         delete localStorage[index];
-        localStorage.setItem("names", JSON.stringify(items));
+        localStorage.setItem("feed", JSON.stringify(items));
       }
       return localStorage;
       //to clear if to under developement

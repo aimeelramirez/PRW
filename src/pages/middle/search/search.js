@@ -8,27 +8,32 @@ const Search = () => {
   let history = useHistory();
   //console.log(history)
   // let context = useContext(ApiContext);
-  const json = localStorage.getItem("names");
+  const json = localStorage.getItem("feed");
   const savedPost = JSON.parse(json);
+  const jsonUsers = localStorage.getItem("names");
+  const savedUsers = JSON.parse(jsonUsers);
   const jsonInbox = localStorage.getItem("inbox");
   const savedInbox = JSON.parse(jsonInbox);
   let [stateHistory, setStateHistory] = useState(savedPost);
   let [stateHistoryInbox, setStateHistoryInbox] = useState(savedInbox);
+  let [stateHistoryUsers, setStateHistoryUsers] = useState(savedUsers);
 
   let [state, setState] = useState({
     data: [],
     inbox: [],
-    oldInbox: []
+    oldInbox: [],
+    users: [],
+    oldUsers: []
   });
 
-  const onSearchClick = (e) => {
+  const onSearchClickFeed = (e) => {
     e.preventDefault();
 
     let newList = [];
 
     if (e.target[0].value !== "") {
       debugger
-      const json1 = localStorage.getItem("names");
+      const json1 = localStorage.getItem("feed");
       const savedPost1 = JSON.parse(json1);
 
       newList = savedPost1.filter((item) => {
@@ -61,7 +66,7 @@ const Search = () => {
         let message = "If to delete or modify, please go back for changes!";
         GetEditForm(message);
 
-        return history.replace("/search/users", {
+        return history.replace("/search/feed", {
           data: newList,
         });
 
@@ -73,7 +78,7 @@ const Search = () => {
       let message = "Please, fill input and try again.";
       //console.log(message);
       GetError(message);
-      history.replace("/search/users", {
+      history.replace("/search/feed", {
         data: JSON.parse(getItems),
       });
 
@@ -133,6 +138,60 @@ const Search = () => {
 
     }
   };
+  const onSearchClickHome = (e) => {
+    e.preventDefault();
+
+    let newList = [];
+    debugger
+    if (e.target[0].value !== "") {
+      const jsonInbox1 = localStorage.getItem("names");
+      const savedInbox1 = JSON.parse(jsonInbox1);
+      newList = savedInbox1.filter((item) => {
+        const name = item.name.title + " " + item.name.first + " " + item.name.last
+        // get name and split spaces and join query
+        const check = name.toLowerCase();
+        let filter = e.target[0].value.toLowerCase();
+        const removeItem = filter.split(" ").join("");
+        return check.includes(removeItem);
+      });
+      if (newList.length === 0) {
+        let message = "Please, try again.";
+        //console.log(message);
+        GetError(message);
+        return false;
+      } else {
+        setStateHistoryUsers(savedInbox1);
+        setState({
+          users: newList,
+          oldUsers: stateHistoryUsers
+
+        });
+        state.users = newList;
+        e.target[0].value = "";
+        //console.log("replacing state");
+        let message = "If to delete or modify, please go back for changes!";
+        GetEditForm(message);
+        history.push("/search/users", {
+          users: newList,
+          oldUsers: stateHistoryUsers
+
+        });
+      }
+    } else {
+      let getItems = localStorage.getItem("users");
+      setState({ users: JSON.parse(getItems) });
+      //console.log("pushing update");
+      let message = "Please, fill input and try again.";
+      //console.log(message);
+      GetError(message);
+      history.push("/search/users", {
+        users: JSON.parse(getItems),
+      });
+
+      return true;
+
+    }
+  };
 
   //for each click handle the path
   const handleClick = (e) => {
@@ -142,8 +201,11 @@ const Search = () => {
     if (window.location.pathname === "/Messages") {
       onSearchClickInbox(e);
     }
-    if (window.location.pathname === "/Home" || window.location.pathname === "/NewsFeed") {
-      onSearchClick(e);
+    if (window.location.pathname === "/NewsFeed") {
+      onSearchClickFeed(e);
+    }
+    if (window.location.pathname === "/Home") {
+      onSearchClickHome(e)
     }
   };
 
@@ -177,7 +239,14 @@ const Search = () => {
       </>
     );
   }
-  if (state.data.length > 0) {
+  if (state.users !== undefined && state.users.length > 0) {
+    return (
+      <>
+        <SearchBarInput />
+      </>
+    );
+  }
+  if (state.data !== undefined && state.data.length > 0) {
     return (
       <>
         <SearchBarInput />

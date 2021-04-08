@@ -35,7 +35,8 @@ const YouTubeVideo = () => {
     let history = useHistory();
     const LoadVideo = useCallback(() => {
         //console.log(videoId)
-
+        localStorage.getItem("videos");
+        localStorage.setItem("videos", JSON.stringify(videoId));
         history.push("/Watch", { videos: videoId });
         return history.goBack()
     }, [videoId, history]);
@@ -66,10 +67,10 @@ const YouTubeVideo = () => {
                                     //store it for records
 
                                     videoId.push(item);
-                                    localStorage.setItem("videos", JSON.stringify(item));
                                     setVideoId(videoId);
                                     return LoadVideo()
                                 }
+
                             });
                         }
                     }).catch((err) => {

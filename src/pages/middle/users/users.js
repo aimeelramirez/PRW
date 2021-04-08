@@ -195,6 +195,8 @@ const Users = () => {
     let message = "Success!";
     GetSuccess(message);
     setStateModal({ show: false });
+    localStorage.getItem("names");
+    localStorage.setItem("names", JSON.stringify(state.posts));
     return state.posts
 
   };
@@ -225,7 +227,6 @@ const Users = () => {
   };
 
   const UserItems = () => {
-    let items = [];
 
     // readApi = stateAll.contact.map((item, index) => {
     //   item.message = stateAll.quotes[index];
@@ -240,25 +241,6 @@ const Users = () => {
 
     // })
     // state.posts = readApi
-    //return state.posts
-
-    //save only names on localStorage for privacy if that was in real data
-    state.posts.map((item, index) => {
-      if (items.length <= 25) {
-        // //console.log("for each:", index)
-        items.push(item);
-
-        localStorage.getItem("names");
-        localStorage.setItem("names", JSON.stringify(items));
-        //pass state in next component
-      } else if (index >= 26 || items.length >= 26) {
-        delete localStorage[index];
-        localStorage.setItem("names", JSON.stringify(items));
-      }
-      return localStorage;
-      //localStorage.clear();
-
-    });
 
     let check = context.length > 0 && history.location.state === undefined;
     if (check === true) {
@@ -314,6 +296,7 @@ const Users = () => {
     }
   }
   if (state.posts === undefined) {
+
     //this is the data to be uniformed in parsing
     const onLoad = () => {
       if (history.location.state === undefined) {
@@ -341,6 +324,30 @@ const Users = () => {
       return state.posts = readApi
     }
     onLoad()
+    //return state.posts
+    if (state.posts !== "") {
+      let items = [];
+      console.log(state.posts)
+
+      //save only names on localStorage for privacy if that was in real data
+      state.posts.map((item, index) => {
+
+        if (items.length <= 25) {
+          // //console.log("for each:", index)
+          items.push(item);
+
+          localStorage.getItem("names");
+          localStorage.setItem("names", JSON.stringify(items));
+          //pass state in next component
+        } else if (index >= 26 || items.length >= 26) {
+          delete localStorage[index];
+          localStorage.setItem("names", JSON.stringify(items));
+        }
+        return localStorage;
+        //localStorage.clear();
+
+      });
+    }
   }
 
   if (history.location.state !== undefined) {
