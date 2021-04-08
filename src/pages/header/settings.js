@@ -22,7 +22,9 @@ const Settings = () => {
 
   const ShowProfile = () => {
     //console.log(history);
-    let context = history.location.state.data;
+
+    let context = JSON.parse(localStorage.getItem("feed"))
+
     let num = (Math.random() * Math.random(24)).toFixed();
     let concatSt =
       context[num].location.street.number +
