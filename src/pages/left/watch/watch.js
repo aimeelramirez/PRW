@@ -13,9 +13,9 @@ const Watch = () => {
 
 
   let [, setHistory] = useState({})
-  let [, setVideosId] = useState();
+  let [videosId, setVideosId] = useState();
 
-  let [, setPlayer] = useState(null);
+  let [player, setPlayer] = useState(null);
   const opts = {
     id: "ytplayer",
     frameborder: "0",
@@ -42,44 +42,44 @@ const Watch = () => {
 
   };
 
-  // const onPlayVideo = () => {
-  //   player.playVideo();
-  // };
+  const onPlayVideo = () => {
+    player.playVideo();
+  };
 
-  // const onPauseVideo = () => {
-  //   player.pauseVideo();
-  // };
+  const onPauseVideo = () => {
+    player.pauseVideo();
+  };
 
-  // const onChangeVideo = () => {
-  //   //console.log(videosId.videos)
-  //   for (let i = 0; i < videosId.videos.length; i++) {
-  //     //this is on backup data
-  //     if (i === videosId.videos.length - 1 && i >= 5) {
-  //       // //console.log("click", i)
-  //       return setVideoId(videosId.videos[0].contentDetails.videoId);
-  //     }
-  //     if (i > videosId.videos.length - 1 && videoId !== videosId.videos[i].contentDetails.videoId) {
-  //       // //console.log(videoId)
-  //       return setVideoId(videoId)
-  //     }
-  //     else if (i < videosId.videos.length - 1 && videoId === videosId.videos[i].contentDetails.videoId) {
-  //       // //console.log(`click here ${i} `, videosId.videos.length)
-  //       return setVideoId(videosId.videos[i + 1].contentDetails.videoId);
-  //     }
-  //   }
+  const onChangeVideo = () => {
+    //console.log(videosId.videos)
+    for (let i = 0; i < videosId.videos.length; i++) {
+      //this is on backup data
+      if (i === videosId.videos.length - 1 && i >= 5) {
+        // //console.log("click", i)
+        return setVideoId(videosId.videos[0].contentDetails.videoId);
+      }
+      if (i > videosId.videos.length - 1 && videoId !== videosId.videos[i].contentDetails.videoId) {
+        // //console.log(videoId)
+        return setVideoId(videoId)
+      }
+      else if (i < videosId.videos.length - 1 && videoId === videosId.videos[i].contentDetails.videoId) {
+        // //console.log(`click here ${i} `, videosId.videos.length)
+        return setVideoId(videosId.videos[i + 1].contentDetails.videoId);
+      }
+    }
 
-  // };
+  };
   if (history.location.state === undefined) {
     //console.log(historyState)
     setHistory({ videos: [] })
-    return history.push("/loadYt", { videos: [] });
+    // return history.push("/loadYt", { videos: [] });
   } else if (history.location.state.videos !== undefined) {
     //console.log(history.location.state.videos.length)
 
     return (<div className="videos">
       <YouTube id="ytplayer" videoId={videoId} opts={opts} onReady={onReady} />
 
-      {/* <div><button type="button" onClick={onPlayVideo} disabled={!player}>
+      <div><button type="button" onClick={onPlayVideo} disabled={!player}>
         Play
       </button>
         <button type="button" onClick={onPauseVideo} disabled={!player}>
@@ -87,7 +87,7 @@ const Watch = () => {
       </button>
         <button type="button" onClick={onChangeVideo} disabled={!player}>
           Change Video
-      </button></div> */}
+      </button></div>
     </div>
     )
   }
@@ -101,7 +101,7 @@ const Watch = () => {
       <div className="videos">
         <YouTube videoId={videoId} opts={opts} onReady={onReady} />
 
-        {/* <div><button type="button" onClick={onPlayVideo} disabled={!player}>
+        <div><button type="button" onClick={onPlayVideo} disabled={!player}>
           Play
       </button>
           <button type="button" onClick={onPauseVideo} disabled={!player}>
@@ -110,7 +110,7 @@ const Watch = () => {
           <button type="button" onClick={onChangeVideo} disabled={!player}>
             Change Video
       </button>
-        </div> */}
+        </div>
       </div >
 
     );
