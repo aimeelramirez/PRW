@@ -375,7 +375,7 @@ const Inbox = () => {
     };
 
     if (state.posts.length > 0) {
-
+        console.log(state.posts)
         return (<div id="post-container" >
             <div id="form-container">
                 <form onSubmit={handleClick}>
